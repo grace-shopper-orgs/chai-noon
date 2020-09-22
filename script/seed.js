@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Product} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -10,6 +10,89 @@ async function seed() {
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'})
+  ])
+
+  const products = await Promise.all([
+    Product.create({
+      name: 'Earl Gray',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      price: 10.99,
+      imageUrl:
+        'https://img.theweek.in/content/dam/week/news/health/images/2019/3/20/tea_cancer.jpg',
+      numOfItems: 10
+    }),
+    Product.create({
+      name: 'Greenfield',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      price: 15.99,
+      imageUrl:
+        'https://mk0nationaltodayijln.kinstacdn.com/wp-content/uploads/2019/02/national-hot-tea-month-640x514.jpg',
+      numOfItems: 10
+    }),
+    Product.create({
+      name: 'Black tea',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      price: 11.99,
+      imageUrl:
+        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fluzianne.com%2Frecipes%2Fhot-honey-apple-tea%2F&psig=AOvVaw2eBxFqJc03N3a4xoKEBVFD&ust=1600879143793000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiQ99yZ_esCFQAAAAAdAAAAABAZ',
+      numOfItems: 10
+    }),
+    Product.create({
+      name: 'Chaga Tea',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      price: 66.45,
+      imageUrl:
+        'https://www.google.com/url?sa=i&url=https%3A%2F%2Flaboratorioespresso.it%2Fen%2Fhot-tea-in-summer%2F&psig=AOvVaw2eBxFqJc03N3a4xoKEBVFD&ust=1600879143793000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiQ99yZ_esCFQAAAAAdAAAAABAg',
+      numOfItems: 10
+    }),
+    Product.create({
+      name: 'Chai Tea',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      price: 101.99,
+      imageUrl:
+        'https://blog.piquetea.com/wp-content/uploads/2019/09/types-of-tea-white-tea.png',
+      numOfItems: 10
+    }),
+    Product.create({
+      name: 'Chamomile Tea',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      price: 56.99,
+      imageUrl:
+        'https://www.foodroutes.org/wp-content/uploads/2020/08/Health-Benefits-of-Different-Types-of-Tea.jpg',
+      numOfItems: 10
+    }),
+    Product.create({
+      name: 'Chrysanthemum Tea',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      price: 16.99,
+      imageUrl:
+        'https://cdn.shopify.com/s/files/1/0375/8781/2485/articles/Different_Types_of_Tea_290x360_crop_top.jpg?v=1593206743',
+      numOfItems: 10
+    }),
+    Product.create({
+      name: 'Dandelion Tea',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      price: 50.99,
+      imageUrl:
+        'https://www.nutritionadvance.com/wp-content/uploads/2018/01/chamomile-tea.jpg',
+      numOfItems: 10
+    }),
+    Product.create({
+      name: 'Essiac Tea',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      price: 5.99,
+      imageUrl:
+        'https://leavesthatheal.com/wp-content/uploads/2018/05/herbal-chamomile-tea-1080x675.jpeg',
+      numOfItems: 10
+    }),
+    Product.create({
+      name: 'Green Tea',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      price: 16.99,
+      imageUrl:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRoqptGo6ikRtajV5JllskqaygIpR4aaUlDjw&usqp=CAU',
+      numOfItems: 10
+    })
   ])
 
   console.log(`seeded ${users.length} users`)
