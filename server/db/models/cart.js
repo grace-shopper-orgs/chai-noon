@@ -4,7 +4,8 @@ const db = require('../db')
 // Once we do the associations, cart should have a field for user id, and user should have a field for cart id.
 const Cart = db.define('cart', {
   purchased: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
   totalProducts: {
     type: Sequelize.VIRTUAL,
