@@ -8,8 +8,66 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({
+      firstName: 'Jenny',
+      lastName: 'Thomas',
+      email: 'JThomas@email.com',
+      password: '12567'
+    }),
+    User.create({
+      firstName: 'Ben',
+      lastName: 'Murphy',
+      email: 'Bmurphy@email.com',
+      password: 'wishesRus'
+    }),
+    User.create({
+      firstName: 'Lacy',
+      lastName: 'Mitchell',
+      email: 'Lacy0090@email.com',
+      password: 'helloWorld'
+    }),
+    User.create({
+      firstName: 'Carry',
+      lastName: 'Benson',
+      email: 'CarryLim@email.com',
+      password: 'TimeLess12294'
+    }),
+    User.create({
+      firstName: 'Connie',
+      lastName: 'Gordan',
+      email: 'CGordan@email.com',
+      password: 'crAshing567'
+    }),
+    User.create({
+      firstName: 'Edward',
+      lastName: 'Gonzalez',
+      email: 'EGisCool@email.com',
+      password: 'Ell9090'
+    }),
+    User.create({
+      firstName: 'Sam',
+      lastName: 'chan',
+      email: 'ChanchanisHere@email.com',
+      password: '8979goodBye'
+    }),
+    User.create({
+      firstName: 'Tony',
+      lastName: 'Curry',
+      email: 'TCurry86@email.com',
+      password: 'caliVibes789'
+    }),
+    User.create({
+      firstName: 'Holly',
+      lastName: 'Hanson',
+      email: 'ThomasHanson@email.com',
+      password: 'crud122Us'
+    }),
+    User.create({
+      firstName: 'Barry',
+      lastName: 'Smith',
+      email: 'veryBarry@email.com',
+      password: 'SummersinNYC123'
+    })
   ])
 
   console.log(`seeded ${users.length} users`)
