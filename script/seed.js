@@ -92,8 +92,7 @@ async function seed() {
       name: 'Black tea',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 11.99,
-      imageUrl:
-        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fluzianne.com%2Frecipes%2Fhot-honey-apple-tea%2F&psig=AOvVaw2eBxFqJc03N3a4xoKEBVFD&ust=1600879143793000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiQ99yZ_esCFQAAAAAdAAAAABAZ',
+      imageUrl: 'https://www.organicfacts.net/wp-content/uploads/blacktea.jpg',
       numOfItems: 10
     }),
     Product.create({
@@ -101,7 +100,7 @@ async function seed() {
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 66.45,
       imageUrl:
-        'https://www.google.com/url?sa=i&url=https%3A%2F%2Flaboratorioespresso.it%2Fen%2Fhot-tea-in-summer%2F&psig=AOvVaw2eBxFqJc03N3a4xoKEBVFD&ust=1600879143793000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiQ99yZ_esCFQAAAAAdAAAAABAg',
+        'https://i2.wp.com/www.eatthis.com/wp-content/uploads/2019/11/chaga-mushroom.jpg?fit=1200%2C879&ssl=1',
       numOfItems: 10
     }),
     Product.create({
