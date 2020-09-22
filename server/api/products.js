@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const {Product, Cart} = require('../db/models')
 
-
 //route to serve up all products
 router.get('/', async (req, res, next) => {
   try {
@@ -21,6 +20,9 @@ router.get('/:id', async (req, res, next) => {
       return res.sendStatus(404)
     }
     res.json(product)
-
+  } catch (err) {
+    next(err)
+  }
+})
 
 module.exports = router
