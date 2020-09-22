@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const {Product} = require('../db/models')
+const {Product, Cart} = require('../db/models')
+
 
 //route to serve up all products
 router.get('/', async (req, res, next) => {
@@ -10,5 +11,16 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+//route search by ID
+router.get('/:id', async (req, res, next) => {
+  try {
+    // Eager load all carts this product is associated with
+    const product = await Product.findByPk(req.params.id, {include: Cart})
+    if (!product) {
+      return res.sendStatus(404)
+    }
+    res.json(product)
+
 
 module.exports = router
