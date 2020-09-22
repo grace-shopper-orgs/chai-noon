@@ -21,6 +21,10 @@ router.get('/:id', async (req, res, next) => {
       return res.sendStatus(404)
     }
     res.json(product)
+  } catch (err) {
+    next(err)
+  }
+})
 
 
 module.exports = router
