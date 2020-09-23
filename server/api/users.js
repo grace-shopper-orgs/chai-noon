@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
+const Order = require('../db/models/order')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -11,6 +12,27 @@ router.get('/', async (req, res, next) => {
       attributes: ['id', 'email']
     })
     res.json(users)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// get user by id and include their current active order
+router.get('/:id', async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: {
+        model: Order,
+        where: {
+          purchased: false
+        }
+      },
+      attributes: ['id', 'email']
+    })
+    res.json(user)
   } catch (err) {
     next(err)
   }
