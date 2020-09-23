@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const {Product, Order} = require('../db/models')
 
-
 //route to serve up all products
 router.get('/', async (req, res, next) => {
   try {
@@ -57,6 +56,5 @@ router.delete('/:id', async (req, res, next) => {
     next(err)
   }
 })
-
 
 module.exports = router
