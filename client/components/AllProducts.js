@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchProducts} from '../store/products'
+import {fetchProducts, removeProduct} from '../store/products'
+import {Link} from 'react-router-dom'
 
 export class AllProducts extends React.Component {
   componentDidMount() {
@@ -12,6 +13,9 @@ export class AllProducts extends React.Component {
     console.log('products', products)
     return (
       <div>
+        <button>
+          <Link to="/products/add">ADD PRODUCT</Link>
+        </button>
         <main>
           <ul>
             {!products.length
@@ -24,6 +28,12 @@ export class AllProducts extends React.Component {
                       <li>Price: {product.price}</li>
                       <li>In Stock:{product.numOfItems}</li>
                       <img src={product.imageUrl} />
+                      <button
+                        type="button"
+                        onClick={() => this.props.deleteProduct(product.id)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   )
                 })}
@@ -42,6 +52,9 @@ const mapDispatch = dispatch => {
   return {
     getProducts: () => {
       dispatch(fetchProducts())
+    },
+    deleteProduct: id => {
+      dispatch(removeProduct(id))
     }
   }
 }
