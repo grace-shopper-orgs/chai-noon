@@ -8,6 +8,4 @@ const OrderProducts = db.define('OrderProducts', {
   }
 })
 
-//add validations as well
-
 module.exports = OrderProducts

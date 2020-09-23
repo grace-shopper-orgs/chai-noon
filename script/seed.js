@@ -157,6 +157,9 @@ async function seed() {
     const order = await Order.create({})
     await users[i].addOrder(order)
   }
+  // creates one user that has one purchased order as well
+  let purchasedOrder = await Order.create({purchased: true})
+  await users[1].addOrder(purchasedOrder)
 
   console.log(`seeded ${users.length} users and ${products.length} products`)
   console.log(`seeded successfully`)

@@ -1,7 +1,5 @@
 const router = require('express').Router()
-const {Product, Order} = require('../db/models')
-//not sure why, but there was an error when I tried to import ORderProducts like the other models
-const OrderProducts = require('../db/models/OrderProducts')
+const {Product, Order, OrderProducts} = require('../db/models')
 
 //get ALL orders
 router.get('/', async (req, res, next) => {
@@ -13,7 +11,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// get order by ID
+// get order by order id
 router.get('/:id', async (req, res, next) => {
   try {
     let order = await Order.findByPk(req.params.id)
@@ -27,11 +25,11 @@ router.get('/:id', async (req, res, next) => {
 //will also need to add logic for removing items from cart - should that go into a different route? delete?
 router.put('/:id', async (req, res, next) => {
   try {
-    let order = await Order.findByPk(req.params.id)
-    let productId = req.body.id
-    let product = await Product.findByPk(productId)
+    const order = await Order.findByPk(req.params.id)
+    const productId = req.body.id
+    const product = await Product.findByPk(productId)
 
-    const [orderProduct, created] = await OrderProducts.findOrCreate({
+    const [orderProduct] = await OrderProducts.findOrCreate({
       where: {
         orderId: req.params.id,
         productId: productId
@@ -47,7 +45,6 @@ router.put('/:id', async (req, res, next) => {
       totalPrice: order.totalPrice + product.price
     })
     res.json(order)
-    //may have to change this to eager load products?
   } catch (err) {
     next(err)
   }
