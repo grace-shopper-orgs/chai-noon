@@ -6,6 +6,8 @@ import {Login, Signup, UserHome} from './components'
 import SingleProduct from './components/SingleProduct'
 import {me} from './store'
 import AllProducts from './components/AllProducts'
+import UpdateProduct from './components/UpdateProduct'
+import AddProduct from './components/AddProduct'
 
 /**
  * COMPONENT
@@ -22,11 +24,17 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         {/* We may want to organize our new routes differently? Do we want to show a login/signup on every page? */}
-        <Route exact path="/products/:id" component={SingleProduct} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-      <Route exact path="/products" component={AllProducts} />
-      
+
+        <Route exact path="/products/add" component={AddProduct} />
+
+        <Route exact path="/products" component={AllProducts} />
+
+        <Route path="/products/:id/update" component={UpdateProduct} />
+
+        <Route exact path="/products/:id" component={SingleProduct} />
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
