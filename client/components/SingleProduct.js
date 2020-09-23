@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProduct} from '../store/singleProduct'
+import {ErrorPage} from './ErrorPage'
 
 class SingleProduct extends React.Component {
   componentDidMount() {
@@ -8,13 +9,18 @@ class SingleProduct extends React.Component {
   }
   render() {
     const {name, description, price, imageUrl} = this.props.product
-
     return (
       <div>
-        <h2>{name}</h2>
-        <h4>{price}</h4>
-        <img src={imageUrl} />
-        <p>{description}</p>
+        {this.props.product.name ? (
+          <div>
+            <h2>{name}</h2>
+            <h4>{price}</h4>
+            <img src={imageUrl} />
+            <p>{description}</p>
+          </div>
+        ) : (
+          <ErrorPage error={{status: 404, message: 'Not Found'}} />
+        )}
       </div>
     )
   }
