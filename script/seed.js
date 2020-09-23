@@ -153,42 +153,12 @@ async function seed() {
     })
   ])
 
-  //create cart for all users
-
-  const carts = await Promise.all([
-    Order.create({}),
-    Order.create({}),
-    Order.create({}),
-    Order.create({}),
-    Order.create({}),
-    Order.create({}),
-    Order.create({}),
-    Order.create({}),
-    Order.create({}),
-    Order.create({})
-  ])
-
-  // If we add more users, we have to add more carts as well for this to work
   for (let i = 0; i < users.length; i++) {
-    // This creates a userId on cart. To access the user for a particular cart, we can do: cart.userId. To access the cart when we know the userId, when can do: cart.findOne({where: {userId = user.id}})
-    await users[i].addOrder(carts[i])
+    const order = await Order.create({})
+    await users[i].addOrder(order)
   }
 
-  // await carts[0].addProducts([products[3], products[4]])
-  // await carts[4].addProducts([products[0], products[1]])
-  // await carts[5].addProducts([products[4], products[5]])
-  // await carts[6].addProducts([
-  //   products[1],
-  //   products[2],
-  //   products[6],
-  //   products[8],
-  // ])
-
-  console.log(
-    `seeded ${users.length} users, ${products.length} products, and ${
-      carts.length
-    } carts`
-  )
+  console.log(`seeded ${users.length} users and ${products.length} products`)
   console.log(`seeded successfully`)
 }
 

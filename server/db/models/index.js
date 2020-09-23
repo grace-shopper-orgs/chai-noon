@@ -10,7 +10,7 @@ const OrderProducts = require('./OrderProducts')
  *    BlogPost.belongsTo(User)
  */
 
-// Order.belongsTo(User)
+Order.belongsTo(User)
 User.hasMany(Order)
 
 // Order.belongsToMany(Product, {through: 'Product_Order', timestamps: false})
