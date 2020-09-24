@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
 const Order = require('../db/models/order')
+const {isAdminMiddleware} = require('./gatekeeping')
+
 module.exports = router
 
 router.get('/', async (req, res, next) => {

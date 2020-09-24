@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {createProduct} from '../store/products'
-import {Link} from 'react-router-dom'
 
 export class AddProduct extends Component {
   constructor() {

@@ -48,12 +48,10 @@ class Navbar extends React.Component {
             </div>
           )}
         </nav>
-        <hr />
       </div>
     )
   }
 }
-
 /**
  * CONTAINER
  */
