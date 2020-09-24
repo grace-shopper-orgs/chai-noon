@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
 // get order by order id
 router.get('/:id', async (req, res, next) => {
   try {
-    let order = await Order.findByPk(req.params.id)
+    let order = await Order.findByPk(req.params.id, {include: Product})
     res.json(order)
   } catch (err) {
     next(err)
