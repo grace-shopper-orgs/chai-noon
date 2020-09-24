@@ -16,29 +16,41 @@ export class AllProducts extends React.Component {
         <button>
           <Link to="/products/add">ADD PRODUCT</Link>
         </button>
-        <main>
-          <ul>
-            {!products.length
-              ? 'No Products'
-              : products.map(product => {
-                  return (
-                    <div key={product.id}>
-                      <h1>{product.name}</h1>
-                      <li>Description: {product.description}</li>
-                      <li>Price: {product.price}</li>
-                      <li>In Stock:{product.numOfItems}</li>
-                      <img src={product.imageUrl} />
-                      <button
-                        type="button"
-                        onClick={() => this.props.deleteProduct(product.id)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  )
-                })}
-          </ul>
-        </main>
+        <div className="container">
+          <div className="row">
+            <div className="col-">
+              <ul>
+                {!products.length
+                  ? 'No Products'
+                  : products.map(product => {
+                      return (
+                        <div key={product.id}>
+                          <img
+                            src={product.imageUrl}
+                            width="350"
+                            height="275"
+                          />
+                          <th>{product.name}</th>
+                          <li>Description: {product.description}</li>
+                          <li>Price: {product.price}</li>
+                          <li>In Stock:{product.numOfItems}</li>
+                          <div>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                this.props.deleteProduct(product.id)
+                              }
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      )
+                    })}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
