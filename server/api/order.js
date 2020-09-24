@@ -11,14 +11,28 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//get user's current active order by userId
+router.get('/user/:id', async (req, res, next) => {
+  try {
+    const order = await Order.findOne({
+      where: {
+        userId: req.params.id,
+        purchased: false
+      },
+      include: {
+        model: Product
+      }
+    })
+    res.json(order)
+  } catch (err) {
+    next(err)
+  }
+})
+
 // get order by order id
 router.get('/:id', async (req, res, next) => {
   try {
-    let order = await Order.findByPk(
-      req.params.id,
-      {include: Product},
-      {include: OrderProducts}
-    )
+    let order = await Order.findByPk(req.params.id, {include: Product})
     res.json(order)
   } catch (err) {
     next(err)

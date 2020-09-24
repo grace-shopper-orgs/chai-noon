@@ -16,12 +16,8 @@ export const fetchUserOrder = () => {
     const user = userRes.data
     // check to make sure user is not empty
     if (user.id) {
-      const orderRes = await axios.get(`/api/users/${user.id}`)
-      const orderArray = orderRes.data.orders
-      if (orderArray.length) {
-        // we get the first value because there will only ever be one active cart at a time. this route loads only the non-purchased cart
-        order = orderArray[0]
-      }
+      const orderRes = await axios.get(`/api/orders/user/${user.id}`)
+      order = orderRes.data
     }
     dispatch(getUserOrder(order))
   }
