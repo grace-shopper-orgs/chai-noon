@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Product, Order} = require('../db/models')
+const {isAdminMiddleware} = require('./gatekeeping')
 
 //route to serve up all products
 router.get('/', async (req, res, next) => {
@@ -26,7 +27,7 @@ router.get('/:id', async (req, res, next) => {
 })
 
 //route to add a new product
-router.post('/', async (req, res, next) => {
+router.post('/', isAdminMiddleware, async (req, res, next) => {
   try {
     const product = await Product.create(req.body)
     res.json(product)
@@ -36,7 +37,7 @@ router.post('/', async (req, res, next) => {
 })
 
 //route to update an existing product
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', isAdminMiddleware, async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id)
     const updatedProduct = await product.update(req.body)
@@ -47,7 +48,7 @@ router.put('/:id', async (req, res, next) => {
 })
 
 // route to remove product
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isAdminMiddleware, async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id)
     await product.destroy()

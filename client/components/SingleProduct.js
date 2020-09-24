@@ -11,20 +11,33 @@ class SingleProduct extends React.Component {
 
   render() {
     const {name, description, price, imageUrl, id} = this.props.product
+    const {isAdmin} = this.props.user
     return (
       <div>
-        {this.props.product.name ? (
+        {!isAdmin ? (
           <div>
             <h2>{name}</h2>
             <h4>{price}</h4>
             <img src={imageUrl} />
             <p>{description}</p>
-            <button>
-            <Link to={`/products/${id}/update`}>UPDATE PRODUCT</Link>
-        </button>
+            <button type="button"> Add to Cart </button>
           </div>
         ) : (
-          <ErrorPage error={{status: 404, message: 'Not Found'}} />
+          <div>
+            {this.props.product.name ? (
+              <div>
+                <h2>{name}</h2>
+                <h4>{price}</h4>
+                <img src={imageUrl} />
+                <p>{description}</p>
+                <button>
+                  <Link to={`/products/${id}/update`}>UPDATE PRODUCT</Link>
+                </button>
+              </div>
+            ) : (
+              <ErrorPage error={{status: 404, message: 'Not Found'}} />
+            )}
+          </div>
         )}
       </div>
     )
@@ -33,7 +46,8 @@ class SingleProduct extends React.Component {
 
 const mapState = state => {
   return {
-    product: state.product
+    product: state.product,
+    user: state.user
   }
 }
 
