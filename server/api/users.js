@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
 const Order = require('../db/models/order')
+const {isAdminMiddleware} = require('./gatekeeping')
+
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -17,20 +19,13 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// get user by id and include their current active order
-router.get('/:id/orders', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
         id: req.params.id
       },
-      include: {
-        model: Order,
-        where: {
-          purchased: false
-        }
-      },
-      attributes: ['id', 'email']
+      attributes: ['id', 'email', 'firstName', 'lastName']
     })
     res.json(user)
   } catch (err) {

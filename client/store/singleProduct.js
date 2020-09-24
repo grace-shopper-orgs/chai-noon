@@ -46,7 +46,7 @@ export const updateProduct = (id, updatedProductInfo) => async dispatch => {
 
 //---------- reducer ----------//
 
-export default function(state = {}, action) {
+export default function singleProductReducer(state = {}, action) {
   switch (action.type) {
     case GET_PRODUCT:
       return action.product

@@ -2,6 +2,8 @@ const passport = require('passport')
 const router = require('express').Router()
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 const {User} = require('../db/models')
+const Order = require('../db/models/order')
+
 module.exports = router
 
 /**
@@ -12,10 +14,6 @@ module.exports = router
  * these secrets that you only share with your team - it should NOT be tracked
  * by git! In this case, you may use a file called `secrets.js`, which will
  * set these environment variables like so:
- *
- * process.env.GOOGLE_CLIENT_ID = 'your google client id'
- * process.env.GOOGLE_CLIENT_SECRET = 'your google client secret'
- * process.env.GOOGLE_CALLBACK = '/your/google/callback'
  */
 
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
@@ -29,7 +27,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
   const strategy = new GoogleStrategy(
     googleConfig,
-    (token, refreshToken, profile, done) => {
+    async (token, refreshToken, profile, done) => {
       const googleId = profile.id
       const email = profile.emails[0].value
       const imgUrl = profile.photos[0].value
@@ -37,12 +35,22 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
       const lastName = profile.name.familyName
       const fullName = profile.displayName
 
-      User.findOrCreate({
-        where: {googleId},
-        defaults: {email, imgUrl, firstName, lastName, fullName}
-      })
-        .then(([user]) => done(null, user))
-        .catch(done)
+      try {
+        const [user] = await User.findOrCreate({
+          where: {googleId},
+          defaults: {email, imgUrl, firstName, lastName, fullName}
+        })
+        // find or create new order when a user signs up
+        const [order] = await Order.findOrCreate({
+          where: {
+            userId: user.id,
+            purchased: false
+          }
+        })
+        done(null, user)
+      } catch (err) {
+        done(err)
+      }
     }
   )
 
