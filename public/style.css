@@ -41,6 +41,7 @@ body {
 .nav-icon {
   font-size: 1.5rem;
 }
+
 .cart-btn {
   position: relative;
   cursor: pointer;
@@ -92,16 +93,18 @@ ul {
   color: black;
 }
 .link:hover {
-  color: #00f;
+  color: var(--primaryColor);
 }
 
 .hero {
   min-height: calc(100vh - 60px);
-  /* background: url("../public/heroPhoto.jpg") center/cover no-repeat; */
+  background: url('./images/heroPhoto.jpg') center/cover no-repeat;
+  /* background-color: var(--mainGrey); */
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .banner {
   text-align: center;
   background: rgba(255, 255, 255, 0.8);
@@ -128,4 +131,8 @@ ul {
 .banner-btn:hover {
   background: transparent;
   color: var(--primaryColor);
+}
+
+.main-text {
+  padding-left: 155px;
 }
