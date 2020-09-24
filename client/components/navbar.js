@@ -13,7 +13,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <i className="fa fa-bars" aria-hidden="true" />
         </span>
         <Link to="/home" className="link">
-          <b>BREW TEA</b>
+          <b className="main-text">BREW TEA</b>
         </Link>
         <div className="cart-btn">
           <span className="nav-icon">
