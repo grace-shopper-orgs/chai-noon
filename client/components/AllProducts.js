@@ -25,12 +25,19 @@ export class AllProducts extends React.Component {
                   : products.map(product => {
                       return (
                         <div key={product.id}>
-                          <img
-                            src={product.imageUrl}
-                            width="350"
-                            height="275"
-                          />
-                          <th>{product.name}</th>
+                          <Link
+                            to={`/products/:${product.id}`}
+                            className="link"
+                          >
+                            <img
+                              src={product.imageUrl}
+                              width="350"
+                              height="275"
+                            />
+                            <h6>
+                              <b>{product.name}</b>
+                            </h6>
+                          </Link>
                           <li>Description: {product.description}</li>
                           <li>Price: {product.price}</li>
                           <li>In Stock:{product.numOfItems}</li>

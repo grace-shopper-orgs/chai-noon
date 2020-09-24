@@ -9,6 +9,7 @@ import AllProducts from './components/AllProducts'
 import UpdateProduct from './components/UpdateProduct'
 import AddProduct from './components/AddProduct'
 import Cart from './components/Cart'
+import WelcomePage from './components/WelcomePage'
 
 /**
  * COMPONENT
@@ -25,8 +26,9 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         {/* We may want to organize our new routes differently? Do we want to show a login/signup on every page? */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/home" component={WelcomePage} />
 
         <Route exact path="/products/add" component={AddProduct} />
 
@@ -36,15 +38,6 @@ class Routes extends Component {
 
         <Route exact path="/products/:id" component={SingleProduct} />
         <Route exact path="/users/:id/cart" component={Cart} />
-
-        {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-          </Switch>
-        )}
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
       </Switch>
     )
   }
