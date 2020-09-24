@@ -28,7 +28,6 @@ router.put('/:id', async (req, res, next) => {
     const order = await Order.findByPk(req.params.id)
     const productId = req.body.id
     const product = await Product.findByPk(productId)
-
     const [orderProduct] = await OrderProducts.findOrCreate({
       where: {
         orderId: req.params.id,
