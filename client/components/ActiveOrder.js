@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchUserOrder} from '../store/singleOrder'
+import {fetchUserOrder} from '../store/activeOrder'
 
 class ActiveOrder extends React.Component {
   componentDidMount() {
@@ -25,7 +25,7 @@ class ActiveOrder extends React.Component {
                 </div>
               )
             })}
-        <p>TOTAL: ${order.totalPrice / 100}</p>
+        <p>TOTAL: ${order.totalPrice ? order.totalPrice / 100 : '0.00'}</p>
       </div>
     )
   }
