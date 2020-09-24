@@ -64,10 +64,11 @@ async function seed() {
       password: 'crud122Us'
     }),
     User.create({
-      firstName: 'Barry',
-      lastName: 'Smith',
-      email: 'veryBarry@email.com',
-      password: 'SummersinNYC123'
+      firstName: 'Admin',
+      lastName: 'Admin',
+      email: 'Admin@email.com',
+      password: '9999',
+      isAdmin: true
     })
   ])
 
