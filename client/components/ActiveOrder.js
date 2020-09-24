@@ -8,13 +8,24 @@ class ActiveOrder extends React.Component {
   }
 
   render() {
+    const {order} = this.props
+    const products = order.products || []
     return (
       <div className="container">
-        <h3>Product</h3>
-        <p>Tea</p>
-        <p>Price</p>
-        <p>Qty</p>
-        <p>Amount</p>
+        {!products.length
+          ? 'No Products'
+          : products.map(product => {
+              return (
+                <div key={product.id}>
+                  <h3>{product.name}</h3>
+                  <p>Description: {product.description}</p>
+                  <p>Price: ${product.price / 100}</p>
+                  <p>Quantity in Cart: {product.OrderProducts.count}</p>
+                  <p>In Stock: {product.numOfItems}</p>
+                </div>
+              )
+            })}
+        <p>TOTAL: ${order.totalPrice / 100}</p>
       </div>
     )
   }
@@ -28,10 +39,10 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getOrder: () => dispatch(fetchUserOrder())
+    getOrder: () => {
+      dispatch(fetchUserOrder())
+    }
   }
 }
 
 export default connect(mapState, mapDispatch)(ActiveOrder)
-
-//grab userId from orders and use it to grab all orders from user
