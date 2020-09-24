@@ -52,12 +52,10 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
         })
         done(null, user)
       } catch (err) {
-        done()
+        done(err)
       }
     }
   )
-
-  // await user.addOrder(newOrder)
 
   passport.use(strategy)
 
