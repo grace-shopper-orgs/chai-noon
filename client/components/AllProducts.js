@@ -13,7 +13,7 @@ export class AllProducts extends React.Component {
     console.log('products', products)
     return (
       <div>
-        <button>
+        <button type="button">
           <Link to="/products/add">ADD PRODUCT</Link>
         </button>
         <div className="container">

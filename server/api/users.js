@@ -17,8 +17,8 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// get user by id and include their current active order
-router.get('/:id/orders', async (req, res, next) => {
+// get user by id and load their current active order
+router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
@@ -30,7 +30,7 @@ router.get('/:id/orders', async (req, res, next) => {
           purchased: false
         }
       },
-      attributes: ['id', 'email']
+      attributes: []
     })
     res.json(user)
   } catch (err) {

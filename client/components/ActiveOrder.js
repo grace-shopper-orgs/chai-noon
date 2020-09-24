@@ -1,24 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchOrders} from '../store/orders'
+import {fetchUserOrder} from '../store/singleOrder'
 
-export class Cart extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      id: '',
-      totalProducts: '',
-      totalPrice: ''
-    }
-  }
-
+class ActiveOrder extends React.Component {
   componentDidMount() {
-    this.props.getOrders(this.props.match.params.id)
+    this.props.getOrder()
   }
 
   render() {
-    const {orders} = this.props
-    console.log(orders)
     return (
       <div className="container">
         <h3>Product</h3>
@@ -33,16 +22,16 @@ export class Cart extends React.Component {
 
 const mapState = state => {
   return {
-    orders: state.orders
+    order: state.order
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getOrders: userId => dispatch(fetchOrders(userId))
+    getOrder: () => dispatch(fetchUserOrder())
   }
 }
 
-export default connect(mapState, mapDispatch)(Cart)
+export default connect(mapState, mapDispatch)(ActiveOrder)
 
 //grab userId from orders and use it to grab all orders from user
