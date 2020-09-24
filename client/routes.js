@@ -29,7 +29,7 @@ class Routes extends Component {
         {/* We may want to organize our new routes differently? Do we want to show a login/signup on every page? */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-        <Route exact path="/home" component={WelcomePage} />
+        <Route exact path="/" component={WelcomePage} />
 
         <Route exact path="/products/add" component={AddProduct} />
 
@@ -44,12 +44,11 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route path="/home" component={WelcomePage} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
-        
       </Switch>
     )
   }

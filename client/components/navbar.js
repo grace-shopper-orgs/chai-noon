@@ -9,6 +9,8 @@ class Navbar extends React.Component {
     this.props.getOrder()
   }
   render() {
+    const {user} = this.props
+
     return (
       <div>
         <nav className="navbar">
@@ -16,7 +18,14 @@ class Navbar extends React.Component {
             <span className="nav-icon">
               <i className="fa fa-bars" aria-hidden="true" />
             </span>
-            <h3>BREW TEA</h3>
+            <Link to="/" className="link">
+              <h5>
+                {' '}
+                <div className="main-text">
+                  <b>BREW TEA</b>
+                </div>
+              </h5>
+            </Link>
             <Link to="/cart">
               <div className="cart-btn">
                 <span className="nav-icon">
@@ -28,6 +37,11 @@ class Navbar extends React.Component {
           </div>
           {this.props.isLoggedIn ? (
             <div>
+              {user.isAdmin && (
+                <Link to="/users" className="link">
+                  Users
+                </Link>
+              )}
               {/* The navbar will show these links after you log in */}
               <Link to="/home" className="link">
                 Home
@@ -58,7 +72,8 @@ class Navbar extends React.Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    totalCartItems: state.order.totalProducts
+    totalCartItems: state.order.totalProducts,
+    user: state.user
   }
 }
 
