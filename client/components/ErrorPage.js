@@ -24,7 +24,7 @@ export const ErrorPage = props => {
       ) : (
         <div>
           <div className="error-description">
-            The product you're looking for `is not available.Sorry for the
+            The product you're looking for is not available. Sorry for the
             inconvenience!
           </div>
           <div className="link-button">
