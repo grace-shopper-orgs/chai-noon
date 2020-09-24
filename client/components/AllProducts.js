@@ -15,7 +15,7 @@ export class AllProducts extends React.Component {
       <div>
         {user.isAdmin ? (
           <div>
-            <button>
+            <button type="button">
               <Link to="/products/add">ADD PRODUCT</Link>
             </button>
             <div className="container">

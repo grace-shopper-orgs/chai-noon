@@ -30,8 +30,8 @@ export const deleteProduct = id => {
 //---------- thunk creators ----------//
 export const fetchProducts = () => async dispatch => {
   try {
-    const response = await axios.get('/api/products')
-    const products = response.data
+    const res = await axios.get('/api/products')
+    const products = res.data
     dispatch(setProducts(products))
   } catch (err) {
     console.log(err)
