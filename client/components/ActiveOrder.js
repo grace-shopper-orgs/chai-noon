@@ -12,13 +12,13 @@ class ActiveOrder extends React.Component {
     this.props.getOrder()
   }
 
-  handleChange(productId, event) {
+  handleChange(product, event) {
     // update OrderProducts
     const count = event.target.value
     // console.log(event.target.value)
     // console.log(productId)
     //connects to reducer!!!
-    this.props.updateCart(this.props.order.id, productId, count)
+    this.props.updateCart(this.props.order, product, count)
   }
 
   handleDelete() {}
@@ -46,7 +46,7 @@ class ActiveOrder extends React.Component {
                   <p>Price: ${product.price / 100}</p>
                   <p>{product.OrderProducts.count}</p>
                   <select
-                    onChange={e => this.handleChange(product.id, e)}
+                    onChange={e => this.handleChange(product, e)}
                     defaultValue={product.OrderProducts.count}
                   >
                     {selectArr.map(num => {
@@ -79,8 +79,8 @@ const mapDispatch = dispatch => {
     getOrder: () => {
       dispatch(fetchUserOrder())
     },
-    updateCart: (orderId, productId, count) => {
-      dispatch(updateProductInCart(orderId, productId, count))
+    updateCart: (order, product, count) => {
+      dispatch(updateProductInCart(order, product, count))
     }
   }
 }

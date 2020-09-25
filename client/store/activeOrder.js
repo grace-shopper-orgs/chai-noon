@@ -68,11 +68,18 @@ export const addToOrder = (product, count) => async dispatch => {
 }
 
 export const updateProductInCart = (
-  orderId,
-  productId,
+  order,
+  product,
   count
 ) => async dispatch => {
-  console.log('orderId: ', orderId, 'productID: ', productId, 'count: ', count)
+  // console.log('orderId: ', order, 'product: ', product, 'count: ', count)
+  let res = await axios.put(`/api/orders/update`, {
+    order: order,
+    product: product,
+    count: count
+  })
+  console.log(res.data)
+  dispatch(updateProductInOrder(res.data))
 }
 
 // reducer
