@@ -9,7 +9,14 @@ class ActiveOrder extends React.Component {
 
   render() {
     const {order} = this.props
-    const products = order.products || []
+    let localCart = JSON.parse(localStorage.getItem('cart'))
+    if (!localCart) {
+      localCart = {}
+      localCart.products = []
+      localCart.totalPrice = 0
+    }
+    const products = order.products || localCart.products
+    const totalPrice = order.totalPrice || localCart.totalPrice
     return (
       <div className="container">
         {!products.length
@@ -25,7 +32,7 @@ class ActiveOrder extends React.Component {
                 </div>
               )
             })}
-        <p>TOTAL: ${order.totalPrice ? order.totalPrice / 100 : '0.00'}</p>
+        <p>TOTAL: ${totalPrice ? totalPrice / 100 : '0.00'}</p>
       </div>
     )
   }
