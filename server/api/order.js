@@ -45,6 +45,8 @@ router.put('/:id', async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.id)
     const productId = req.body.id
+    let count = req.body.count
+    if (!count) count = 1
     const product = await Product.findByPk(productId)
     const [orderProduct] = await OrderProducts.findOrCreate({
       where: {
@@ -54,12 +56,12 @@ router.put('/:id', async (req, res, next) => {
     })
 
     await orderProduct.update({
-      count: orderProduct.count + 1
+      count: orderProduct.count + count
     })
 
     await order.update({
-      totalProducts: order.totalProducts + 1,
-      totalPrice: order.totalPrice + product.price
+      totalProducts: order.totalProducts + count,
+      totalPrice: order.totalPrice + product.price * count
     })
     res.json(order)
   } catch (err) {
