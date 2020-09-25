@@ -1,13 +1,30 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchUserOrder} from '../store/activeOrder'
+import {fetchUserOrder, updateProductInCart} from '../store/activeOrder'
 
 class ActiveOrder extends React.Component {
+  constructor() {
+    super()
+    this.handleChange = this.handleChange.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
+  }
   componentDidMount() {
     this.props.getOrder()
   }
 
+  handleChange(productId, event) {
+    // update OrderProducts
+    const count = event.target.value
+    // console.log(event.target.value)
+    // console.log(productId)
+    //connects to reducer!!!
+    this.props.updateCart(this.props.order.id, productId, count)
+  }
+
+  handleDelete() {}
+
   render() {
+    let selectArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     const {order} = this.props
     let localCart = JSON.parse(localStorage.getItem('cart'))
     if (!localCart) {
@@ -27,7 +44,20 @@ class ActiveOrder extends React.Component {
                   <h3>{product.name}</h3>
                   <p>Description: {product.description}</p>
                   <p>Price: ${product.price / 100}</p>
-                  <p>Quantity in Cart: {product.OrderProducts.count}</p>
+                  <p>{product.OrderProducts.count}</p>
+                  <select
+                    onChange={e => this.handleChange(product.id, e)}
+                    defaultValue={product.OrderProducts.count}
+                  >
+                    {selectArr.map(num => {
+                      return (
+                        <option key={num} value={num}>
+                          {num}
+                        </option>
+                      )
+                    })}
+                  </select>
+                  <p>Update Quantity</p>
                   <p>In Stock: {product.numOfItems}</p>
                 </div>
               )
@@ -48,6 +78,9 @@ const mapDispatch = dispatch => {
   return {
     getOrder: () => {
       dispatch(fetchUserOrder())
+    },
+    updateCart: (orderId, productId, count) => {
+      dispatch(updateProductInCart(orderId, productId, count))
     }
   }
 }
