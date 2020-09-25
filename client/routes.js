@@ -11,6 +11,7 @@ import UpdateProduct from './components/UpdateProduct'
 import AddProduct from './components/AddProduct'
 import ActiveOrder from './components/ActiveOrder'
 import WelcomePage from './components/WelcomePage'
+import CheckoutPage from './components/CheckoutPage'
 
 /**
  * COMPONENT
@@ -40,6 +41,7 @@ class Routes extends Component {
 
         <Route exact path="/products/:id" component={SingleProduct} />
         <Route exact path="/cart" component={ActiveOrder} />
+        <Route exact path="/checkout" component={CheckoutPage} />
 
         {isLoggedIn && (
           <Switch>

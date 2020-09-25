@@ -19,84 +19,83 @@ export class AllProducts extends React.Component {
             <button type="button">
               <Link to="/products/add">ADD PRODUCT</Link>
             </button>
-            <div className="container">
-              <div className="row">
-                <div className="col-">
-                  <ul>
-                    {!products.length
-                      ? 'No Products'
-                      : products.map(product => {
-                          return (
-                            <div key={product.id}>
-                              <img
-                                src={product.imageUrl}
-                                width="350"
-                                height="275"
-                              />
-                              <h6>
-                                <Link
-                                  to={`/products/${product.id}`}
-                                  className="link"
-                                >
-                                  {' '}
-                                  {product.name}{' '}
-                                </Link>
-                              </h6>
-                              <li>Description: {product.description}</li>
-                              <li>Price: ${product.price / 100}</li>
-                              <li>In Stock: {product.numOfItems}</li>
-                              <div>
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    this.props.deleteProduct(product.id)
-                                  }
-                                >
-                                  Delete
-                                </button>
-                              </div>
-                            </div>
-                          )
-                        })}
-                  </ul>
-                </div>
+            <section className="products">
+              <div className="section-title">
+                <h2>Products</h2>
               </div>
-            </div>
-          </div>
-        ) : (
-          <div className="container">
-            <div className="row">
-              <div className="col-">
-                <ul>
-                  {!products.length
-                    ? 'No Products'
-                    : products.map(product => {
-                        return (
-                          <div key={product.id}>
-                            <img
-                              src={product.imageUrl}
-                              width="350"
-                              height="275"
-                            />
-
+              {!products.length
+                ? 'No Products'
+                : products.map(product => {
+                    return (
+                      <div className="products-center" key={product.id}>
+                        <article className="product">
+                          <div className="img-container">
                             <Link
                               to={`/products/${product.id}`}
                               className="link"
                             >
-                              <h6>
-                                <b>{product.name}</b>
-                              </h6>
+                              <img
+                                src={product.imageUrl}
+                                width="375"
+                                height="275"
+                              />
                             </Link>
-                            <li>Description: {product.description}</li>
-                            <li>Price: ${product.price / 100}</li>
-                            <li>In Stock: {product.numOfItems}</li>
                           </div>
-                        )
-                      })}
-                </ul>
-              </div>
-            </div>
+                          <h2>
+                            {' '}
+                            <b>{product.name}</b>
+                          </h2>
+                          <h4>{product.description}</h4>
+                          <h4>Price: ${product.price / 100}</h4>
+                          <h4>In Stock: {product.numOfItems}</h4>
+                          <div>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                this.props.deleteProduct(product.id)
+                              }
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </article>
+                      </div>
+                    )
+                  })}
+            </section>
           </div>
+        ) : (
+          <section className="products">
+            <div className="section-title">
+              <h2>Products</h2>
+            </div>
+            {!products.length
+              ? 'No Products'
+              : products.map(product => {
+                  return (
+                    <div className="products-center" key={product.id}>
+                      <article className="product">
+                        <div className="img-container">
+                          <Link to={`/products/${product.id}`} className="link">
+                            <img
+                              src={product.imageUrl}
+                              width="375"
+                              height="275"
+                            />
+                          </Link>
+                        </div>
+                        <h2>
+                          {' '}
+                          <b>{product.name}</b>
+                        </h2>
+                        <h4>{product.description}</h4>
+                        <h4>Price: ${product.price / 100}</h4>
+                        <h4>In Stock: {product.numOfItems}</h4>
+                      </article>
+                    </div>
+                  )
+                })}
+          </section>
         )}
       </div>
     )
