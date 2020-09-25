@@ -1,32 +1,50 @@
-import React, {Component} from 'react'
+import React from 'react'
+import {connect} from 'react-redux'
+import {fetchUserOrder} from '../store/activeOrder'
 
-export default class CheckoutPage extends Component {
-  render() {
-    return (
-      <div>
-        <section className="products">
-          <div className="section-title">
-            <h2>Products</h2>
-          </div>
-          <div className="products-center">
-            <article className="product">
-              <div className="img-container">
-                <img
-                  src="../public/heroPhoto.jpg"
-                  alt="product"
-                  className="product-img"
-                />
-                <button className="bag-btn" data-id="1">
-                  <i className="fas fa-shopping=cart" />
-                  add to cart
-                </button>
-              </div>
-              <h3>tea</h3>
-              <h4>$16</h4>
-            </article>
-          </div>
-        </section>
+const CheckoutPage = props => {
+  const {order, user} = props
+  const products = order.products || []
+  console.log('products', products.OrderProducts)
+  console.log('user', user)
+
+  return (
+    <div className="container">
+      <h4>Complete Your Order</h4>
+      <div className="row">
+        <div className="col-md-4">
+          {/* {!cart.length && cart.map(item => {
+              return (
+                <div key={item.id}> 
+                  <img src={item.imageUrl} />
+                  <p>{item.name}</p>
+                  <p>{item.price}</p>
+                  <p>{item.name}</p>
+                  <p>{item.OrderProducts.count}</p>
+                </div> 
+              )
+            })} */}
+        </div>
       </div>
-    )
+
+      <form />
+    </div>
+  )
+}
+
+const mapState = state => {
+  return {
+    user: state.user,
+    order: state.order
   }
 }
+
+const mapDispatch = dispatch => {
+  return {
+    getOrder: () => {
+      dispatch(fetchUserOrder())
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(CheckoutPage)

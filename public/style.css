@@ -206,3 +206,9 @@ h5 {
   letter-spacing: var(--mainSpacing);
   text-align: center;
 }
+
+.container {
+  padding-top: 20px;
+  text-align: center;
+  color: black;
+}
