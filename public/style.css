@@ -36,7 +36,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.5rem;
+  padding: 0 3.5rem;
 }
 .nav-icon {
   font-size: 1.5rem;
@@ -91,6 +91,7 @@ ul {
 
 .link {
   color: black;
+  font-size: 0.9rem;
 }
 .link:hover {
   color: var(--primaryColor);
@@ -134,5 +135,7 @@ ul {
 }
 
 .main-text {
-  padding-left: 155px;
+  position: relative;
+  padding-right: 750px;
+  padding-top: 5px;
 }

@@ -11,6 +11,7 @@ export class AllProducts extends React.Component {
   render() {
     const {products} = this.props
     const {user} = this.props
+
     return (
       <div>
         {user.isAdmin ? (
@@ -32,15 +33,18 @@ export class AllProducts extends React.Component {
                                 width="350"
                                 height="275"
                               />
-                              <th>
-                                <Link to={`/products/${product.id}`}>
+                              <h6>
+                                <Link
+                                  to={`/products/${product.id}`}
+                                  className="link"
+                                >
                                   {' '}
                                   {product.name}{' '}
                                 </Link>
-                              </th>
+                              </h6>
                               <li>Description: {product.description}</li>
-                              <li>Price: {product.price}</li>
-                              <li>In Stock:{product.numOfItems}</li>
+                              <li>Price: ${product.price / 100}</li>
+                              <li>In Stock: {product.numOfItems}</li>
                               <div>
                                 <button
                                   type="button"
@@ -75,14 +79,17 @@ export class AllProducts extends React.Component {
                               height="275"
                             />
 
-                          <Link to={`/products/${product.id}`}>
-                            <h6>
-                              <b>{product.name}</b>
-                            </h6>
-                          </Link>
-                          <li>Description: {product.description}</li>
-                          <li>Price: {product.price}</li>
-                          <li>In Stock:{product.numOfItems}</li>
+                            <Link
+                              to={`/products/${product.id}`}
+                              className="link"
+                            >
+                              <h6>
+                                <b>{product.name}</b>
+                              </h6>
+                            </Link>
+                            <li>Description: {product.description}</li>
+                            <li>Price: ${product.price / 100}</li>
+                            <li>In Stock: {product.numOfItems}</li>
                           </div>
                         )
                       })}
