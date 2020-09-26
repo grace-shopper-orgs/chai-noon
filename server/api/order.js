@@ -90,8 +90,8 @@ router.put('/update', async (req, res, next) => {
     next(err)
   }
 })
-//
-//will also need to add logic for removing items from cart - should that go into a different route? delete?
+
+// adding to order
 router.put('/:id', async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.id)
@@ -115,6 +115,7 @@ router.put('/:id', async (req, res, next) => {
       totalPrice: order.totalPrice + product.price * count
     })
     res.json(order)
+    console.log(order)
   } catch (err) {
     next(err)
   }

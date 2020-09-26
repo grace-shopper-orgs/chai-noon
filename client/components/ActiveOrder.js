@@ -53,6 +53,7 @@ class ActiveOrder extends React.Component {
                       )
                     })}
                   </select>
+                  <button type="button">Delete Item</button>
 
                   <p>In Stock: {product.numOfItems}</p>
                 </div>

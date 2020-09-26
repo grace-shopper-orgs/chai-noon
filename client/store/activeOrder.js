@@ -117,8 +117,6 @@ export const updateProductInCart = (
       dispatch(updateProductInOrder(cart))
       console.log(JSON.parse(localStorage.getItem('cart')))
     }
-
-    // console.log('orderId: ', order, 'product: ', product, 'count: ', count)
   }
 }
 // reducer
