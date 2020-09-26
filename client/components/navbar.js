@@ -7,7 +7,6 @@ import {fetchUserOrder, logout} from '../store'
 class Navbar extends React.Component {
   componentDidMount() {
     this.props.getOrder()
-    console.log(this.props)
   }
   render() {
     const {user} = this.props
