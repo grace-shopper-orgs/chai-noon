@@ -10,22 +10,26 @@ export class AllUsers extends React.Component {
   render() {
     const {users} = this.props
     return (
-      <div className="container">
+      <div>
         <div className="section-title">
+          <br />
+          <br />
           <h2>Users in the Database</h2>
+          <hr />
+          <br />
         </div>
-        <ul>
+        <div className="user-inline">
           {!users.length
             ? 'No Users'
             : users.map(user => {
                 return (
                   <div key={user.id}>
-                    <li>User ID: {user.id}</li>
-                    <li>Email: {user.email}</li>
+                    <p>User ID: {user.id}</p>
+                    <p>Email: {user.email}</p>
                   </div>
                 )
               })}
-        </ul>
+        </div>
       </div>
     )
   }

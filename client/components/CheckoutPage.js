@@ -52,7 +52,7 @@ const CheckoutPage = props => {
           </label>
           <input name="password" type="text" />
         </div>
-        <button>Submit Order</button>
+        <button className="button-default">Submit Order</button>
       </form>
     </div>
   )

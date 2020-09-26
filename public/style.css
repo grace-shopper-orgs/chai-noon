@@ -39,13 +39,14 @@ body {
   padding: 0 3.5rem;
 }
 .nav-icon {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 .cart-btn {
   position: relative;
   cursor: pointer;
 }
+
 .cart-items {
   position: absolute;
   top: -4px;
@@ -134,27 +135,34 @@ ul {
   color: var(--primaryColor);
 }
 
-/* //---nav logo/text alignment-----// */
+/* //-----nav logo/text alignment-----// */
 .main-text {
   /* position: relative; */
   padding-right: 750px;
   /* padding-top: 5px; */
 }
 
-/* //--------single product page Layout------// */
+/* //--------All product page Layout------// */
 
 .products {
-  padding: 2rem 12.5rem;
+  padding: 4rem 6rem;
+}
+
+.product-section {
+  justify-content: space-around;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .section-title h2 {
   text-align: center;
   font-size: 1.2rem;
   margin-top: 2.2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
   text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
 }
+
 .products-center {
   display: inline-flex;
   max-width: 1170px;
@@ -183,10 +191,10 @@ h5 {
   text-align: center;
 }
 
-/* default containers and button uses */
+/* default containers and button use */
 .container {
   padding-top: 5rem;
-  padding-bottom: 40rem;
+  padding-bottom: 7rem;
   text-align: center;
   color: black;
 }
@@ -206,4 +214,38 @@ h5 {
 
 .button-alignment {
   margin: 0 0.1em;
+}
+
+.button-delete {
+  justify-content: center;
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.user-inline {
+  margin: 2rem 0rem 0rem 4rem;
+  color: black;
+}
+
+/* //-----------cards on welcome page----------// */
+.card-wrap {
+  padding: 0rem 10rem;
+}
+
+/* //------------footer---------------// */
+.footer {
+  position: fixed;
+  left: 0;
+  padding: 0.5rem 0rem 0rem 0rem;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--primaryColor);
+  color: white;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.margin {
+  margin-bottom: 12rem;
 }
