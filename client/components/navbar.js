@@ -8,7 +8,6 @@ class Navbar extends React.Component {
   componentDidMount() {
     this.props.getOrder()
   }
-
   render() {
     const {user} = this.props
 
