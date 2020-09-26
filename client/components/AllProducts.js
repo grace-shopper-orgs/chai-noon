@@ -16,12 +16,21 @@ export class AllProducts extends React.Component {
       <div>
         {user.isAdmin ? (
           <div>
-            <button type="button">
-              <Link to="/products/add">ADD PRODUCT</Link>
-            </button>
+            {/* <Link to="/products/add">
+              <button type="button" className="banner-btn" >
+                ADD PRODUCT
+              </button> */}
+            {/* </Link> */}
             <section className="products">
               <div className="section-title">
                 <h2>Products</h2>
+              </div>
+              <div className="button-alignment">
+                <Link to="/products/add">
+                  <button type="button" className="button-default">
+                    Add Product
+                  </button>
+                </Link>
               </div>
               {!products.length
                 ? 'No Products'
@@ -29,31 +38,29 @@ export class AllProducts extends React.Component {
                     return (
                       <div className="products-center" key={product.id}>
                         <article className="product">
-                          <div className="img-container">
-                            <Link
-                              to={`/products/${product.id}`}
-                              className="link"
-                            >
+                          <Link to={`/products/${product.id}`} className="link">
+                            <div className="img-container">
                               <img
                                 src={product.imageUrl}
                                 width="375"
                                 height="275"
                               />
-                            </Link>
-                          </div>
-                          <h2>
-                            {' '}
-                            <b>{product.name}</b>
-                          </h2>
+                            </div>
+                            <h2>
+                              {' '}
+                              <b>{product.name}</b>
+                            </h2>
+                          </Link>
                           <h4>{product.description}</h4>
                           <h4>Price: ${product.price / 100}</h4>
                           <h4>In Stock: {product.numOfItems}</h4>
-                          <div>
+                          <div className="row">
                             <button
                               type="button"
                               onClick={() =>
                                 this.props.deleteProduct(product.id)
                               }
+                              className="button-default"
                             >
                               Delete
                             </button>

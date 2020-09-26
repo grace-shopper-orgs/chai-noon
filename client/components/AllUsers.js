@@ -10,7 +10,10 @@ export class AllUsers extends React.Component {
   render() {
     const {users} = this.props
     return (
-      <div>
+      <div className="container">
+        <div className="section-title">
+          <h2>Users in the Database</h2>
+        </div>
         <ul>
           {!users.length
             ? 'No Users'

@@ -23,7 +23,7 @@ class Navbar extends React.Component {
                 {' '}
                 <div className="main-text">
                   <h4>
-                    <b>BREW TEA</b>
+                    <b>CHAI NOON</b>
                   </h4>
                 </div>
               </h5>

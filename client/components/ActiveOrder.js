@@ -17,6 +17,7 @@ class ActiveOrder extends React.Component {
     }
     const products = order.products || localCart.products
     const totalPrice = order.totalPrice || localCart.totalPrice
+
     return (
       <div className="container">
         {!products.length

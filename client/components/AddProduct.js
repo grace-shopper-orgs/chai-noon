@@ -36,9 +36,9 @@ export class AddProduct extends Component {
 
   render() {
     return (
-      <div>
-        <main>
-          <h1>ADD NEW PRODUCT</h1>
+      <div className="container">
+        <main className="section-title">
+          <h2>Add New Product</h2>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="name">Product Name:</label>
             <input
@@ -75,8 +75,11 @@ export class AddProduct extends Component {
               value={this.state.numOfItems}
               required
             />
-
-            <button type="submit">Submit:</button>
+            <div className="container">
+              <button type="submit" className="button-default">
+                Submit:
+              </button>
+            </div>
           </form>
         </main>
       </div>
