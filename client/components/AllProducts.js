@@ -16,87 +16,98 @@ export class AllProducts extends React.Component {
       <div>
         {user.isAdmin ? (
           <div>
-            <button type="button">
-              <Link to="/products/add">ADD PRODUCT</Link>
-            </button>
-            <div className="container">
-              <div className="row">
-                <div className="col-">
-                  <ul>
-                    {!products.length
-                      ? 'No Products'
-                      : products.map(product => {
-                          return (
-                            <div key={product.id}>
-                              <img
-                                src={product.imageUrl}
-                                width="350"
-                                height="275"
-                              />
-                              <h6>
-                                <Link
-                                  to={`/products/${product.id}`}
-                                  className="link"
-                                >
-                                  {' '}
-                                  {product.name}{' '}
-                                </Link>
-                              </h6>
-                              <li>Description: {product.description}</li>
-                              <li>Price: ${product.price / 100}</li>
-                              <li>In Stock: {product.numOfItems}</li>
-                              <div>
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    this.props.deleteProduct(product.id)
-                                  }
-                                >
-                                  Delete
-                                </button>
-                              </div>
-                            </div>
-                          )
-                        })}
-                  </ul>
-                </div>
+            <section className="products">
+              <div className="section-title">
+                <h2>Products</h2>
               </div>
-            </div>
-          </div>
-        ) : (
-          <div className="container">
-            <div className="row">
-              <div className="col-">
-                <ul>
-                  {!products.length
-                    ? 'No Products'
-                    : products.map(product => {
-                        return (
-                          <div key={product.id}>
-                            <img
-                              src={product.imageUrl}
-                              width="350"
-                              height="275"
-                            />
-
+              <div className="button-alignment">
+                <Link to="/products/add">
+                  <button type="button" className="button-default">
+                    Add Product
+                  </button>
+                </Link>
+              </div>
+              <div className="product-section">
+                {!products.length
+                  ? 'No Products'
+                  : products.map(product => {
+                      return (
+                        <div className="products-center" key={product.id}>
+                          <article className="product">
                             <Link
                               to={`/products/${product.id}`}
                               className="link"
                             >
-                              <h6>
+                              <div className="img-container">
+                                <img
+                                  src={product.imageUrl}
+                                  width="375"
+                                  height="275"
+                                />
+                              </div>
+                              <h2>
+                                {' '}
                                 <b>{product.name}</b>
-                              </h6>
+                              </h2>
                             </Link>
-                            <li>Description: {product.description}</li>
-                            <li>Price: ${product.price / 100}</li>
-                            <li>In Stock: {product.numOfItems}</li>
-                          </div>
-                        )
-                      })}
-                </ul>
+                            <h4>{product.description}</h4>
+                            <h4>Price: ${product.price / 100}</h4>
+                            <h4>In Stock: {product.numOfItems}</h4>
+                            <div className="button-delete">
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  this.props.deleteProduct(product.id)
+                                }
+                                className="button-default"
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          </article>
+                        </div>
+                      )
+                    })}
               </div>
-            </div>
+            </section>
           </div>
+        ) : (
+          <section className="products">
+            <div className="section-title">
+              <h2>Products</h2>
+            </div>
+            <div className="product-section">
+              {!products.length
+                ? 'No Products'
+                : products.map(product => {
+                    return (
+                      <div className="products-center" key={product.id}>
+                        <article className="product">
+                          <div className="img-container">
+                            <Link
+                              to={`/products/${product.id}`}
+                              className="link"
+                            >
+                              <img
+                                src={product.imageUrl}
+                                width="375"
+                                height="275"
+                              />
+                            </Link>
+                          </div>
+                          <h2>
+                            {' '}
+                            <b>{product.name}</b>
+                          </h2>
+                          <h4>{product.description}</h4>
+                          <h4>Price: ${product.price / 100}</h4>
+                          <h4>In Stock: {product.numOfItems}</h4>
+                        </article>
+                      </div>
+                    )
+                  })}
+            </div>
+          </section>
         )}
       </div>
     )

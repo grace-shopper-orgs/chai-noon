@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product, Order, OrderProducts} = require('../db/models')
+const {Product, Order, OrderProducts, User} = require('../db/models')
 
 //get ALL orders
 router.get('/', async (req, res, next) => {
@@ -43,6 +43,27 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+//mark order by user as purchased
+router.put('/user/:id/ordered', async (req, res, next) => {
+  try {
+    const order = await Order.findOne({
+      where: {
+        userId: req.params.id,
+        purchased: false
+      }
+    })
+    order.purchased = true
+    await order.save()
+    const newOrder = await Order.create()
+    let user = await User.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+    await user.addOrder(newOrder)
+    res.json(order)
+
+//using query parameters here when fetching from axios
 router.put('/update', async (req, res, next) => {
   try {
     let {product, order, count} = req.body

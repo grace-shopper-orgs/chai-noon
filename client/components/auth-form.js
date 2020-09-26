@@ -10,7 +10,7 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="container">
       <form onSubmit={handleSubmit} name={name}>
         {props.match.path === '/signup' && (
           <div>
@@ -41,11 +41,7 @@ const AuthForm = props => {
           <input name="password" type="password" />
         </div>
         <div>
-          <button
-            type="button"
-            className="btn btn-outline-secondary"
-            type="submit"
-          >
+          <button type="button" className="button-default" type="submit">
             {displayName}
           </button>
         </div>
