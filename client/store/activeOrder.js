@@ -25,6 +25,11 @@ export const fetchUserOrder = () => {
     if (user.id) {
       const orderRes = await axios.get(`/api/orders/user/${user.id}`)
       order = orderRes.data
+    } else {
+      let cart = JSON.parse(localStorage.getItem('cart'))
+      if (cart) {
+        order = cart
+      }
     }
     dispatch(getUserOrder(order))
   }
@@ -56,14 +61,15 @@ export const addToOrder = (product, count) => async dispatch => {
         cart.totalPrice += count * product.price
         cart.products.push(product)
       }
-      localStorage.setItem('cart', JSON.stringify(cart))
     } else {
-      cart = {products: [], totalPrice: 0}
+      cart = {products: [], totalPrice: 0, totalProducts: 0}
       product.OrderProducts = {count: count}
       cart.products.push(product)
       cart.totalPrice = product.price * count
-      localStorage.setItem('cart', JSON.stringify(cart))
     }
+    cart.totalProducts += count
+    localStorage.setItem('cart', JSON.stringify(cart))
+    dispatch(addToCart(cart))
   }
 }
 

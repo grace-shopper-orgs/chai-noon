@@ -6,7 +6,15 @@
   --mainSpacing: 0.1rem;
   --mainTransition: all 0.3s linear;
 }
-
+.col- {
+  justify-content: space-around;
+  display: flex;
+  flex-flow: row wrap;
+}
+.productCard > img,
+.productCard > li {
+  max-width: 20rem;
+}
 * {
   margin: 0;
   padding: 0;
