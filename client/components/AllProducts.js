@@ -22,43 +22,41 @@ export class AllProducts extends React.Component {
             <div className="container">
               <div className="row">
                 <div className="col-">
-                  <ul>
-                    {!products.length
-                      ? 'No Products'
-                      : products.map(product => {
-                          return (
-                            <div key={product.id}>
-                              <img
-                                src={product.imageUrl}
-                                width="350"
-                                height="275"
-                              />
-                              <h6>
-                                <Link
-                                  to={`/products/${product.id}`}
-                                  className="link"
-                                >
-                                  {' '}
-                                  {product.name}{' '}
-                                </Link>
-                              </h6>
-                              <li>Description: {product.description}</li>
-                              <li>Price: ${product.price / 100}</li>
-                              <li>In Stock: {product.numOfItems}</li>
-                              <div>
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    this.props.deleteProduct(product.id)
-                                  }
-                                >
-                                  Delete
-                                </button>
-                              </div>
+                  {!products.length
+                    ? 'No Products'
+                    : products.map(product => {
+                        return (
+                          <div className="productCard" key={product.id}>
+                            <img
+                              src={product.imageUrl}
+                              width="350"
+                              height="275"
+                            />
+                            <h6>
+                              <Link
+                                to={`/products/${product.id}`}
+                                className="link"
+                              >
+                                {' '}
+                                {product.name}{' '}
+                              </Link>
+                            </h6>
+                            <li>Description: {product.description}</li>
+                            <li>Price: ${product.price / 100}</li>
+                            <li>In Stock: {product.numOfItems}</li>
+                            <div>
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  this.props.deleteProduct(product.id)
+                                }
+                              >
+                                Delete
+                              </button>
                             </div>
-                          )
-                        })}
-                  </ul>
+                          </div>
+                        )
+                      })}
                 </div>
               </div>
             </div>
@@ -67,33 +65,28 @@ export class AllProducts extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-">
-                <ul>
-                  {!products.length
-                    ? 'No Products'
-                    : products.map(product => {
-                        return (
-                          <div key={product.id}>
-                            <img
-                              src={product.imageUrl}
-                              width="350"
-                              height="275"
-                            />
+                {!products.length
+                  ? 'No Products'
+                  : products.map(product => {
+                      return (
+                        <div className="productCard" key={product.id}>
+                          <img
+                            src={product.imageUrl}
+                            width="350"
+                            height="275"
+                          />
 
-                            <Link
-                              to={`/products/${product.id}`}
-                              className="link"
-                            >
-                              <h6>
-                                <b>{product.name}</b>
-                              </h6>
-                            </Link>
-                            <li>Description: {product.description}</li>
-                            <li>Price: ${product.price / 100}</li>
-                            <li>In Stock: {product.numOfItems}</li>
-                          </div>
-                        )
-                      })}
-                </ul>
+                          <Link to={`/products/${product.id}`} className="link">
+                            <h6>
+                              <b>{product.name}</b>
+                            </h6>
+                          </Link>
+                          <li>Description: {product.description}</li>
+                          <li>Price: ${product.price / 100}</li>
+                          <li>In Stock: {product.numOfItems}</li>
+                        </div>
+                      )
+                    })}
               </div>
             </div>
           </div>
