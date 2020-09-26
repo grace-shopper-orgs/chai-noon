@@ -22,11 +22,13 @@ class Navbar extends React.Component {
               <h5>
                 {' '}
                 <div className="main-text">
-                  <b>BREW TEA</b>
+                  <h4>
+                    <b>CHAI NOON</b>
+                  </h4>
                 </div>
               </h5>
             </Link>
-            <Link to="/cart">
+            <Link to="/cart" className="link">
               <div className="cart-btn">
                 <span className="nav-icon">
                   <i className="fa fa-cart-plus" aria-hidden="true" />
