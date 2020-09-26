@@ -31,7 +31,9 @@ class Navbar extends React.Component {
                 <span className="nav-icon">
                   <i className="fa fa-cart-plus" aria-hidden="true" />
                 </span>
-                <div className="cart-items">{this.props.totalCartItems}</div>
+                <div className="cart-items">
+                  {this.props.totalCartItems || 0}
+                </div>
               </div>
             </Link>
           </div>
