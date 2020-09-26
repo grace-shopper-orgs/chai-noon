@@ -38,19 +38,13 @@ class ActiveOrder extends React.Component {
       <div className="container">
         {!products.length
           ? 'No Products'
-          : products.map((product, i) => {
+          : products.map(product => {
               return (
                 <div key={product.id}>
-                  <h3>
-                    {product.name}, {i}
-                  </h3>
+                  <h3>{product.name}</h3>
                   <p>Description: {product.description}</p>
                   <p>Price: ${product.price / 100}</p>
-                  <p>{product.OrderProducts.count}</p>
-                  <select
-                    onChange={e => this.handleChange(product, e)}
-                    // defaultValue={i}
-                  >
+                  <select onChange={e => this.handleChange(product, e)}>
                     {selectArr.map(num => {
                       return num === product.OrderProducts.count ? (
                         <option selected key={num} value={num}>
@@ -62,16 +56,6 @@ class ActiveOrder extends React.Component {
                         </option>
                       )
                     })}
-                    {/* <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
-                    <option value={6}>6</option>
-                    <option value={7}>7</option>
-                    <option value={8}>8</option>
-                    <option value={9}>9</option>
-                    <option value={10}>10</option> */}
                   </select>
                   <p>Update Quantity</p>
                   <p>In Stock: {product.numOfItems}</p>

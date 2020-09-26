@@ -43,7 +43,6 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-//using query parameters here when fetching from axios
 router.put('/update', async (req, res, next) => {
   try {
     const {product, order, count} = req.body
