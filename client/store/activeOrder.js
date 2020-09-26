@@ -3,10 +3,15 @@ import axios from 'axios'
 // action types
 export const GET_USER_ORDER = 'GET_USER_ORDER'
 export const ADD_TO_CART = 'ADD_TO_CART'
+export const UPDATE_PRODUCT_IN_ORDER = 'UPDATE_PRODUCT_IN_ORDER'
 
 // action creators
 export const getUserOrder = order => ({type: GET_USER_ORDER, order})
 export const addToCart = order => ({type: ADD_TO_CART, order})
+export const updateProductInOrder = order => ({
+  type: UPDATE_PRODUCT_IN_ORDER,
+  order
+})
 
 // Thunk Creators
 export const fetchUserOrder = () => {
@@ -62,12 +67,29 @@ export const addToOrder = (product, count) => async dispatch => {
   }
 }
 
+export const updateProductInCart = (
+  order,
+  product,
+  count
+) => async dispatch => {
+  // console.log('orderId: ', order, 'product: ', product, 'count: ', count)
+  let res = await axios.put(`/api/orders/update`, {
+    order: order,
+    product: product,
+    count: count
+  })
+  console.log(res.data)
+  dispatch(updateProductInOrder(res.data))
+}
+
 // reducer
 export default function singleOrderReducer(state = {}, action) {
   switch (action.type) {
     case GET_USER_ORDER:
       return action.order
     case ADD_TO_CART:
+      return action.order
+    case UPDATE_PRODUCT_IN_ORDER:
       return action.order
     default:
       return state
