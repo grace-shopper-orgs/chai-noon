@@ -25,6 +25,7 @@ export const fetchUserOrder = () => {
     if (user.id) {
       const orderRes = await axios.get(`/api/orders/user/${user.id}`)
       order = orderRes.data
+      console.log(order)
     } else {
       let cart = JSON.parse(localStorage.getItem('cart'))
       if (cart) {
@@ -100,6 +101,7 @@ export const updateProductInCart = (
             let newTotal = countDifference * product.price + cart.totalPrice
             currProd.OrderProducts.count = count
             cart.totalPrice = newTotal
+            cart.totalProducts = cart.totalProducts + countDifference
             localStorage.setItem('cart', JSON.stringify(cart))
           }
           if (countDifference < 0) {
@@ -107,6 +109,7 @@ export const updateProductInCart = (
               cart.totalPrice - Math.abs(countDifference) * product.price
             currProd.OrderProducts.count = count
             cart.totalPrice = newTotal
+            cart.totalProducts = cart.totalProducts + countDifference
             localStorage.setItem('cart', JSON.stringify(cart))
           }
         }

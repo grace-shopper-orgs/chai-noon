@@ -45,8 +45,9 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/update', async (req, res, next) => {
   try {
-    const {product, order, count} = req.body
-    console.log(req.body)
+    let {product, order, count} = req.body
+    count = Number(count)
+
     const association = await OrderProducts.findOne({
       where: {
         productId: product.id,
@@ -66,17 +67,24 @@ router.put('/update', async (req, res, next) => {
     if (countDifference > 0) {
       let newTotal =
         countDifference * productModel.price + orderModel.totalPrice
-      await orderModel.update({totalPrice: newTotal, count})
+      await orderModel.update({
+        totalPrice: newTotal,
+        totalProducts: orderModel.totalProducts + countDifference
+      })
     }
     if (countDifference < 0) {
       let newTotal =
         order.totalPrice - Math.abs(countDifference) * productModel.price
-      await orderModel.update({totalPrice: newTotal, count})
+      await orderModel.update({
+        totalPrice: newTotal,
+        totalProducts: orderModel.totalProducts + countDifference
+      })
     }
 
     const updatedOrderWithProducts = await Order.findByPk(order.id, {
       include: Product
     })
+
     res.json(updatedOrderWithProducts)
   } catch (err) {
     next(err)

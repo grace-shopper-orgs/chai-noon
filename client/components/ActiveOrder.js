@@ -13,11 +13,7 @@ class ActiveOrder extends React.Component {
   }
 
   handleChange(product, event) {
-    // update OrderProducts
     const count = event.target.value
-    // console.log(event.target.value)
-    // console.log(productId)
-    //connects to reducer!!!
     this.props.updateCart(this.props.order, product, count)
   }
 
@@ -26,14 +22,14 @@ class ActiveOrder extends React.Component {
   render() {
     let selectArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     const {order} = this.props
-    let localCart = JSON.parse(localStorage.getItem('cart'))
-    if (!localCart) {
-      localCart = {}
-      localCart.products = []
-      localCart.totalPrice = 0
+
+    if (!Object.keys(order).length) {
+      order.products = []
+      order.totalPrice = 0
+      order.totalProducts = 0
     }
-    const products = order.products || localCart.products
-    const totalPrice = order.totalPrice || localCart.totalPrice
+    const products = order.products
+    const totalPrice = order.totalPrice
     return (
       <div className="container">
         {!products.length
@@ -57,7 +53,7 @@ class ActiveOrder extends React.Component {
                       )
                     })}
                   </select>
-                  <p>Update Quantity</p>
+
                   <p>In Stock: {product.numOfItems}</p>
                 </div>
               )
