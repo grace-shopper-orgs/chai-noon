@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product, Order, OrderProducts} = require('../db/models')
+const {Product, Order, OrderProducts, User} = require('../db/models')
 
 //get ALL orders
 router.get('/', async (req, res, next) => {
@@ -33,6 +33,30 @@ router.get('/user/:id', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     let order = await Order.findByPk(req.params.id, {include: Product})
+    res.json(order)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//mark order by user as purchased
+router.put('/user/:id/ordered', async (req, res, next) => {
+  try {
+    const order = await Order.findOne({
+      where: {
+        userId: req.params.id,
+        purchased: false
+      }
+    })
+    order.purchased = true
+    await order.save()
+    const newOrder = await Order.create()
+    let user = await User.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+    await user.addOrder(newOrder)
     res.json(order)
   } catch (err) {
     next(err)

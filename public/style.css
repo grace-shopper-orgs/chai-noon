@@ -249,3 +249,27 @@ h5 {
 .margin {
   margin-bottom: 12rem;
 }
+
+/* //-----------------checkout-----------------// */
+.section-checkout {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 2.2rem;
+  /* margin-bottom: 2rem; */
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+
+.product h4 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  letter-spacing: var(--mainSpacing);
+}
+
+.image {
+  flex: 0 0 auto;
+  padding: 1em;
+}
