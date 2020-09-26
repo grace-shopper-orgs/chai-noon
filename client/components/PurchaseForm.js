@@ -12,7 +12,13 @@ export const PurchaseForm = props => {
             <label htmlFor="Quantity">
               <small>Quantity</small>
             </label>
-            <input name="quantity" type="number" min={1} defaultValue={1} />
+            <input
+              name="quantity"
+              type="number"
+              min={1}
+              defaultValue={1}
+              max={10}
+            />
           </div>
           <div>
             <button className="btn btn-outline-secondary" type="submit">

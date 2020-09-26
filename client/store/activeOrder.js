@@ -25,6 +25,7 @@ export const fetchUserOrder = () => {
     if (user.id) {
       const orderRes = await axios.get(`/api/orders/user/${user.id}`)
       order = orderRes.data
+      console.log(order)
     } else {
       let cart = JSON.parse(localStorage.getItem('cart'))
       if (cart) {
@@ -78,16 +79,46 @@ export const updateProductInCart = (
   product,
   count
 ) => async dispatch => {
-  // console.log('orderId: ', order, 'product: ', product, 'count: ', count)
-  let res = await axios.put(`/api/orders/update`, {
-    order: order,
-    product: product,
-    count: count
-  })
-  console.log(res.data)
-  dispatch(updateProductInOrder(res.data))
-}
+  const userRes = await axios.get('/auth/me')
+  if (userRes.data.id) {
+    let res = await axios.put(`/api/orders/update`, {
+      order: order,
+      product: product,
+      count: count
+    })
+    dispatch(updateProductInOrder(res.data))
+  } else {
+    let cart = JSON.parse(localStorage.getItem('cart'))
 
+    count = Number(count)
+    if (cart) {
+      for (let i = 0; i < cart.products.length; i++) {
+        let currProd = cart.products[i]
+        if (currProd.id === product.id) {
+          let previousCount = Number(currProd.OrderProducts.count)
+          let countDifference = count - previousCount
+          if (countDifference > 0) {
+            let newTotal = countDifference * product.price + cart.totalPrice
+            currProd.OrderProducts.count = count
+            cart.totalPrice = newTotal
+            cart.totalProducts = cart.totalProducts + countDifference
+            localStorage.setItem('cart', JSON.stringify(cart))
+          }
+          if (countDifference < 0) {
+            let newTotal =
+              cart.totalPrice - Math.abs(countDifference) * product.price
+            currProd.OrderProducts.count = count
+            cart.totalPrice = newTotal
+            cart.totalProducts = cart.totalProducts + countDifference
+            localStorage.setItem('cart', JSON.stringify(cart))
+          }
+        }
+      }
+      dispatch(updateProductInOrder(cart))
+      console.log(JSON.parse(localStorage.getItem('cart')))
+    }
+  }
+}
 // reducer
 export default function singleOrderReducer(state = {}, action) {
   switch (action.type) {

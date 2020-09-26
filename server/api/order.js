@@ -66,8 +66,9 @@ router.put('/user/:id/ordered', async (req, res, next) => {
 //using query parameters here when fetching from axios
 router.put('/update', async (req, res, next) => {
   try {
-    const {product, order, count} = req.body
-    console.log(req.body)
+    let {product, order, count} = req.body
+    count = Number(count)
+
     const association = await OrderProducts.findOne({
       where: {
         productId: product.id,
@@ -87,24 +88,31 @@ router.put('/update', async (req, res, next) => {
     if (countDifference > 0) {
       let newTotal =
         countDifference * productModel.price + orderModel.totalPrice
-      await orderModel.update({totalPrice: newTotal, count})
+      await orderModel.update({
+        totalPrice: newTotal,
+        totalProducts: orderModel.totalProducts + countDifference
+      })
     }
     if (countDifference < 0) {
       let newTotal =
         order.totalPrice - Math.abs(countDifference) * productModel.price
-      await orderModel.update({totalPrice: newTotal, count})
+      await orderModel.update({
+        totalPrice: newTotal,
+        totalProducts: orderModel.totalProducts + countDifference
+      })
     }
 
     const updatedOrderWithProducts = await Order.findByPk(order.id, {
       include: Product
     })
+
     res.json(updatedOrderWithProducts)
   } catch (err) {
     next(err)
   }
 })
-//
-//will also need to add logic for removing items from cart - should that go into a different route? delete?
+
+// adding to order
 router.put('/:id', async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.id)
@@ -128,6 +136,7 @@ router.put('/:id', async (req, res, next) => {
       totalPrice: order.totalPrice + product.price * count
     })
     res.json(order)
+    console.log(order)
   } catch (err) {
     next(err)
   }
