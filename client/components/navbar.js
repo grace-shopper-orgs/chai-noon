@@ -5,24 +5,8 @@ import {BrowserRouter, Link} from 'react-router-dom'
 import {fetchUserOrder, logout} from '../store'
 
 class Navbar extends React.Component {
-  constructor(props) {
-    super()
-    this.state = {
-      localProductsCount: 0
-    }
-    this.updateProductCount = this.updateProductCount.bind(this)
-  }
   componentDidMount() {
     this.props.getOrder()
-    window.addEventListener('storage', this.updateProductCount)
-  }
-  componentWillUnmount() {
-    window.removeEventListener('storage', this.updateProductCount)
-  }
-  updateProductCount() {
-    console.log('something changed')
-    let localCart = JSON.parse(localStorage.getItem('cart'))
-    if (localCart) this.setState({localProductsCount: localCart.totalProducts})
   }
 
   render() {
@@ -49,7 +33,7 @@ class Navbar extends React.Component {
                   <i className="fa fa-cart-plus" aria-hidden="true" />
                 </span>
                 <div className="cart-items">
-                  {this.state.localProductsCount || this.props.totalCartItems}
+                  {this.props.totalCartItems || 0}
                 </div>
               </div>
             </Link>
