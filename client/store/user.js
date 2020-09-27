@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-import {getUserOrder} from './activeOrder'
+import {GET_USER_ORDER} from './activeOrder'
 
 /**
  * ACTION TYPES
@@ -13,19 +13,26 @@ const REMOVE_USER = 'REMOVE_USER'
  * INITIAL STATE
  */
 const defaultUser = {}
-
+const nullOrder = {products: [], totalProducts: 0, totalPrice: 0}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
+const getUser = (user, order = nullOrder) => dispatch => {
+  dispatch({type: GET_USER_ORDER, order: order})
+  return dispatch({type: GET_USER, user})
+}
+const removeUser = order => dispatch => {
+  dispatch({type: REMOVE_USER})
+  dispatch({type: GET_USER_ORDER, order: order})
+}
 /**
  * HELPER FUNCTIONS
  */
 const localToDbCart = async (userId, cart) => {
   try {
     let currOrder = await axios.get(`/api/orders/user/${userId}`)
-    await cart.products.forEach(async each => {
+    for (let i = 0; i < cart.products.length; i++) {
+      const each = cart.products[i]
       each.count = each.OrderProducts.count
       await axios.put(`/api/orders/${currOrder.data.id}`, each)
       await axios.put('/api/orders/update', {
@@ -33,7 +40,7 @@ const localToDbCart = async (userId, cart) => {
         product: each,
         count: each.count
       })
-    })
+    }
     localStorage.removeItem('cart')
   } catch (err) {
     console.error(err)
@@ -59,6 +66,7 @@ export const auth = (
   cart
 ) => async dispatch => {
   let res
+  let order
   try {
     res = await axios.post('/auth/signup', {
       email,
@@ -70,12 +78,11 @@ export const auth = (
     return dispatch(getUser({error: authError}))
   }
   if (cart) {
-    localToDbCart(res.data.id, cart)
+    await localToDbCart(res.data.id, cart)
   }
-  const {data} = await axios.get(`/api/orders/user/${res.data.id}`)
-  dispatch(getUserOrder(data))
+  order = await axios.get(`/api/orders/user/${res.data.id}`)
   try {
-    dispatch(getUser(res.data))
+    dispatch(getUser(res.data, order.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
@@ -84,18 +91,18 @@ export const auth = (
 
 export const authLogin = (email, password, cart) => async dispatch => {
   let res
+  let order
   try {
     res = await axios.post('/auth/login', {email, password})
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
   if (cart) {
-    localToDbCart(res.data.id, cart)
+    await localToDbCart(res.data.id, cart)
   }
-  const {data} = await axios.get(`/api/orders/user/${res.data.id}`)
-  dispatch(getUserOrder(data))
+  order = await axios.get(`/api/orders/user/${res.data.id}`)
   try {
-    dispatch(getUser(res.data))
+    dispatch(getUser(res.data, order.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
@@ -105,8 +112,7 @@ export const authLogin = (email, password, cart) => async dispatch => {
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
-    dispatch(removeUser())
-    dispatch(getUserOrder({products: [], totalProducts: 0, totalPrice: 0}))
+    dispatch(removeUser(nullOrder))
     history.push('/login')
   } catch (err) {
     console.error(err)

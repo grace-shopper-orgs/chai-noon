@@ -34,7 +34,7 @@ class ActiveOrder extends React.Component {
     return (
       <div className="container">
         <div className="product">
-          {!products.length
+          {products !== undefined && !products.length
             ? 'No Products'
             : products.map(product => {
                 return (
@@ -74,7 +74,9 @@ class ActiveOrder extends React.Component {
           <hr />
           {totalPrice ? (
             <Link to="/checkout">
-              <button className="button-default">Checkout</button>
+              <button type="button" className="button-default">
+                Checkout
+              </button>
             </Link>
           ) : null}
         </div>
