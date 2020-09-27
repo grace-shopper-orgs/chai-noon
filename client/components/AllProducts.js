@@ -2,16 +2,35 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts, removeProduct} from '../store/products'
 import {Link} from 'react-router-dom'
+import Pagination from './Pagination'
 
 export class AllProducts extends React.Component {
+  state = {
+    currentProducts: [],
+    currentPage: null,
+    totalPages: null
+  }
+
   componentDidMount() {
     this.props.getProducts()
+  }
+
+  onPageChanged = productsView => {
+    const {products} = this.props
+    const {currentPage, totalPages, pageLimit} = productsView
+    const offset = (currentPage - 1) * pageLimit
+    const currentProducts = products.slice(offset, offset + pageLimit)
+    this.setState({currentPage, currentProducts, totalPages})
   }
 
   render() {
     const {products} = this.props
     const {user} = this.props
 
+    const {currentProducts} = this.state
+    const totalProducts = products.length
+
+    if (totalProducts === 0) return null
     return (
       <div>
         {user.isAdmin ? (
@@ -27,10 +46,18 @@ export class AllProducts extends React.Component {
                   </button>
                 </Link>
               </div>
+              <div>
+                <Pagination
+                  totalProducts={totalProducts}
+                  pageLimit={3}
+                  pageNeighbours={1}
+                  onPageChanged={this.onPageChanged}
+                />
+              </div>
               <div className="product-section">
                 {!products.length
                   ? 'No Products'
-                  : products.map(product => {
+                  : currentProducts.map(product => {
                       return (
                         <div className="products-center" key={product.id}>
                           <article className="product">
@@ -76,10 +103,18 @@ export class AllProducts extends React.Component {
             <div className="section-title">
               <h2>Products</h2>
             </div>
+            <div>
+              <Pagination
+                totalProducts={totalProducts}
+                pageLimit={3}
+                pageNeighbours={1}
+                onPageChanged={this.onPageChanged}
+              />
+            </div>
             <div className="product-section">
               {!products.length
                 ? 'No Products'
-                : products.map(product => {
+                : currentProducts.map(product => {
                     return (
                       <div className="products-center" key={product.id}>
                         <article className="product">

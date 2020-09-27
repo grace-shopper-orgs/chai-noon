@@ -62,6 +62,10 @@ router.put('/user/:id/ordered', async (req, res, next) => {
     })
     await user.addOrder(newOrder)
     res.json(order)
+  } catch (err) {
+    next(err)
+  }
+})
 
 //using query parameters here when fetching from axios
 router.put('/update', async (req, res, next) => {
