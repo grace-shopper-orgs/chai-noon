@@ -45,22 +45,18 @@ export const addToOrder = (product, count) => async dispatch => {
     dispatch(addToCart(orderRes.data))
   } else {
     let cart = JSON.parse(localStorage.getItem('cart'))
-    console.log(cart)
     if (cart) {
-      let isInCart = false
-      for (let i = 0; i < cart.products.length; i++) {
-        let currProd = cart.products[i]
-        if (currProd.id === product.id) {
-          currProd.OrderProducts.count += count
-          cart.totalPrice += count * product.price
-          isInCart = true
-        }
-      }
-      if (!isInCart) {
+      let productIndex = cart.products.findIndex(
+        currProd => currProd.id === product.id
+      )
+      let productToAdd = cart.products[productIndex]
+      if (productIndex === -1) {
         product.OrderProducts = {count: count}
-        cart.totalPrice += count * product.price
         cart.products.push(product)
+      } else {
+        productToAdd.OrderProducts.count += count
       }
+      cart.totalPrice += count * product.price
     } else {
       cart = {products: [], totalPrice: 0, totalProducts: 0}
       product.OrderProducts = {count: count}
