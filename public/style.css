@@ -316,11 +316,9 @@ h5 {
   padding: 1em;
 }
 
-
 .total-container {
   margin-top: 5rem;
-
-
+}
 /* //-----------------pagination-----------------// */
 
 li.page-item.active {
@@ -433,5 +431,4 @@ a.page-link {
     float: left;
     z-index: 1;
   }
-
 }

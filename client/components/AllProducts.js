@@ -7,7 +7,6 @@ import Footer from './footer'
 
 import Pagination from './Pagination'
 
-
 export class AllProducts extends React.Component {
   state = {
     currentProducts: [],
@@ -53,7 +52,7 @@ export class AllProducts extends React.Component {
               <div>
                 <Pagination
                   totalProducts={totalProducts}
-                  pageLimit={3}
+                  pageLimit={9}
                   pageNeighbours={1}
                   onPageChanged={this.onPageChanged}
                 />
@@ -108,7 +107,7 @@ export class AllProducts extends React.Component {
             <div>
               <Pagination
                 totalProducts={totalProducts}
-                pageLimit={3}
+                pageLimit={9}
                 pageNeighbours={1}
                 onPageChanged={this.onPageChanged}
               />
