@@ -104,7 +104,6 @@ label {
 }
 
 nav a {
-  /* display: inline-block; */
   margin: 0.5em;
 }
 
@@ -137,7 +136,6 @@ ul {
 .hero {
   min-height: calc(100vh - 60px);
   background: url('./images/heroPhoto.jpg') center/cover no-repeat;
-  /* background-color: var(--mainGrey); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -286,7 +284,6 @@ h5 {
   text-align: center;
   font-size: 1.2rem;
   margin-top: 2.2rem;
-  /* margin-bottom: 2rem; */
   text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
 }
@@ -375,14 +372,13 @@ h5 {
     left: 0px;
     top: 80px;
     padding: 1rem 2rem;
-    background-color: rgba(231, 226, 221, 0.623);
+    background-color: rgba(231, 226, 221, 0.75);
     float: left;
+    z-index: 1;
   }
   /* //-----nav logo/text alignment-----// */
   .main-text {
-    /* position: relative; */
     width: max-content;
-    /* padding-top: 5px; */
   }
   /* //-----------cards on welcome page----------// */
   .card-wrap {
