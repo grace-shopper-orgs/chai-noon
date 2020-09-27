@@ -2,7 +2,11 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth, authLogin} from '../store'
-
+/**
+ *
+ * Variables
+ */
+const cart = JSON.parse(localStorage.getItem('cart'))
 /**
  * COMPONENT
  */
@@ -83,7 +87,7 @@ const mapDispatch = dispatch => {
       const lastName = evt.target.lastName.value
       const email = evt.target.email.value
       const password = evt.target.password.value
-      const cart = JSON.parse(localStorage.getItem('cart'))
+
       dispatch(auth(email, password, firstName, lastName, cart))
     }
   }
@@ -95,7 +99,6 @@ const mapToDispatch = dispatch => {
       evt.preventDefault()
       const email = evt.target.email.value
       const password = evt.target.password.value
-      const cart = JSON.parse(localStorage.getItem('cart'))
       dispatch(authLogin(email, password, cart))
     }
   }
