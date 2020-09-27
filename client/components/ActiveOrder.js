@@ -20,7 +20,6 @@ class ActiveOrder extends React.Component {
   handleDelete() {}
 
   render() {
-    let selectArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     const {order} = this.props
 
     if (!Object.keys(order).length) {
@@ -40,22 +39,24 @@ class ActiveOrder extends React.Component {
                   <h3>{product.name}</h3>
                   <p>Description: {product.description}</p>
                   <p>Price: ${product.price / 100}</p>
-                  <select onChange={e => this.handleChange(product, e)}>
-                    {selectArr.map(num => {
-                      return num === product.OrderProducts.count ? (
-                        <option selected key={num} value={num}>
-                          {num}
-                        </option>
-                      ) : (
-                        <option key={num} value={num}>
-                          {num}
-                        </option>
-                      )
-                    })}
-                  </select>
+                  <div>
+                    <select
+                      onChange={e => this.handleChange(product, e)}
+                      defaultValue={product.OrderProducts.count}
+                    >
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                      <option value={3}>3</option>
+                      <option value={4}>4</option>
+                      <option value={5}>5</option>
+                      <option value={6}>6</option>
+                      <option value={7}>7</option>
+                      <option value={8}>8</option>
+                      <option value={9}>9</option>
+                      <option value={10}>10</option>
+                    </select>
+                  </div>
                   <button type="button">Delete Item</button>
-
-                  <p>In Stock: {product.numOfItems}</p>
                 </div>
               )
             })}

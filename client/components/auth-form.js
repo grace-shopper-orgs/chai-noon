@@ -41,7 +41,7 @@ const AuthForm = props => {
           <input name="password" type="password" />
         </div>
         <div>
-          <button type="button" className="button-default" type="submit">
+          <button className="button-default" type="submit">
             {displayName}
           </button>
         </div>
@@ -79,12 +79,13 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
-      const formName = evt.target.name
+      // const formName = evt.target.name
       const firstName = evt.target.firstName.value
       const lastName = evt.target.lastName.value
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, firstName, lastName))
+      const cart = JSON.parse(localStorage.getItem('cart'))
+      dispatch(auth(email, password, firstName, lastName, cart))
     }
   }
 }
@@ -93,10 +94,11 @@ const mapToDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
-      const formName = evt.target.name
+      // const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(authLogin(email, password, formName))
+      const cart = JSON.parse(localStorage.getItem('cart'))
+      dispatch(authLogin(email, password, cart))
     }
   }
 }

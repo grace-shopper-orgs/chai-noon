@@ -62,7 +62,10 @@ router.put('/user/:id/ordered', async (req, res, next) => {
     })
     await user.addOrder(newOrder)
     res.json(order)
-
+  } catch (error) {
+    next(error)
+  }
+})
 //using query parameters here when fetching from axios
 router.put('/update', async (req, res, next) => {
   try {
@@ -75,12 +78,11 @@ router.put('/update', async (req, res, next) => {
         orderId: order.id
       }
     })
-    const previousCount = association.count
+    let previousCount = association.count
     if (previousCount === count) {
       return res.json(association)
     }
     await association.update({count: count})
-
     const productModel = await Product.findByPk(product.id)
     const orderModel = await Order.findByPk(order.id)
 
@@ -95,7 +97,7 @@ router.put('/update', async (req, res, next) => {
     }
     if (countDifference < 0) {
       let newTotal =
-        order.totalPrice - Math.abs(countDifference) * productModel.price
+        orderModel.totalPrice - Math.abs(countDifference) * productModel.price
       await orderModel.update({
         totalPrice: newTotal,
         totalProducts: orderModel.totalProducts + countDifference
@@ -126,17 +128,18 @@ router.put('/:id', async (req, res, next) => {
         productId: productId
       }
     })
-
     await orderProduct.update({
       count: orderProduct.count + count
     })
-
-    await order.update({
-      totalProducts: order.totalProducts + count,
-      totalPrice: order.totalPrice + product.price * count
-    })
-    res.json(order)
-    console.log(order)
+    await order
+      .update({
+        totalProducts: order.totalProducts + count,
+        totalPrice: order.totalPrice + product.price * count
+      })
+      .then(() => res.json(order))
+      .catch(err => {
+        throw err
+      })
   } catch (err) {
     next(err)
   }
