@@ -19,7 +19,7 @@ class ActiveOrder extends React.Component {
     this.props.updateCart(this.props.order, product, count)
   }
 
-  handleDelete(product, e) {
+  handleDelete(product) {
     this.props.updateCart(this.props.order, product, 0)
   }
 
@@ -32,6 +32,7 @@ class ActiveOrder extends React.Component {
       order.totalProducts = 0
     }
     const products = order.products
+    products.sort((a, b) => a.id - b.id)
     const totalPrice = order.totalPrice
     return (
       <div className="container">
