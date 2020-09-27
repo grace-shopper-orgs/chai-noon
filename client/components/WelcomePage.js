@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Footer from './footer'
 
 export default function WelcomePage() {
   return (
@@ -32,7 +33,9 @@ export default function WelcomePage() {
         <div className="row row-cols-1 row-cols-md-3">
           <div className="col mb-4">
             <div className="card">
-              <img src="" className="card-img-top" alt="..." />
+
+              <img src="" className="card-img-top" alt="" />
+
               <div className="card-body">
                 <h5 className="card-title">Card title</h5>
                 <p className="card-text">
@@ -45,7 +48,9 @@ export default function WelcomePage() {
           </div>
           <div className="col mb-4">
             <div className="card h-100">
-              <img src="" className="card-img-top" alt="..." />
+
+              <img src="" className="card-img-top" alt="" />
+
               <div className="card-body">
                 <h5 className="card-title">Card title</h5>
                 <p className="card-text">
@@ -58,7 +63,9 @@ export default function WelcomePage() {
           </div>
           <div className="col mb-4">
             <div className="card h-100">
-              <img src="" className="card-img-top" alt="..." />
+
+              <img src="" className="card-img-top" alt="" />
+
               <div className="card-body">
                 <h5 className="card-title">Card title</h5>
                 <p className="card-text">
@@ -71,7 +78,9 @@ export default function WelcomePage() {
           </div>
           <div className="col mb-4">
             <div className="card h-100">
-              <img src="" className="card-img-top" alt="..." />
+
+              <img src="" className="card-img-top" alt="" />
+
               <div className="card-body">
                 <h5 className="card-title">Card title</h5>
                 <p className="card-text">
@@ -84,10 +93,7 @@ export default function WelcomePage() {
           </div>
         </div>
       </div>
-      <div className="footer">
-        <p>© 2020 Chai Noon Tea. All Rights Reserved.</p>
-      </div>
-      <div className="margin" />
+      <Footer />
     </div>
   )
 }

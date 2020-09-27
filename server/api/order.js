@@ -66,6 +66,7 @@ router.put('/user/:id/ordered', async (req, res, next) => {
     next(error)
   }
 })
+
 //using query parameters here when fetching from axios
 router.put('/update', async (req, res, next) => {
   try {
@@ -78,7 +79,7 @@ router.put('/update', async (req, res, next) => {
         orderId: order.id
       }
     })
-    let previousCount = association.count
+    const previousCount = association.count
     if (previousCount === count) {
       return res.json(association)
     }

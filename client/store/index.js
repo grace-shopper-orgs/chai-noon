@@ -14,8 +14,8 @@ const reducer = combineReducers({
   users,
   products,
   product,
-  order
-  // ordered
+  order,
+  ordered
 })
 
 const middleware = composeWithDevTools(

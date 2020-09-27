@@ -3,15 +3,37 @@ import {connect} from 'react-redux'
 import {fetchProducts, removeProduct} from '../store/products'
 import {Link} from 'react-router-dom'
 
+import Footer from './footer'
+
+import Pagination from './Pagination'
+
 export class AllProducts extends React.Component {
+  state = {
+    currentProducts: [],
+    currentPage: null,
+    totalPages: null
+  }
+
   componentDidMount() {
     this.props.getProducts()
+  }
+
+  onPageChanged = productsView => {
+    const {products} = this.props
+    const {currentPage, totalPages, pageLimit} = productsView
+    const offset = (currentPage - 1) * pageLimit
+    const currentProducts = products.slice(offset, offset + pageLimit)
+    this.setState({currentPage, currentProducts, totalPages})
   }
 
   render() {
     const {products} = this.props
     const {user} = this.props
 
+    const {currentProducts} = this.state
+    const totalProducts = products.length
+
+    if (totalProducts === 0) return null
     return (
       <div>
         {user.isAdmin ? (
@@ -27,10 +49,18 @@ export class AllProducts extends React.Component {
                   </button>
                 </Link>
               </div>
+              <div>
+                <Pagination
+                  totalProducts={totalProducts}
+                  pageLimit={9}
+                  pageNeighbours={1}
+                  onPageChanged={this.onPageChanged}
+                />
+              </div>
               <div className="product-section">
                 {!products.length
                   ? 'No Products'
-                  : products.map(product => {
+                  : currentProducts.map(product => {
                       return (
                         <div className="products-center" key={product.id}>
                           <article className="product">
@@ -38,13 +68,11 @@ export class AllProducts extends React.Component {
                               to={`/products/${product.id}`}
                               className="link"
                             >
-                              <div className="img-container">
-                                <img
-                                  src={product.imageUrl}
-                                  width="375"
-                                  height="275"
-                                />
-                              </div>
+                              <img
+                                src={product.imageUrl}
+                                width="400"
+                                height="280"
+                              />
                               <h2>
                                 {' '}
                                 <b>{product.name}</b>
@@ -76,25 +104,28 @@ export class AllProducts extends React.Component {
             <div className="section-title">
               <h2>Products</h2>
             </div>
+            <div>
+              <Pagination
+                totalProducts={totalProducts}
+                pageLimit={9}
+                pageNeighbours={1}
+                onPageChanged={this.onPageChanged}
+              />
+            </div>
             <div className="product-section">
               {!products.length
                 ? 'No Products'
-                : products.map(product => {
+                : currentProducts.map(product => {
                     return (
                       <div className="products-center" key={product.id}>
                         <article className="product">
-                          <div className="img-container">
-                            <Link
-                              to={`/products/${product.id}`}
-                              className="link"
-                            >
-                              <img
-                                src={product.imageUrl}
-                                width="375"
-                                height="275"
-                              />
-                            </Link>
-                          </div>
+                          <Link to={`/products/${product.id}`} className="link">
+                            <img
+                              src={product.imageUrl}
+                              width="400"
+                              height="280"
+                            />
+                          </Link>
                           <h2>
                             {' '}
                             <b>{product.name}</b>
@@ -109,6 +140,7 @@ export class AllProducts extends React.Component {
             </div>
           </section>
         )}
+        <Footer />
       </div>
     )
   }
