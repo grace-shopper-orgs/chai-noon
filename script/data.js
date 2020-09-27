@@ -139,7 +139,7 @@ const productsJson = [
       'Sweeten your senses with a tart and tangy rush to the palate from this pomegranate green tea. Select organic green tea is hand tossed in a large wok, dried to perfection, then carefully blended with organic raspberries and essence of pomegranate.',
     price: 8999,
     imageUrl:
-      'https://teafloor.com/blog/wp-content/uploads/2018/04/Pomegranate.jpg',
+      'https://cleansejoy.com/wp-content/uploads/2019/02/Pomegranate-Green-Tea-Detox-Recipe-500x500.jpg',
     numOfItems: 10
   },
   {
@@ -462,6 +462,438 @@ const productsJson = [
       'Organic green tea infused with tropical flavors of pineapple, mango, and papaya offering a sweet and refreshing cup of tea. This pineapple green tea is filled with bright and fruity notes in each cup.',
     price: 11599,
     imageUrl: 'https://static.toiimg.com/photo/67394858.cms',
+    numOfItems: 10
+  },
+  {
+    name: 'Fiest of colors',
+    description:
+      'Traditional organic sencha green tea. This organic Chinese green tea is deep steamed and carefully dried. Steeps a lively, grassy cup every time.',
+    price: 4499,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2015/05/25/14/29/tea-783352_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Earthling',
+    description:
+      'Sip Dragonwell tea for a legendary experience. This Chinese green tea is prized for its unique, flat, sword-shaped leaves and jade green color. Our organic Dragonwell tea exhibits a fresh, clean aroma and gentle, mellow flavor.',
+    price: 4399,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2015/07/02/20/37/cup-829527_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Passion Fruit',
+    description:
+      'This soothing aromatic blend is crafted with minty, calm, and slightly sweet botanicals. Restoring balance in the digestive system with each and every sip.',
+    price: 4299,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2014/07/01/12/36/tea-381235_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Haven Leaves',
+    description:
+      'A dynamic, yet calming woodsy elixir that will ease your mind and spirit. Chill blend is a soothing citrus blend that is perfect for adding a touch of calm to your day.',
+    price: 4199,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/01/10/21/05/tea-1132529_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Flavor Burst',
+    description:
+      'This soothing aromatic blend is crafted with minty, calm, and slightly sweet botanicals. Restoring balance in the digestive system with each and every sip.',
+    price: 4099,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2015/01/14/15/47/tea-599227_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Egyptian nights',
+    description:
+      'Sweet raspberries are perfectly balanced by tangy fresh hibiscus flowers while the indulgent, floral scent of jasmine carries this slightly stimulating guayusa tea blend to a place that could only be described as Happy! This uplifting tea is fruity and light, perfect for any time of day',
+    price: 3999,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/05/23/15/16/herbal-tea-1410565_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'For mood',
+    description:
+      'Robust with flavor, our traditional blend of organic loose leaf black tea is perfect for starting the day. This Sri Lanka black tea brews smooth and malty, with a clean finish.',
+    price: 3899,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2017/05/19/07/34/teacup-2325722_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'English Blue light',
+    description:
+      'Rejuvenating and invigorating, this malty, yet earthy infusion helps to re-energize and enhance daily performance. This tea for men delivers a slightly musky, sweet finish with notes reminiscent of sandalwood.',
+    price: 3799,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/10/14/18/21/tee-1740871_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Paitning of Starry night',
+    description:
+      'This revitalizing citrus blend steeps a beautiful light pink hue and leaves behind a clean and refreshing finish of fresh orange blossoms. This citrusy and sweet blood orange blend is delicious hot or iced at any time of day.',
+    price: 3699,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/11/25/15/13/teapots-1858601_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Secret',
+    description:
+      'A blended black tea that offers a rich, flavorful cup that is perfect for your morning routine. This tea blend combines fruity notes of white peach, cinnamon and gala apples, and has a crisp floral finish',
+    price: 3599,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/03/09/09/43/food-1245955_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Mindy Flavor',
+    description:
+      'A dynamic, yet calming woodsy elixir that will ease your mind and spirit. Chill blend is a soothing citrus blend that is perfect for adding a touch of calm to your day.',
+    price: 5499,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2015/03/26/10/39/teapot-691729_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Jolene Do Not Take',
+    description:
+      'This soothing aromatic blend is crafted with minty, calm, and slightly sweet botanicals. Restoring balance in the digestive system with each and every sip.',
+    price: 5399,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/02/19/10/50/tea-1209428_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Ivery Smile',
+    description:
+      "A sweet and fruity black tea blend. We've taken the essence of lychee, mixed it with peach and infused it in organic black tea for a cup filled with notes of apricot, osmanthus, and ripe pear. Enjoy this peach black tea hot or iced",
+    price: 5299,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/11/29/12/52/coffee-1869647_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Soft Heart',
+    description:
+      'A delectable dessert infusion with sweet and flavorful notes of honey, caramel, and fresh-baked pear. This rooibos tea brews a well-rounded cup.',
+    price: 5199,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/09/21/22/00/tee-1685847_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Morning Kiss',
+    description:
+      "A sweet and fruity black tea blend. We've taken the essence of lychee, mixed it with peach and infused it in organic black tea for a cup filled with notes of apricot, osmanthus, and ripe pear. Enjoy this peach black tea hot or iced.",
+    price: 5099,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/03/27/21/37/tea-1284366_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Wisper',
+    description:
+      'A blended black tea that offers a rich, flavorful cup that is perfect for your morning routine. This tea blend combines fruity notes of white peach, cinnamon and gala apples, and has a crisp floral finish',
+    price: 4999,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/11/29/13/06/tea-1869721_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Citrus Hue',
+    description:
+      'This revitalizing citrus blend steeps a beautiful light pink hue and leaves behind a clean and refreshing finish of fresh orange blossoms. This citrusy and sweet blood orange blend is delicious hot or iced at any time of day.',
+    price: 4899,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2018/09/13/07/30/teacup-3673984_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Earthy Infusion',
+    description:
+      'Rejuvenating and invigorating, this malty, yet earthy infusion helps to re-energize and enhance daily performance. This tea for men delivers a slightly musky, sweet finish with notes reminiscent of sandalwood.',
+    price: 4799,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2017/05/30/12/19/tea-2356764_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Sri Lanka Memories',
+    description:
+      'Robust with flavor, our traditional blend of organic loose leaf black tea is perfect for starting the day. This Sri Lanka black tea brews smooth and malty, with a clean finish.',
+    price: 4699,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/01/19/18/03/tea-1150046_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Sweet and Spicy',
+    description:
+      'Sweet raspberries are perfectly balanced by tangy fresh hibiscus flowers while the indulgent, floral scent of jasmine carries this slightly stimulating guayusa tea blend to a place that could only be described as Happy! This uplifting tea is fruity and light, perfect for any time of day',
+    price: 4599,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/11/29/13/04/beverage-1869716_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Georgian Tales',
+    description:
+      'A dynamic, yet calming woodsy elixir that will ease your mind and spirit. Chill blend is a soothing citrus blend that is perfect for adding a touch of calm to your day.',
+    price: 4499,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2015/01/13/16/08/tee-598346_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Story of Eden',
+    description:
+      'This soothing aromatic blend is crafted with minty, calm, and slightly sweet botanicals. Restoring balance in the digestive system with each and every sip.',
+    price: 4399,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2018/01/03/06/08/tee-3057645_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'LoveBird Song',
+    description:
+      "A sweet and fruity black tea blend. We've taken the essence of lychee, mixed it with peach and infused it in organic black tea for a cup filled with notes of apricot, osmanthus, and ripe pear. Enjoy this peach black tea hot or iced",
+    price: 4599,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2017/07/19/15/59/tea-2519551_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Fresh Morning',
+    description:
+      'A delectable dessert infusion with sweet and flavorful notes of honey, caramel, and fresh-baked pear. This rooibos tea brews a well-rounded cup.',
+    price: 4399,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/10/04/11/29/tee-1714106_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'English Supper',
+    description:
+      "A sweet and fruity black tea blend. We've taken the essence of lychee, mixed it with peach and infused it in organic black tea for a cup filled with notes of apricot, osmanthus, and ripe pear. Enjoy this peach black tea hot or iced.",
+    price: 5999,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2018/11/23/10/47/tea-3833600_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Russian Winter',
+    description:
+      'A blended black tea that offers a rich, flavorful cup that is perfect for your morning routine. This tea blend combines fruity notes of white peach, cinnamon and gala apples, and has a crisp floral finish',
+    price: 5899,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/10/20/19/52/tee-1756497_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Eclipse',
+    description:
+      'This revitalizing citrus blend steeps a beautiful light pink hue and leaves behind a clean and refreshing finish of fresh orange blossoms. This citrusy and sweet blood orange blend is delicious hot or iced at any time of day.',
+    price: 5799,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/11/29/13/07/beverage-1869722_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Black Tea Christmas',
+    description:
+      'Rejuvenating and invigorating, this malty, yet earthy infusion helps to re-energize and enhance daily performance. This tea for men delivers a slightly musky, sweet finish with notes reminiscent of sandalwood.',
+    price: 5799,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/11/29/13/05/breakfast-1869717_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Holidays in Rome',
+    description:
+      'Robust with flavor, our traditional blend of organic loose leaf black tea is perfect for starting the day. This Sri Lanka black tea brews smooth and malty, with a clean finish.',
+    price: 5699,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2015/03/26/11/03/green-tea-692339_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Fruit Punch',
+    description:
+      'Sweet raspberries are perfectly balanced by tangy fresh hibiscus flowers while the indulgent, floral scent of jasmine carries this slightly stimulating guayusa tea blend to a place that could only be described as Happy! This uplifting tea is fruity and light, perfect for any time of day',
+    price: 5599,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/01/19/17/56/coffee-1149983_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Fruit Fusion Morning',
+    description:
+      'A dynamic, yet calming woodsy elixir that will ease your mind and spirit. Chill blend is a soothing citrus blend that is perfect for adding a touch of calm to your day.',
+    price: 3299,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/05/23/15/15/herbal-tea-1410563_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Tea Lovers',
+    description:
+      'This soothing aromatic blend is crafted with minty, calm, and slightly sweet botanicals. Restoring balance in the digestive system with each and every sip.',
+    price: 3299,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2017/09/22/16/28/tea-2776217_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Grace-Hopper',
+    description:
+      "A sweet and fruity black tea blend. We've taken the essence of lychee, mixed it with peach and infused it in organic black tea for a cup filled with notes of apricot, osmanthus, and ripe pear. Enjoy this peach black tea hot or iced",
+    price: 3099,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/11/30/03/50/tea-rose-corolla-1871835_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'We are the graduates',
+    description:
+      'A delectable dessert infusion with sweet and flavorful notes of honey, caramel, and fresh-baked pear. This rooibos tea brews a well-rounded cup.',
+    price: 3099,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2017/03/07/06/39/yun-niang-fresh-in-mind-2123308_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'All the Happy things',
+    description:
+      "A sweet and fruity black tea blend. We've taken the essence of lychee, mixed it with peach and infused it in organic black tea for a cup filled with notes of apricot, osmanthus, and ripe pear. Enjoy this peach black tea hot or iced.",
+    price: 3099,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2019/02/27/05/15/tea-4023397_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Serenity',
+    description:
+      'A blended black tea that offers a rich, flavorful cup that is perfect for your morning routine. This tea blend combines fruity notes of white peach, cinnamon and gala apples, and has a crisp floral finish',
+    price: 3599,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2017/10/04/13/30/peppermint-2816233_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Cozy Winter',
+    description:
+      'This revitalizing citrus blend steeps a beautiful light pink hue and leaves behind a clean and refreshing finish of fresh orange blossoms. This citrusy and sweet blood orange blend is delicious hot or iced at any time of day.',
+    price: 3599,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/12/06/17/33/tee-1887042_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Tea and Snacks',
+    description:
+      'Rejuvenating and invigorating, this malty, yet earthy infusion helps to re-energize and enhance daily performance. This tea for men delivers a slightly musky, sweet finish with notes reminiscent of sandalwood.',
+    price: 3599,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2017/02/24/10/41/tea-2094419_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Picked for her',
+    description:
+      'Robust with flavor, our traditional blend of organic loose leaf black tea is perfect for starting the day. This Sri Lanka black tea brews smooth and malty, with a clean finish.',
+    price: 4599,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2017/12/27/19/19/coffee-3043424_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Picked for him',
+    description:
+      'Sweet raspberries are perfectly balanced by tangy fresh hibiscus flowers while the indulgent, floral scent of jasmine carries this slightly stimulating guayusa tea blend to a place that could only be described as Happy! This uplifting tea is fruity and light, perfect for any time of day',
+    price: 4599,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2017/06/21/16/57/tee-2427846_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Aroma Bella',
+    description:
+      'A dynamic, yet calming woodsy elixir that will ease your mind and spirit. Chill blend is a soothing citrus blend that is perfect for adding a touch of calm to your day.',
+    price: 2299,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2015/11/04/12/16/tee-1022443_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Green Tea Fresh',
+    description:
+      'This soothing aromatic blend is crafted with minty, calm, and slightly sweet botanicals. Restoring balance in the digestive system with each and every sip.',
+    price: 2299,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2017/07/24/14/43/lavender-2534898_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Sunny Morning',
+    description:
+      "A sweet and fruity black tea blend. We've taken the essence of lychee, mixed it with peach and infused it in organic black tea for a cup filled with notes of apricot, osmanthus, and ripe pear. Enjoy this peach black tea hot or iced",
+    price: 2299,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2017/01/07/21/00/tea-1961590_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Earl Grey Winter',
+    description:
+      'A delectable dessert infusion with sweet and flavorful notes of honey, caramel, and fresh-baked pear. This rooibos tea brews a well-rounded cup.',
+    price: 2299,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2017/02/25/18/39/tea-2098455_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Fresh Garden Tea',
+    description:
+      "A sweet and fruity black tea blend. We've taken the essence of lychee, mixed it with peach and infused it in organic black tea for a cup filled with notes of apricot, osmanthus, and ripe pear. Enjoy this peach black tea hot or iced.",
+    price: 2299,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2020/08/04/19/04/ice-tea-5463646_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Sunrise in Alps',
+    description:
+      'A blended black tea that offers a rich, flavorful cup that is perfect for your morning routine. This tea blend combines fruity notes of white peach, cinnamon and gala apples, and has a crisp floral finish',
+    price: 2299,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2020/09/25/00/15/tea-5600189_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Spring Valley Tea',
+    description:
+      'This revitalizing citrus blend steeps a beautiful light pink hue and leaves behind a clean and refreshing finish of fresh orange blossoms. This citrusy and sweet blood orange blend is delicious hot or iced at any time of day.',
+    price: 2299,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/12/06/17/33/tee-1887043_960_720.jpg',
+    numOfItems: 10
+  },
+  {
+    name: 'Rosy Meadows',
+    description:
+      'Robust with flavor, our traditional blend of organic loose leaf black tea is perfect for starting the day. This Sri Lanka black tea brews smooth and malty, with a clean finish.',
+    price: 2299,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2016/11/30/06/52/tea-cup-1872026_960_720.jpg',
     numOfItems: 10
   }
 ]
