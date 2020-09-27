@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../store/users'
+import Footer from './footer'
 
 export class AllUsers extends React.Component {
   componentDidMount() {
@@ -30,6 +31,7 @@ export class AllUsers extends React.Component {
                 )
               })}
         </div>
+        <Footer />
       </div>
     )
   }

@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from './footer'
 /**
  * COMPONENT
  */
@@ -28,6 +29,7 @@ export const PurchaseForm = props => {
         </div>
         {/* {error && error.response && <div> {error.response.data} </div>} */}
       </form>
+      <Footer />
     </div>
   )
 }

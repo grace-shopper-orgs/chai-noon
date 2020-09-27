@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchUserOrder} from '../store/activeOrder'
 import {completePurchase, authAndOrder} from '../store/checkout'
-// import {auth} from '../store'
+import Footer from './footer'
 
 class CheckoutPage extends React.Component {
   constructor() {
@@ -137,6 +137,7 @@ class CheckoutPage extends React.Component {
             </div>
           )}
         </div>
+        <Footer />
       </div>
     )
   }

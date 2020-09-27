@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth, authLogin} from '../store'
+import Footer from './footer'
 
 /**
  * COMPONENT
@@ -48,6 +49,7 @@ const AuthForm = props => {
         {error && error.response && <div> {error.response.data} </div>}
       </form>
       <a href="/auth/google">{displayName} with Google</a>
+      <Footer />
     </div>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchUserOrder, updateProductInCart} from '../store/activeOrder'
+import Footer from './footer'
 
 class ActiveOrder extends React.Component {
   constructor() {
@@ -76,6 +77,7 @@ class ActiveOrder extends React.Component {
             </Link>
           ) : null}
         </div>
+        <Footer />
       </div>
     )
   }
