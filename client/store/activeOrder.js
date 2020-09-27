@@ -25,7 +25,6 @@ export const fetchUserOrder = () => {
     if (user.id) {
       const orderRes = await axios.get(`/api/orders/user/${user.id}`)
       order = orderRes.data
-      console.log(order)
     } else {
       let cart = JSON.parse(localStorage.getItem('cart'))
       if (cart) {
@@ -115,7 +114,6 @@ export const updateProductInCart = (
         }
       }
       dispatch(updateProductInOrder(cart))
-      console.log(JSON.parse(localStorage.getItem('cart')))
     }
   }
 }

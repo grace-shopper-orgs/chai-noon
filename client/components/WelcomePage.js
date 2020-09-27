@@ -8,7 +8,9 @@ export default function WelcomePage() {
         <div className="banner">
           <h1 className="banner-title">Tea Shop</h1>
           <Link to="/products">
-            <button className="banner-btn">Shop Products</button>
+            <button type="button" className="banner-btn">
+              Shop Products
+            </button>
           </Link>
         </div>
       </header>
