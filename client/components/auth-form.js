@@ -79,7 +79,6 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
-      // const formName = evt.target.name
       const firstName = evt.target.firstName.value
       const lastName = evt.target.lastName.value
       const email = evt.target.email.value
@@ -94,7 +93,6 @@ const mapToDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
-      // const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
       const cart = JSON.parse(localStorage.getItem('cart'))
