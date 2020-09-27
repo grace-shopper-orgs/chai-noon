@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts, removeProduct} from '../store/products'
 import {Link} from 'react-router-dom'
+import Footer from './footer'
 
 export class AllProducts extends React.Component {
   componentDidMount() {
@@ -38,13 +39,11 @@ export class AllProducts extends React.Component {
                               to={`/products/${product.id}`}
                               className="link"
                             >
-                              <div className="img-container">
-                                <img
-                                  src={product.imageUrl}
-                                  width="375"
-                                  height="275"
-                                />
-                              </div>
+                              <img
+                                src={product.imageUrl}
+                                width="400"
+                                height="280"
+                              />
                               <h2>
                                 {' '}
                                 <b>{product.name}</b>
@@ -83,18 +82,13 @@ export class AllProducts extends React.Component {
                     return (
                       <div className="products-center" key={product.id}>
                         <article className="product">
-                          <div className="img-container">
-                            <Link
-                              to={`/products/${product.id}`}
-                              className="link"
-                            >
-                              <img
-                                src={product.imageUrl}
-                                width="375"
-                                height="275"
-                              />
-                            </Link>
-                          </div>
+                          <Link to={`/products/${product.id}`} className="link">
+                            <img
+                              src={product.imageUrl}
+                              width="400"
+                              height="280"
+                            />
+                          </Link>
                           <h2>
                             {' '}
                             <b>{product.name}</b>
@@ -109,6 +103,7 @@ export class AllProducts extends React.Component {
             </div>
           </section>
         )}
+        <Footer />
       </div>
     )
   }

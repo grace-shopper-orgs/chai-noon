@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {fetchUserOrder, updateProductInCart} from '../store/activeOrder'
 
 class ActiveOrder extends React.Component {
@@ -32,34 +33,49 @@ class ActiveOrder extends React.Component {
     const totalPrice = order.totalPrice
     return (
       <div className="container">
-        {!products.length
-          ? 'No Products'
-          : products.map(product => {
-              return (
-                <div key={product.id}>
-                  <h3>{product.name}</h3>
-                  <p>Description: {product.description}</p>
-                  <p>Price: ${product.price / 100}</p>
-                  <select onChange={e => this.handleChange(product, e)}>
-                    {selectArr.map(num => {
-                      return num === product.OrderProducts.count ? (
-                        <option selected key={num} value={num}>
-                          {num}
-                        </option>
-                      ) : (
-                        <option key={num} value={num}>
-                          {num}
-                        </option>
-                      )
-                    })}
-                  </select>
-                  <button type="button">Delete Item</button>
+        <div className="product">
+          {!products.length
+            ? 'No Products'
+            : products.map(product => {
+                return (
+                  <div key={product.id}>
+                    <img src={product.imageUrl} width="300" height="225" />
+                    <h4>
+                      <b>{product.name}</b>
+                    </h4>
+                    <h4>{product.description}</h4>
+                    <h4>Price: ${product.price / 100}</h4>
+                    <select onChange={e => this.handleChange(product, e)}>
+                      {selectArr.map(num => {
+                        return num === product.OrderProducts.count ? (
+                          <option selected key={num} value={num}>
+                            {num}
+                          </option>
+                        ) : (
+                          <option key={num} value={num}>
+                            {num}
+                          </option>
+                        )
+                      })}
+                    </select>
+                    <button type="button" className="bg-transparent">
+                      Delete
+                    </button>
 
-                  <p>In Stock: {product.numOfItems}</p>
-                </div>
-              )
-            })}
-        <p>TOTAL: ${totalPrice ? totalPrice / 100 : '0.00'}</p>
+                    <h4>In Stock: {product.numOfItems}</h4>
+                  </div>
+                )
+              })}
+          <div className="total-container">
+            <h4>TOTAL: ${totalPrice ? totalPrice / 100 : '0.00'}</h4>
+          </div>
+          <hr />
+          {totalPrice ? (
+            <Link to="/checkout">
+              <button className="button-default">Checkout</button>
+            </Link>
+          ) : null}
+        </div>
       </div>
     )
   }
