@@ -81,7 +81,7 @@ class CheckoutPage extends React.Component {
               <button
                 className="button-default"
                 type="submit"
-                onSubmit={this.handleSubmit}
+                onClick={this.handleSubmit}
               >
                 Submit Order
               </button>
