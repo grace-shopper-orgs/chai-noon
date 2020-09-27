@@ -281,3 +281,120 @@ h5 {
   flex: 0 0 auto;
   padding: 1em;
 }
+
+.total-container {
+  margin-top: 5rem;
+}
+/* //-----------------pagination-----------------// */
+
+li.page-item.active {
+  color: saturate(darken(#ced4da, 50%), 5%) !important;
+  background-color: saturate(lighten(#ced4da, 7.5%), 2.5%) !important;
+  border-color: #ced4da !important;
+}
+
+a.page-link {
+  padding: 0.75rem 1rem;
+  min-width: 3.5rem;
+  text-align: center;
+  box-shadow: none;
+  border-color: #ced4da;
+  color: saturate(darken(#ced4da, 30%), 10%);
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+/* :hover {
+   background-color: lighten(desaturate(#ced4da, 50%), 12.5%);
+ */
+/*------------- media queries --------*/
+@media only screen and (min-width: 400px) {
+  .navbox {
+    padding-bottom: 80px;
+  }
+  .navbar {
+    position: fixed;
+    top: 10;
+    height: 80px;
+    width: 100%;
+    display: block;
+    background: rgb(231, 226, 221);
+    z-index: 1;
+  }
+  .navbar-center {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3.5rem;
+  }
+  .nav-right {
+    position: relative;
+    top: -5px;
+    width: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+  .nav-icon {
+    font-size: 1.7rem;
+  }
+  .nav-row {
+    display: flex;
+    position: relative;
+    top: 0px;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .cart-btn {
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+  }
+
+  nav a {
+    /* display: inline-block; */
+    margin: 1em;
+  }
+  .menuLinks {
+    width: inherit;
+    height: 100vh;
+    position: fixed;
+    left: 0px;
+    top: 80px;
+
+    background-color: rgba(231, 226, 221, 0.75);
+    float: left;
+    z-index: 1;
+  }
+  /* //-----nav logo/text alignment-----// */
+  .main-text {
+    width: max-content;
+  }
+  /* //-----------cards on welcome page----------// */
+  .card-wrap {
+    padding: 0rem 10rem;
+  }
+}
+@media only screen and (min-width: 1500px) {
+  .navbar-center {
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3.5rem;
+  }
+  .menuLinks {
+    height: 100vh;
+    position: fixed;
+    left: 0px;
+    top: 80px;
+    background-color: rgba(231, 226, 221, 0.75);
+    float: left;
+    z-index: 1;
+  }
+}
