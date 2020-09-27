@@ -85,6 +85,7 @@ export const updateProductInCart = (
       product: product,
       count: count
     })
+    console.log(res.data)
     dispatch(updateProductInOrder(res.data))
   } else {
     let cart = JSON.parse(localStorage.getItem('cart'))

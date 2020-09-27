@@ -14,12 +14,14 @@ class ActiveOrder extends React.Component {
     this.props.getOrder()
   }
 
-  handleChange(product, event) {
-    const count = event.target.value
+  handleChange(product, e) {
+    const count = e.target.value
     this.props.updateCart(this.props.order, product, count)
   }
 
-  handleDelete() {}
+  handleDelete(product, e) {
+    this.props.updateCart(this.props.order, product, 0)
+  }
 
   render() {
     const {order} = this.props
@@ -62,7 +64,11 @@ class ActiveOrder extends React.Component {
                         <option value={10}>10</option>
                       </select>
                     </div>
-                    <button type="button" className="bg-transparent">
+                    <button
+                      onClick={e => this.handleDelete(product, e)}
+                      type="button"
+                      className="bg-transparent"
+                    >
                       Delete
                     </button>
                   </div>
@@ -74,7 +80,9 @@ class ActiveOrder extends React.Component {
           <hr />
           {totalPrice ? (
             <Link to="/checkout">
-              <button className="button-default">Checkout</button>
+              <button type="button" className="button-default">
+                Checkout
+              </button>
             </Link>
           ) : null}
         </div>
