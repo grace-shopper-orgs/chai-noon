@@ -25,6 +25,7 @@ body {
   color: var(--mainBlack);
   background: var(--mainWhite);
   font-family: 'Lato', sans-serif;
+  margin-bottom: 10rem;
 }
 .navbox {
   padding-bottom: 100px;
@@ -49,6 +50,7 @@ body {
 .nav-left {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: stretch;
   align-items: center;
 }
 .nav-icon {
@@ -105,10 +107,6 @@ a {
 
 label {
   display: block;
-}
-
-nav a {
-  margin: 0.5em;
 }
 
 form div {
@@ -184,6 +182,7 @@ ul {
 .product-section {
   justify-content: space-around;
   display: flex;
+  flex-direction: row;
   flex-flow: row wrap;
 }
 
@@ -197,17 +196,23 @@ ul {
 }
 
 .products-center {
-  display: inline-flex;
+  display: inline-block;
   max-width: 1170px;
   justify-content: space-around;
   flex-flow: row wrap;
-  position: relative;
+  width: 400px;
+  align-content: center;
 }
 
-.product-img {
+.product-container {
+  width: 400px;
+  align-items: center;
+}
+
+/* .product-img {
   display: inline-block;
   max-width: 20rem;
-}
+} */
 
 .product h4,
 h5 {
@@ -267,6 +272,7 @@ h5 {
 }
 
 /* //------------footer---------------// */
+
 .footer {
   position: fixed;
   left: 0;
@@ -277,11 +283,12 @@ h5 {
   color: white;
   text-align: center;
   font-size: 0.8rem;
+  margin-top: -50rem;
 }
 
-.margin {
+/* .margin {
   margin-bottom: 12rem;
-}
+} */
 
 /* //-----------------checkout-----------------// */
 .section-checkout {
@@ -306,6 +313,31 @@ h5 {
   padding: 1em;
 }
 
+.total-container {
+  margin-top: 5rem;
+}
+/* //-----------------pagination-----------------// */
+
+li.page-item.active {
+  color: saturate(darken(#ced4da, 50%), 5%) !important;
+  background-color: saturate(lighten(#ced4da, 7.5%), 2.5%) !important;
+  border-color: #ced4da !important;
+}
+
+a.page-link {
+  padding: 0.75rem 1rem;
+  min-width: 3.5rem;
+  text-align: center;
+  box-shadow: none;
+  border-color: #ced4da;
+  color: saturate(darken(#ced4da, 30%), 10%);
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+/* :hover {
+   background-color: lighten(desaturate(#ced4da, 50%), 12.5%);
+ */
 /*------------- media queries --------*/
 @media only screen and (min-width: 400px) {
   .navbox {
@@ -350,14 +382,15 @@ h5 {
   }
   .cart-btn {
     position: relative;
-    top: 10px;
+    top: 15px;
     cursor: pointer;
   }
-
-  nav a {
-    /* display: inline-block; */
-    margin: 1em;
+  .hamburger-react {
+    position: relative;
+    bottom: 2px;
+    margin: none;
   }
+
   .menuLinks {
     width: inherit;
     height: 100vh;
