@@ -78,13 +78,15 @@ body {
 }
 
 .cart-items {
+  text-align: center;
   position: relative;
   top: -40px;
-  right: -10px;
+  right: -15px;
   background: var(--primaryColor);
-  padding: 0 5px;
   border-radius: 30%;
   color: var(--mainWhite);
+  width: min-content;
+  padding: 0 5px;
 }
 .menuLinks {
   width: 100%;
@@ -320,7 +322,6 @@ h5 {
   }
   .navbar-center {
     width: 100%;
-
     margin: 0 auto;
     display: flex;
     flex-flow: row nowrap;
@@ -353,15 +354,6 @@ h5 {
     cursor: pointer;
   }
 
-  .cart-items {
-    position: relative;
-    top: -40px;
-    right: -10px;
-    background: var(--primaryColor);
-    padding: 0 5px;
-    border-radius: 30%;
-    color: var(--mainWhite);
-  }
   nav a {
     /* display: inline-block; */
     margin: 1em;
