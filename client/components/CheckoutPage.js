@@ -1,12 +1,21 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchUserOrder} from '../store/activeOrder'
-import {completePurchase} from '../store/checkout'
+import {completePurchase, authAndOrder} from '../store/checkout'
+import Footer from './footer'
 
 class CheckoutPage extends React.Component {
   constructor() {
     super()
+    this.state = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: ''
+    }
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSignUp = this.handleSignUp.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
@@ -14,18 +23,31 @@ class CheckoutPage extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('handle submit')
     event.preventDefault()
     this.props.completePurchase()
     alert('Thanks for your Purchase!!!')
-    this.props.history.push('/')
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSignUp(event) {
+    event.preventDefault()
+    console.log('I made it to the submit')
+    this.props.signUpAndCompleteOrder(
+      this.state.email,
+      this.state.password,
+      this.state.firstName,
+      this.state.lastName
+    )
+    alert('Thanks for your Purchase!!!')
   }
 
   render() {
-    console.log(this.props.user)
     const {products, totalPrice} = this.props.order
-    // console.log('item', products)
-    // console.log('props', this.props)
 
     return (
       <div className="container">
@@ -37,21 +59,20 @@ class CheckoutPage extends React.Component {
             products.map(item => {
               return (
                 <div key={item.id}>
-                  <img src={item.imageUrl} width="300" height="250" />
+                  <img src={item.imageUrl} width="300" height="225" />
                   <div className="item-div">
-                    <h4>{item.name}</h4>
-                    <h4>{item.price / 100}</h4>
-                    <h4>{item.OrderProducts.count}</h4>
+                    <b>{item.name}</b>
+                    <h4>${item.price / 100}</h4>
+                    <h4>Qty:{item.OrderProducts.count}</h4>
                   </div>
                 </div>
               )
             })}
-          <div className="container">
-            <h4>TOTAL: ${totalPrice / 100 || 0}</h4>
+          <div className="total-container">
+            <h4>TOTAL: ${totalPrice / 100 || '0.00'}</h4>
           </div>
         </div>
         <hr />
-        <br />
         <br />
         <div>
           {this.props.user.id ? (
@@ -70,36 +91,53 @@ class CheckoutPage extends React.Component {
               <div className="section-title">
                 <h2>Become a Member and Checkout</h2>
               </div>
-              <form>
+              <form onSubmit={this.handleSignUp}>
                 <div>
                   <label htmlFor="firstName">
                     <small>First Name</small>
                   </label>
-                  <input name="firsttName" type="text" />
+                  <input
+                    name="firstName"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
                 </div>
                 <div>
                   <label htmlFor="lastName">
                     <small>Last Name</small>
                   </label>
-                  <input name="lastName" type="text" />
+                  <input
+                    name="lastName"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
                 </div>
                 <div>
                   <label htmlFor="email">
                     <small>Email</small>
                   </label>
-                  <input name="email" type="text" />
+                  <input
+                    name="email"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
                 </div>
                 <div>
                   <label htmlFor="password">
                     <small>Password</small>
                   </label>
-                  <input name="password" type="text" />
+                  <input
+                    name="password"
+                    type="password"
+                    onChange={this.handleChange}
+                  />
                 </div>
-                <button className="button-default">Submit Order</button>
+                <button className="button-default">Create an Account</button>
               </form>
             </div>
           )}
         </div>
+        <Footer />
       </div>
     )
   }
@@ -119,6 +157,9 @@ const mapDispatch = dispatch => {
     },
     completePurchase: () => {
       dispatch(completePurchase())
+    },
+    signUpAndCompleteOrder: (email, password, firstName, lastName) => {
+      dispatch(authAndOrder(email, password, firstName, lastName))
     }
   }
 }

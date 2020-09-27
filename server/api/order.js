@@ -62,6 +62,10 @@ router.put('/user/:id/ordered', async (req, res, next) => {
     })
     await user.addOrder(newOrder)
     res.json(order)
+  } catch (error) {
+    next(error)
+  }
+})
 
   } catch (err) {
     next(err)

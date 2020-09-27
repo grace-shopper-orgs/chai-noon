@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Footer from './footer'
 
 export const ErrorPage = props => {
   return (
@@ -35,6 +36,7 @@ export const ErrorPage = props => {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   )
 }
