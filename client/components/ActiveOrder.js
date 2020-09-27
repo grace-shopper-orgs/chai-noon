@@ -33,7 +33,6 @@ class ActiveOrder extends React.Component {
     const totalPrice = order.totalPrice
     return (
       <div className="container">
-
         <div className="product">
           {!products.length
             ? 'No Products'
@@ -47,27 +46,25 @@ class ActiveOrder extends React.Component {
                     <h4>{product.description}</h4>
                     <h4>Price: ${product.price / 100}</h4>
                     <div>
-                    <select
-                      onChange={e => this.handleChange(product, e)}
-                      defaultValue={product.OrderProducts.count}
-                    >
-                      <option value={1}>1</option>
-                      <option value={2}>2</option>
-                      <option value={3}>3</option>
-                      <option value={4}>4</option>
-                      <option value={5}>5</option>
-                      <option value={6}>6</option>
-                      <option value={7}>7</option>
-                      <option value={8}>8</option>
-                      <option value={9}>9</option>
-                      <option value={10}>10</option>
-                    </select>
-                  </div>
+                      <select
+                        onChange={e => this.handleChange(product, e)}
+                        defaultValue={product.OrderProducts.count}
+                      >
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                        <option value={4}>4</option>
+                        <option value={5}>5</option>
+                        <option value={6}>6</option>
+                        <option value={7}>7</option>
+                        <option value={8}>8</option>
+                        <option value={9}>9</option>
+                        <option value={10}>10</option>
+                      </select>
+                    </div>
                     <button type="button" className="bg-transparent">
                       Delete
                     </button>
-
-                    <h4>In Stock: {product.numOfItems}</h4>
                   </div>
                 )
               })}
@@ -82,7 +79,6 @@ class ActiveOrder extends React.Component {
           ) : null}
         </div>
         <Footer />
-
       </div>
     )
   }

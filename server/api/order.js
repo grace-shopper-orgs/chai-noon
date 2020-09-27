@@ -67,12 +67,6 @@ router.put('/user/:id/ordered', async (req, res, next) => {
   }
 })
 
-  } catch (err) {
-    next(err)
-  }
-})
-
-
 //using query parameters here when fetching from axios
 router.put('/update', async (req, res, next) => {
   try {
