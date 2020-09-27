@@ -27,45 +27,77 @@ body {
   font-family: 'Lato', sans-serif;
   margin-bottom: 10rem;
 }
-
+.navbox {
+  padding-bottom: 100px;
+}
 .navbar {
-  position: sticky;
+  position: fixed;
   top: 10;
-  height: 80px;
+  height: 100px;
   width: 100%;
   display: flex;
-  align-items: center;
+  flex-flow: column nowrap;
   background: rgb(231, 226, 221);
   z-index: 1;
 }
 .navbar-center {
   width: 100%;
-  max-width: 1170px;
-  margin: 0 auto;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 0 3.5rem;
+  align-items: center;
+}
+.nav-left {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
 }
 .nav-icon {
   font-size: 1.7rem;
 }
-
+.nav-row {
+  position: relative;
+  top: -30px;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.nav-right {
+  position: relative;
+  top: -25px;
+  width: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
 .cart-btn {
   position: relative;
+  top: 10px;
   cursor: pointer;
 }
 
 .cart-items {
-  position: absolute;
-  top: -4px;
+  position: relative;
+  top: -40px;
   right: -10px;
   background: var(--primaryColor);
   padding: 0 5px;
   border-radius: 30%;
   color: var(--mainWhite);
 }
-
+.menuLinks {
+  width: 100%;
+  position: fixed;
+  left: 0px;
+  top: 100px;
+  padding: 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(231, 226, 221, 0.623);
+  text-align: center;
+}
 a {
   text-decoration: none;
 }
@@ -75,8 +107,7 @@ label {
 }
 
 nav a {
-  display: inline-block;
-  margin: 1em;
+  margin: 0.5em;
 }
 
 form div {
@@ -108,7 +139,6 @@ ul {
 .hero {
   min-height: calc(100vh - 60px);
   background: url('./images/heroPhoto.jpg') center/cover no-repeat;
-  /* background-color: var(--mainGrey); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,13 +172,6 @@ ul {
 .banner-btn:hover {
   background: transparent;
   color: var(--primaryColor);
-}
-
-/* //-----nav logo/text alignment-----// */
-.main-text {
-  /* position: relative; */
-  padding-right: 750px;
-  /* padding-top: 5px; */
 }
 
 /* //--------All product page Layout------// */
@@ -246,7 +269,7 @@ h5 {
 
 /* //-----------cards on welcome page----------// */
 .card-wrap {
-  padding: 0rem 10rem;
+  padding: 0rem 10px;
 }
 
 /* //------------footer---------------// */
@@ -273,7 +296,6 @@ h5 {
   text-align: center;
   font-size: 1.2rem;
   margin-top: 2.2rem;
-  /* margin-bottom: 2rem; */
   text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
 }
@@ -292,6 +314,132 @@ h5 {
   padding: 1em;
 }
 
+
 .total-container {
   margin-top: 5rem;
+
+
+/* //-----------------pagination-----------------// */
+
+li.page-item.active {
+  color: saturate(darken(#ced4da, 50%), 5%) !important;
+  background-color: saturate(lighten(#ced4da, 7.5%), 2.5%) !important;
+  border-color: #ced4da !important;
+}
+
+a.page-link {
+  padding: 0.75rem 1rem;
+  min-width: 3.5rem;
+  text-align: center;
+  box-shadow: none;
+  border-color: #ced4da;
+  color: saturate(darken(#ced4da, 30%), 10%);
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+/* :hover {
+   background-color: lighten(desaturate(#ced4da, 50%), 12.5%);
+ */
+/*------------- media queries --------*/
+@media only screen and (min-width: 400px) {
+  .navbox {
+    padding-bottom: 80px;
+  }
+  .navbar {
+    position: fixed;
+    top: 10;
+    height: 80px;
+    width: 100%;
+    display: block;
+    background: rgb(231, 226, 221);
+    z-index: 1;
+  }
+  .navbar-center {
+    width: 100%;
+
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3.5rem;
+  }
+  .nav-right {
+    position: relative;
+    top: -5px;
+    width: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+  .nav-icon {
+    font-size: 1.7rem;
+  }
+  .nav-row {
+    display: flex;
+    position: relative;
+    top: 0px;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .cart-btn {
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+  }
+
+  .cart-items {
+    position: relative;
+    top: -40px;
+    right: -10px;
+    background: var(--primaryColor);
+    padding: 0 5px;
+    border-radius: 30%;
+    color: var(--mainWhite);
+  }
+  nav a {
+    /* display: inline-block; */
+    margin: 1em;
+  }
+  .menuLinks {
+    width: inherit;
+    height: 100vh;
+    position: fixed;
+    left: 0px;
+    top: 80px;
+
+    background-color: rgba(231, 226, 221, 0.75);
+    float: left;
+    z-index: 1;
+  }
+  /* //-----nav logo/text alignment-----// */
+  .main-text {
+    width: max-content;
+  }
+  /* //-----------cards on welcome page----------// */
+  .card-wrap {
+    padding: 0rem 10rem;
+  }
+}
+@media only screen and (min-width: 1500px) {
+  .navbar-center {
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3.5rem;
+  }
+  .menuLinks {
+    height: 100vh;
+    position: fixed;
+    left: 0px;
+    top: 80px;
+    background-color: rgba(231, 226, 221, 0.75);
+    float: left;
+    z-index: 1;
+  }
+
 }

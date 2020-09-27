@@ -15,8 +15,7 @@ router.get('/', async (req, res, next) => {
 //route search by ID
 router.get('/:id', async (req, res, next) => {
   try {
-    // Eager load all orders this product is associated with
-    const product = await Product.findByPk(req.params.id, {include: Order})
+    const product = await Product.findByPk(req.params.id)
     if (!product) {
       return res.sendStatus(404)
     }
