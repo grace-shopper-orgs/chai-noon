@@ -78,7 +78,7 @@ router.put('/update', async (req, res, next) => {
         orderId: order.id
       }
     })
-    let previousCount = association.count
+    const previousCount = association.count
     if (previousCount === count) {
       return res.json(association)
     }
