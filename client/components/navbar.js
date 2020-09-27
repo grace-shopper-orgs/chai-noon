@@ -55,40 +55,43 @@ class Navbar extends React.Component {
                   </div>
                 </div>
               </Link>
-              {this.props.isLoggedIn ? (
-                <div className="nav-row">
-                  {user.isAdmin && (
-                    <Link to="/users" className="link">
-                      Users
-                    </Link>
-                  )}
-                  {/* The navbar will show these links after you log in */}
-                  <Link to="/home" className="link">
-                    Home
-                  </Link>
-                  <a href="#" onClick={this.props.handleClick} className="link">
-                    Logout
-                  </a>
-                </div>
-              ) : (
-                <div className="nav-row">
-                  {/* The navbar will show these links before you log in */}
-                  <Link to="/login" className="link">
-                    Login
-                  </Link>
-                  <Link to="/signup" className="link">
-                    Sign Up
-                  </Link>
-                </div>
-              )}
             </div>
           </div>
         </nav>
         {this.state.menu ? (
-          <div className="menuLinks">
-            <Link to="/products" className="link">
-              Products
-            </Link>
+          <div>
+            {this.props.isLoggedIn ? (
+              <div className="menuLinks">
+                {user.isAdmin && (
+                  <Link to="/users" className="link">
+                    Users
+                  </Link>
+                )}
+                {/* The navbar will show these links after you log in */}
+                <Link to="/home" className="link">
+                  Home
+                </Link>
+                <a href="#" onClick={this.props.handleClick} className="link">
+                  Logout
+                </a>
+                <Link to="/products" className="link">
+                  Products
+                </Link>
+              </div>
+            ) : (
+              <div className="menuLinks">
+                {/* The navbar will show these links before you log in */}
+                <Link to="/login" className="link">
+                  Login
+                </Link>
+                <Link to="/signup" className="link">
+                  Sign Up
+                </Link>
+                <Link to="/products" className="link">
+                  Products
+                </Link>
+              </div>
+            )}
           </div>
         ) : (
           ''
