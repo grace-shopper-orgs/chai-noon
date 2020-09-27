@@ -31,7 +31,7 @@ class ActiveOrder extends React.Component {
       order.totalPrice = 0
       order.totalProducts = 0
     }
-    const products = order.products
+    const products = order.products || []
     products.sort((a, b) => a.id - b.id)
     const totalPrice = order.totalPrice
     return (
