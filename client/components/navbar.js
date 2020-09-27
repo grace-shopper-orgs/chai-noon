@@ -3,8 +3,15 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchUserOrder, logout} from '../store'
+import {Spin as Hamburger} from 'hamburger-react'
 
 class Navbar extends React.Component {
+  constructor(props) {
+    super()
+    this.state = {
+      menu: false
+    }
+  }
   componentDidMount() {
     this.props.getOrder()
   }
@@ -12,60 +19,80 @@ class Navbar extends React.Component {
     const {user} = this.props
 
     return (
-      <div>
+      <div className="navbox">
         <nav className="navbar">
           <div className="navbar-center">
-            <span className="nav-icon">
-              <i className="fa fa-bars" aria-hidden="true" />
-            </span>
-            <Link to="/" className="link">
-              <h5>
-                {' '}
-                <div className="main-text">
-                  <h4>
-                    <b>CHAI NOON</b>
-                  </h4>
+            <div className="nav-left">
+              <Hamburger
+                className="nav-icon"
+                onToggle={toggled => {
+                  if (toggled) {
+                    this.setState({menu: true})
+                  } else {
+                    this.setState({menu: false})
+                  }
+                }}
+              />
+              <Link to="/" className="link">
+                <h5>
+                  {' '}
+                  <div className="main-text">
+                    <h4>
+                      <b>CHAI NOON</b>
+                    </h4>
+                  </div>
+                </h5>
+              </Link>
+            </div>
+            <div className="nav-right">
+              <Link to="/cart" className="link">
+                <div className="cart-btn">
+                  <span className="nav-icon">
+                    <i className="fa fa-cart-plus" aria-hidden="true" />
+                  </span>
+                  <div className="cart-items">
+                    {this.props.totalCartItems || 0}
+                  </div>
                 </div>
-              </h5>
-            </Link>
-            <Link to="/cart" className="link">
-              <div className="cart-btn">
-                <span className="nav-icon">
-                  <i className="fa fa-cart-plus" aria-hidden="true" />
-                </span>
-                <div className="cart-items">
-                  {this.props.totalCartItems || 0}
+              </Link>
+              {this.props.isLoggedIn ? (
+                <div className="nav-row">
+                  {user.isAdmin && (
+                    <Link to="/users" className="link">
+                      Users
+                    </Link>
+                  )}
+                  {/* The navbar will show these links after you log in */}
+                  <Link to="/home" className="link">
+                    Home
+                  </Link>
+                  <a href="#" onClick={this.props.handleClick} className="link">
+                    Logout
+                  </a>
                 </div>
-              </div>
+              ) : (
+                <div className="nav-row">
+                  {/* The navbar will show these links before you log in */}
+                  <Link to="/login" className="link">
+                    Login
+                  </Link>
+                  <Link to="/signup" className="link">
+                    Sign Up
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        </nav>
+        {this.state.menu ? (
+          <div className="menuLinks">
+            <Link to="/products" className="link">
+              Products
             </Link>
           </div>
-          {this.props.isLoggedIn ? (
-            <div>
-              {user.isAdmin && (
-                <Link to="/users" className="link">
-                  Users
-                </Link>
-              )}
-              {/* The navbar will show these links after you log in */}
-              <Link to="/home" className="link">
-                Home
-              </Link>
-              <a href="#" onClick={this.props.handleClick} className="link">
-                Logout
-              </a>
-            </div>
-          ) : (
-            <div>
-              {/* The navbar will show these links before you log in */}
-              <Link to="/login" className="link">
-                Login
-              </Link>
-              <Link to="/signup" className="link">
-                Sign Up
-              </Link>
-            </div>
-          )}
-        </nav>
+        ) : (
+          ''
+        )}
       </div>
     )
   }
