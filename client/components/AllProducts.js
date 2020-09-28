@@ -52,7 +52,7 @@ export class AllProducts extends React.Component {
               <div>
                 <Pagination
                   totalProducts={totalProducts}
-                  pageLimit={9}
+                  pageLimit={3}
                   pageNeighbours={1}
                   onPageChanged={this.onPageChanged}
                 />
@@ -81,7 +81,7 @@ export class AllProducts extends React.Component {
                             <h4>{product.description}</h4>
                             <h4>Price: ${product.price / 100}</h4>
                             <h4>In Stock: {product.numOfItems}</h4>
-                            <div className="button-delete">
+                            <div className="delete-button">
                               <button
                                 type="button"
                                 onClick={() =>
@@ -107,7 +107,7 @@ export class AllProducts extends React.Component {
             <div>
               <Pagination
                 totalProducts={totalProducts}
-                pageLimit={9}
+                pageLimit={3}
                 pageNeighbours={1}
                 onPageChanged={this.onPageChanged}
               />
