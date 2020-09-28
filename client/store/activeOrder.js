@@ -16,7 +16,6 @@ export const updateProductInOrder = order => ({
 // Thunk Creators
 export const fetchUserOrder = () => {
   return async dispatch => {
-    // initialize order to an empty object - if we do not have an order, we can figure out what to do in terms if localStorage
     let order = {}
     // Get current user
     const userRes = await axios.get('/auth/me')
@@ -47,20 +46,17 @@ export const addToOrder = (product, count) => async dispatch => {
   } else {
     let cart = JSON.parse(localStorage.getItem('cart'))
     if (cart) {
-      let isInCart = false
-      for (let i = 0; i < cart.products.length; i++) {
-        let currProd = cart.products[i]
-        if (currProd.id === product.id) {
-          currProd.OrderProducts.count += count
-          cart.totalPrice += count * product.price
-          isInCart = true
-        }
-      }
-      if (!isInCart) {
+      let productIndex = cart.products.findIndex(
+        currProd => currProd.id === product.id
+      )
+      let productToAdd = cart.products[productIndex]
+      if (productIndex === -1) {
         product.OrderProducts = {count: count}
-        cart.totalPrice += count * product.price
         cart.products.push(product)
+      } else {
+        productToAdd.OrderProducts.count += count
       }
+      cart.totalPrice += count * product.price
     } else {
       cart = {products: [], totalPrice: 0, totalProducts: 0}
       product.OrderProducts = {count: count}
@@ -88,35 +84,32 @@ export const updateProductInCart = (
     dispatch(updateProductInOrder(res.data))
   } else {
     let cart = JSON.parse(localStorage.getItem('cart'))
-
+    console.log('first', cart)
     count = Number(count)
-    if (cart) {
-      for (let i = 0; i < cart.products.length; i++) {
-        let currProd = cart.products[i]
-        if (currProd.id === product.id) {
-          let previousCount = Number(currProd.OrderProducts.count)
-          let countDifference = count - previousCount
-          if (countDifference > 0) {
-            let newTotal = countDifference * product.price + cart.totalPrice
-            currProd.OrderProducts.count = count
-            cart.totalPrice = newTotal
-            cart.totalProducts = cart.totalProducts + countDifference
-            localStorage.setItem('cart', JSON.stringify(cart))
-          }
-          if (countDifference < 0) {
-            let newTotal =
-              cart.totalPrice - Math.abs(countDifference) * product.price
-            currProd.OrderProducts.count = count
-            cart.totalPrice = newTotal
-            cart.totalProducts = cart.totalProducts + countDifference
-            localStorage.setItem('cart', JSON.stringify(cart))
-          }
-        }
-      }
-      dispatch(updateProductInOrder(cart))
+
+    const productIndex = cart.products.findIndex(
+      currProduct => currProduct.id === product.id
+    )
+    const productToUpdate = cart.products[productIndex]
+
+    let previousCount = Number(productToUpdate.OrderProducts.count)
+    let countDifference = count - previousCount
+
+    let newPrice = countDifference * product.price + cart.totalPrice
+
+    productToUpdate.OrderProducts.count = count
+    cart.totalPrice = newPrice
+    cart.totalProducts = cart.totalProducts + countDifference
+
+    if (count === 0) {
+      cart.products.splice(productIndex, 1)
     }
+
+    localStorage.setItem('cart', JSON.stringify(cart))
+    dispatch(updateProductInOrder(cart))
   }
 }
+
 // reducer
 export default function singleOrderReducer(state = {}, action) {
   switch (action.type) {

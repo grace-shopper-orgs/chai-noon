@@ -43,7 +43,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-//mark order by user as purchased
+//mark user's order as purchased
 router.put('/user/:id/ordered', async (req, res, next) => {
   try {
     const order = await Order.findOne({
@@ -67,7 +67,6 @@ router.put('/user/:id/ordered', async (req, res, next) => {
   }
 })
 
-//using query parameters here when fetching from axios
 router.put('/update', async (req, res, next) => {
   try {
     let {product, order, count} = req.body
@@ -79,31 +78,23 @@ router.put('/update', async (req, res, next) => {
         orderId: order.id
       }
     })
+
     const previousCount = association.count
-    if (previousCount === count) {
-      return res.json(association)
+    if (count === 0) {
+      await association.destroy()
+    } else {
+      await association.update({count: count})
     }
-    await association.update({count: count})
-    const productModel = await Product.findByPk(product.id)
+
     const orderModel = await Order.findByPk(order.id)
 
     const countDifference = count - previousCount
-    if (countDifference > 0) {
-      let newTotal =
-        countDifference * productModel.price + orderModel.totalPrice
-      await orderModel.update({
-        totalPrice: newTotal,
-        totalProducts: orderModel.totalProducts + countDifference
-      })
-    }
-    if (countDifference < 0) {
-      let newTotal =
-        orderModel.totalPrice - Math.abs(countDifference) * productModel.price
-      await orderModel.update({
-        totalPrice: newTotal,
-        totalProducts: orderModel.totalProducts + countDifference
-      })
-    }
+
+    let newPrice = countDifference * product.price + orderModel.totalPrice
+    await orderModel.update({
+      totalPrice: newPrice,
+      totalProducts: orderModel.totalProducts + countDifference
+    })
 
     const updatedOrderWithProducts = await Order.findByPk(order.id, {
       include: Product

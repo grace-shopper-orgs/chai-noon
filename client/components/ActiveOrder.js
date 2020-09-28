@@ -14,12 +14,14 @@ class ActiveOrder extends React.Component {
     this.props.getOrder()
   }
 
-  handleChange(product, event) {
-    const count = event.target.value
+  handleChange(product, e) {
+    const count = e.target.value
     this.props.updateCart(this.props.order, product, count)
   }
 
-  handleDelete() {}
+  handleDelete(product) {
+    this.props.updateCart(this.props.order, product, 0)
+  }
 
   render() {
     const {order} = this.props
@@ -29,7 +31,8 @@ class ActiveOrder extends React.Component {
       order.totalPrice = 0
       order.totalProducts = 0
     }
-    const products = order.products
+    const products = order.products || []
+    products.sort((a, b) => a.id - b.id)
     const totalPrice = order.totalPrice
     return (
       <div className="container">
@@ -65,7 +68,8 @@ class ActiveOrder extends React.Component {
                         <option value={10}>10</option>
                       </select>
 
-                      <button type="button" className="button-delete">
+                      <button onClick={e => this.handleDelete(product, e)}
+                      type="button" className="button-delete">
                         x
                       </button>
                     </div>
