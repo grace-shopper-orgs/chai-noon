@@ -50,6 +50,7 @@ body {
 .nav-left {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: stretch;
   align-items: center;
 }
 .nav-icon {
@@ -106,10 +107,6 @@ a {
 
 label {
   display: block;
-}
-
-nav a {
-  margin: 0.5em;
 }
 
 form div {
@@ -205,6 +202,7 @@ ul {
   flex-flow: row wrap;
   width: 400px;
   align-content: center;
+
 }
 
 .product-container {
@@ -385,14 +383,15 @@ a.page-link {
   }
   .cart-btn {
     position: relative;
-    top: 10px;
+    top: 15px;
     cursor: pointer;
   }
-
-  nav a {
-    /* display: inline-block; */
-    margin: 1em;
+  .hamburger-react {
+    position: relative;
+    bottom: 2px;
+    margin: none;
   }
+
   .menuLinks {
     width: inherit;
     height: 100vh;

@@ -30,7 +30,6 @@ class Navbar extends React.Component {
           <div className="navbar-center">
             <div className="nav-left">
               <Hamburger
-                className="nav-icon"
                 onToggle={toggled => {
                   if (toggled) {
                     this.setState({menu: true})
@@ -38,6 +37,7 @@ class Navbar extends React.Component {
                     this.setState({menu: false})
                   }
                 }}
+                size={20}
               />
               <Link to="/" className="link">
                 <h5>
