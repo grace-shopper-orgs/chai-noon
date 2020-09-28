@@ -22,7 +22,6 @@ export const fetchUserOrder = () => {
     // Get current user
     const userRes = await axios.get('/auth/me')
     const user = userRes.data
-    console.log(user, 'user')
 
     // check whether a user is signed in or not
     if (user.id) {
