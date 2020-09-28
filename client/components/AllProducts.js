@@ -2,9 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts, removeProduct} from '../store/products'
 import {Link} from 'react-router-dom'
-
-import Footer from './footer'
-
+import Footer from './Footer'
 import Pagination from './Pagination'
 
 export class AllProducts extends React.Component {

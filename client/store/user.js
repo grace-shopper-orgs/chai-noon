@@ -101,14 +101,13 @@ export const auth = (
       const {data: ordered} = await axios.put(
         `/api/orders/user/${res.data.id}/ordered`
       )
-      console.log(ordered)
       await dispatch(completeOrder(ordered))
       await dispatch({
         type: GET_USER_ORDER,
         order: {products: [], totalProducts: 0, totalPrice: 0}
       })
     }
-    history.push('/home')
+    history.push('/confirmation')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }

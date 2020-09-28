@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import Footer from './footer'
+import Footer from './Footer'
 
 export default function WelcomePage() {
   return (
@@ -33,7 +33,6 @@ export default function WelcomePage() {
         <div className="row row-cols-1 row-cols-md-3">
           <div className="col mb-4">
             <div className="card">
-
               <img src="" className="card-img-top" alt="" />
 
               <div className="card-body">
@@ -48,7 +47,6 @@ export default function WelcomePage() {
           </div>
           <div className="col mb-4">
             <div className="card h-100">
-
               <img src="" className="card-img-top" alt="" />
 
               <div className="card-body">
@@ -63,7 +61,6 @@ export default function WelcomePage() {
           </div>
           <div className="col mb-4">
             <div className="card h-100">
-
               <img src="" className="card-img-top" alt="" />
 
               <div className="card-body">
@@ -78,7 +75,6 @@ export default function WelcomePage() {
           </div>
           <div className="col mb-4">
             <div className="card h-100">
-
               <img src="" className="card-img-top" alt="" />
 
               <div className="card-body">
