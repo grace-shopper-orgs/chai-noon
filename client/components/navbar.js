@@ -2,18 +2,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchUserOrder, logout} from '../store'
+import {fetchUserOrder, logout, syncCart} from '../store'
 import {Spin as Hamburger} from 'hamburger-react'
 
 class Navbar extends React.Component {
   constructor(props) {
     super()
     this.state = {
-      menu: false
+      menu: false,
+      checked: false
     }
   }
   componentDidMount() {
     this.props.getOrder()
+    const cart = JSON.parse(localStorage.getItem('cart'))
+    if (!this.state.checked) {
+      this.props.syncCart(cart)
+      this.setState({checked: true})
+    }
   }
   render() {
     const {user} = this.props
@@ -118,6 +124,9 @@ const mapDispatch = dispatch => {
     },
     getOrder: () => {
       dispatch(fetchUserOrder())
+    },
+    syncCart: (userId, cart) => {
+      dispatch(syncCart(userId, cart))
     }
   }
 }
