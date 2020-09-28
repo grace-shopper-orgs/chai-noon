@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product, Order} = require('../db/models')
+const {Product} = require('../db/models')
 const {isAdminMiddleware} = require('./gatekeeping')
 
 //route to serve up all products

@@ -40,9 +40,11 @@ export class UpdateProduct extends Component {
   render() {
     console.log(this.state.id)
     return (
-      <div>
+      <div className="container">
         <main>
-          <h1>UPDATE PRODUCT</h1>
+          <div className="section-title">
+            <h2>UPDATE PRODUCT</h2>
+          </div>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="name">Product Name:</label>
             <input
@@ -52,7 +54,9 @@ export class UpdateProduct extends Component {
               value={this.state.name}
               required
             />
-            <button type="submit">UPDATE:</button>
+            <button type="submit" className="button-default">
+              UPDATE:
+            </button>
           </form>
         </main>
         <Footer />

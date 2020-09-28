@@ -36,8 +36,11 @@ class ActiveOrder extends React.Component {
     const totalPrice = order.totalPrice
     return (
       <div className="container">
+        <div className="section-title">
+          <h2>Cart</h2>
+        </div>
         <div className="product">
-          {!products.length
+          {products !== undefined && !products.length
             ? 'No Products'
             : products.map(product => {
                 return (
@@ -64,14 +67,12 @@ class ActiveOrder extends React.Component {
                         <option value={9}>9</option>
                         <option value={10}>10</option>
                       </select>
+
+                      <button onClick={e => this.handleDelete(product, e)}
+                      type="button" className="button-delete">
+                        x
+                      </button>
                     </div>
-                    <button
-                      onClick={e => this.handleDelete(product, e)}
-                      type="button"
-                      className="bg-transparent"
-                    >
-                      Delete
-                    </button>
                   </div>
                 )
               })}

@@ -123,15 +123,11 @@ router.put('/:id', async (req, res, next) => {
     await orderProduct.update({
       count: orderProduct.count + count
     })
-    await order
-      .update({
-        totalProducts: order.totalProducts + count,
-        totalPrice: order.totalPrice + product.price * count
-      })
-      .then(() => res.json(order))
-      .catch(err => {
-        throw err
-      })
+    await order.update({
+      totalProducts: order.totalProducts + count,
+      totalPrice: order.totalPrice + product.price * count
+    })
+    res.json(order)
   } catch (err) {
     next(err)
   }

@@ -26,31 +26,53 @@ class SingleProduct extends React.Component {
     return (
       <div>
         {!isAdmin ? (
-          <div>
-            <h2>{name}</h2>
-            <h4>${price / 100}</h4>
-            <img src={imageUrl} />
-            <p>{description}</p>
-            <PurchaseForm
-              product={this.props.product}
-              onSubmit={this.handleSubmit}
-            />
+          <div className="container">
+            <div className="product">
+              <div className="display-row">
+                <div className="single-img">
+                  <img src={imageUrl} width="450" height="345" />
+                </div>
+                <div className="colr-md">
+                  <div>
+                    <h2>{name}</h2>
+                    <h2>${price / 100}</h2>
+                    <h4>{description}</h4>
+                    <PurchaseForm
+                      product={this.props.product}
+                      onSubmit={this.handleSubmit}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         ) : (
           <div>
             {this.props.product.name ? (
-              <div>
-                <h2>{name}</h2>
-                <h4>${price / 100}</h4>
-                <img src={imageUrl} />
-                <p>{description}</p>
-                <button>
-                  <Link to={`/products/${id}/update`}>UPDATE PRODUCT</Link>
-                </button>
-                <PurchaseForm
-                  product={this.props.product}
-                  onSubmit={this.handleSubmit}
-                />
+              <div className="container">
+                <div className="product">
+                  <div className="display-row">
+                    <div className="single-img">
+                      <img src={imageUrl} width="450" height="345" />
+                    </div>
+                    <div className="colr-md">
+                      <div>
+                        <h2>{name}</h2>
+                        <h2>${price / 100}</h2>
+                        <h4>{description}</h4>
+                        <Link to={`/products/${id}/update`} className="link">
+                          <button className="button-default">
+                            UPDATE PRODUCT
+                          </button>
+                        </Link>
+                        <PurchaseForm
+                          product={this.props.product}
+                          onSubmit={this.handleSubmit}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             ) : (
               <ErrorPage error={{status: 404, message: 'Not Found'}} />
