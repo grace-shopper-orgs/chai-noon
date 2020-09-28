@@ -17,26 +17,37 @@ const nullOrder = {products: [], totalProducts: 0, totalPrice: 0}
 /**
  * ACTION CREATORS
  */
-const getUser = user => dispatch => dispatch({type: GET_USER, user})
+const getUser = user => ({type: GET_USER, user})
+//removing a user both removes a user(logout) and gets a new empty cart
 const removeUser = order => dispatch => {
   dispatch({type: REMOVE_USER})
   dispatch({type: GET_USER_ORDER, order: order})
 }
+//syncUser is for when login occurs and you have an existing local cart.
 const syncUser = (user, order = nullOrder) => dispatch => {
   dispatch({type: GET_USER_ORDER, order: order})
-  return dispatch({type: GET_USER, user})
+  dispatch({type: GET_USER, user})
 }
 /**
  * HELPER FUNCTIONS
  */
+
+// converts local cart data into database cart items
 const localToDbCart = async (userId, cart) => {
   try {
+    //get the existing user order
     let currOrder = await axios.get(`/api/orders/user/${userId}`)
-    if (cart.products !== undefined) {
+    // checks whether passed-in cart has products
+    if (cart) {
       for (let i = 0; i < cart.products.length; i++) {
         const each = cart.products[i]
+
+        // assigns the count of items to the product stored in "each"
         each.count = each.OrderProducts.count
+
+        //first uses api routes to add the product in its entirety
         await axios.put(`/api/orders/${currOrder.data.id}`, each)
+        //then adjusts the count to match the final count we want
         await axios.put('/api/orders/update', {
           order: currOrder.data,
           product: each,
@@ -44,6 +55,7 @@ const localToDbCart = async (userId, cart) => {
         })
       }
     }
+    //after merging the data from local cart, we delete the item from localStorage
     localStorage.removeItem('cart')
   } catch (err) {
     console.error(err)
@@ -54,18 +66,26 @@ const localToDbCart = async (userId, cart) => {
  */
 export const me = () => async dispatch => {
   try {
+    //get the current user and dispatch either that information or a defaultUser
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || defaultUser))
   } catch (err) {
     console.error(err)
   }
 }
+//used for matching existing OAuth user carts with localStorage Carts
 export const syncCart = cart => async dispatch => {
   try {
+    //gets the currently logged in user
     const res = await axios.get('/auth/me')
-    await localToDbCart(res.data.id, cart)
-    const order = await axios.get(`/api/orders/user/${res.data.id}`)
-    dispatch(syncUser(res.data, order.data))
+
+    //processes the conversion helper function
+    if (res.data) {
+      await localToDbCart(res.data.id, cart)
+      const order = await axios.get(`/api/orders/user/${res.data.id}`)
+      dispatch(syncUser(res.data, order.data))
+    } else return
+    // gets the amended order after the update and sends it
   } catch (err) {
     console.error(err)
   }
@@ -81,6 +101,7 @@ export const auth = (
 ) => async dispatch => {
   let res
   let order
+  //first the received information is submitted for signup
   try {
     res = await axios.post('/auth/signup', {
       email,
@@ -91,23 +112,37 @@ export const auth = (
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
+  //check and merge local cart information
   if (cart) {
     await localToDbCart(res.data.id, cart)
   }
+  //get most up to date order
   order = await axios.get(`/api/orders/user/${res.data.id}`)
+
   try {
+    // send the user and order data to redux store!
     dispatch(syncUser(res.data, order.data))
+    // If you're checking out, then it'll take additional steps:
     if (checkout) {
+      //change the existing order to purchased
       const {data: ordered} = await axios.put(
         `/api/orders/user/${res.data.id}/ordered`
       )
+
+      // submit the finalized order & empty the cart view.
       await dispatch(completeOrder(ordered))
       await dispatch({
         type: GET_USER_ORDER,
         order: {products: [], totalProducts: 0, totalPrice: 0}
       })
+      
+      //send user to successful checkout
+       history.push('/confirmation')
     }
-    history.push('/confirmation')
+    
+    //send the user to the home page on successful signup
+    history.push('/home')
+    
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
@@ -115,17 +150,20 @@ export const auth = (
 
 export const authLogin = (email, password, cart) => async dispatch => {
   let res
-  let order
+  //first try logging in with provided credentials
   try {
     res = await axios.post('/auth/login', {email, password})
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
+  //then sync local cart to user cart
   if (cart) {
     await localToDbCart(res.data.id, cart)
   }
-  order = await axios.get(`/api/orders/user/${res.data.id}`)
+  //get most up to date order
+  const order = await axios.get(`/api/orders/user/${res.data.id}`)
   try {
+    //send user & order data to store && redirect to homepage
     dispatch(syncUser(res.data, order.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
@@ -136,6 +174,7 @@ export const authLogin = (email, password, cart) => async dispatch => {
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
+    //after logout, remove current user from store
     dispatch(removeUser(nullOrder))
     history.push('/login')
   } catch (err) {
