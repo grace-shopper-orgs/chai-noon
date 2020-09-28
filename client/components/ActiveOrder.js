@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchUserOrder, updateProductInCart} from '../store/activeOrder'
-import Footer from './footer'
+import Footer from './Footer'
 
 class ActiveOrder extends React.Component {
   constructor() {
@@ -68,8 +68,11 @@ class ActiveOrder extends React.Component {
                         <option value={10}>10</option>
                       </select>
 
-                      <button onClick={e => this.handleDelete(product, e)}
-                      type="button" className="button-delete">
+                      <button
+                        onClick={e => this.handleDelete(product, e)}
+                        type="button"
+                        className="button-delete"
+                      >
                         x
                       </button>
                     </div>

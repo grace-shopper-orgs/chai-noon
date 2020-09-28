@@ -2,10 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchUserOrder} from '../store/activeOrder'
 import {completePurchase} from '../store/checkout'
-// import {auth} from '../store/user'
-import {authAndOrder} from '../store/checkout'
 import {auth} from '../store/user'
-import Footer from './footer'
+import Footer from './Footer'
 
 class CheckoutPage extends React.Component {
   constructor() {
@@ -28,7 +26,6 @@ class CheckoutPage extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     this.props.completePurchase()
-    alert('Thanks for your Purchase!!!')
   }
 
   handleChange(event) {
@@ -40,7 +37,6 @@ class CheckoutPage extends React.Component {
   handleSignUp(event) {
     event.preventDefault()
     const cart = JSON.parse(localStorage.getItem('cart'))
-    console.log('I made it to the submit')
     this.props.signUpAndCompleteOrder(
       this.state.email,
       this.state.password,
@@ -49,7 +45,6 @@ class CheckoutPage extends React.Component {
       cart,
       true
     )
-    alert('Thanks for your Purchase!!!')
   }
 
   render() {

@@ -2,9 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts, removeProduct} from '../store/products'
 import {Link} from 'react-router-dom'
-
-import Footer from './footer'
-
+import Footer from './Footer'
 import Pagination from './Pagination'
 
 export class AllProducts extends React.Component {
@@ -132,7 +130,6 @@ export class AllProducts extends React.Component {
                           </h2>
                           <h4>{product.description}</h4>
                           <h4>Price: ${product.price / 100}</h4>
-                          <h4>In Stock: {product.numOfItems}</h4>
                         </article>
                       </div>
                     )

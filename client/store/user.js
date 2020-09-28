@@ -128,15 +128,21 @@ export const auth = (
       const {data: ordered} = await axios.put(
         `/api/orders/user/${res.data.id}/ordered`
       )
+
       // submit the finalized order & empty the cart view.
       await dispatch(completeOrder(ordered))
       await dispatch({
         type: GET_USER_ORDER,
         order: {products: [], totalProducts: 0, totalPrice: 0}
       })
+      
+      //send user to successful checkout
+       history.push('/confirmation')
     }
+    
     //send the user to the home page on successful signup
     history.push('/home')
+    
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }

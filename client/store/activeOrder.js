@@ -116,6 +116,7 @@ export const updateProductInCart = (
     //if user is a guest- pull cart information from localStorage
     let cart = JSON.parse(localStorage.getItem('cart'))
 
+
     //cast count as a number
     count = Number(count)
 
