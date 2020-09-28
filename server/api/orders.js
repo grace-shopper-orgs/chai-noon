@@ -12,26 +12,7 @@ router.get('/', isAdminMiddleware, async (req, res, next) => {
   }
 })
 
-// get a user's current active order
-router.get('/user/:id', isSelfOrAdmin, async (req, res, next) => {
-  try {
-    // find an order that is associated with the user and is the current order (not purchased)
-    // eager load the order's products
-    const order = await Order.findOne({
-      where: {
-        userId: req.params.id,
-        purchased: false
-      },
-      include: {
-        model: Product
-      }
-    })
-    res.json(order)
-  } catch (err) {
-    next(err)
-  }
-})
-
+// NEED IS USER MW - order id
 // get order by order id
 router.get('/:id', async (req, res, next) => {
   try {
@@ -40,35 +21,6 @@ router.get('/:id', async (req, res, next) => {
     res.json(order)
   } catch (err) {
     next(err)
-  }
-})
-
-// mark user's current order as purchased upon checkout
-router.put('/user/:id/ordered', async (req, res, next) => {
-  try {
-    // find current order
-    const order = await Order.findOne({
-      where: {
-        userId: req.params.id,
-        purchased: false
-      }
-    })
-
-    // update order to purchased
-    await order.update({purchased: true})
-
-    // create new empty order and assign it to the user
-    const newOrder = await Order.create()
-    let user = await User.findOne({
-      where: {
-        id: req.params.id
-      }
-    })
-    await user.addOrder(newOrder)
-
-    res.json(order)
-  } catch (error) {
-    next(error)
   }
 })
 

@@ -1,3 +1,5 @@
+const {Order, User} = require('../db/models')
+
 // middleware to make sure user isAdmin and a user
 const isAdminMiddleware = (req, res, next) => {
   const currentUser = req.user
@@ -14,16 +16,24 @@ const isAdminMiddleware = (req, res, next) => {
 }
 
 // middleware to make sure a user, such as delete profile
-const isSelfOrAdmin = (req, res, next) => {
-  console.log(req.route.path) // /user/:id
-  console.log(req.params.id)
-  const userId = req.params.id
+const isSelfOrAdmin = async (req, res, next) => {
+  console.log(req.baseUrl, 'URL')
+
+  let userId
+
+  if (req.baseUrl.includes('orders')) {
+    let orderId = req.params.id || req.body.order.id
+    let order = await Order.findByPk(orderId)
+    userId = order.userId
+  } else {
+    userId = req.params.Id
+  }
+
   // if user is authenticated in session check
-  if (req) {
+  if (req.user && req.user.id === userId) {
     next()
   } else {
     const err = new Error('not a user')
-    err.status(401)
     next(err)
     res.redirect('/') // if not, rediect them to homepage
   }

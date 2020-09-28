@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {User, Order, Product} = require('../db/models')
-const {isAdminMiddleware} = require('./gatekeeping')
+const {isAdminMiddleware, isSelfOrAdmin} = require('./gatekeeping')
 
 module.exports = router
 
