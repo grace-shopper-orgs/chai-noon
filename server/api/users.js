@@ -19,7 +19,7 @@ router.get('/', isAdminMiddleware, async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', isAdminMiddleware, async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
