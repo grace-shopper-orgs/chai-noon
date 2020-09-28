@@ -100,6 +100,7 @@ body {
   flex-direction: column;
   background-color: rgba(231, 226, 221, 0.623);
   text-align: center;
+  z-index: 1;
 }
 a {
   text-decoration: none;
