@@ -17,13 +17,14 @@ const nullOrder = {products: [], totalProducts: 0, totalPrice: 0}
 /**
  * ACTION CREATORS
  */
-const getUser = (user, order = nullOrder) => dispatch => {
-  dispatch({type: GET_USER_ORDER, order: order})
-  return dispatch({type: GET_USER, user})
-}
+const getUser = user => dispatch => dispatch({type: GET_USER, user})
 const removeUser = order => dispatch => {
   dispatch({type: REMOVE_USER})
   dispatch({type: GET_USER_ORDER, order: order})
+}
+const syncUser = (user, order = nullOrder) => dispatch => {
+  dispatch({type: GET_USER_ORDER, order: order})
+  return dispatch({type: GET_USER, user})
 }
 /**
  * HELPER FUNCTIONS
@@ -31,15 +32,17 @@ const removeUser = order => dispatch => {
 const localToDbCart = async (userId, cart) => {
   try {
     let currOrder = await axios.get(`/api/orders/user/${userId}`)
-    for (let i = 0; i < cart.products.length; i++) {
-      const each = cart.products[i]
-      each.count = each.OrderProducts.count
-      await axios.put(`/api/orders/${currOrder.data.id}`, each)
-      await axios.put('/api/orders/update', {
-        order: currOrder.data,
-        product: each,
-        count: each.count
-      })
+    if (cart.products !== undefined) {
+      for (let i = 0; i < cart.products.length; i++) {
+        const each = cart.products[i]
+        each.count = each.OrderProducts.count
+        await axios.put(`/api/orders/${currOrder.data.id}`, each)
+        await axios.put('/api/orders/update', {
+          order: currOrder.data,
+          product: each,
+          count: each.count
+        })
+      }
     }
     localStorage.removeItem('cart')
   } catch (err) {
@@ -53,6 +56,16 @@ export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || defaultUser))
+  } catch (err) {
+    console.error(err)
+  }
+}
+export const syncCart = cart => async dispatch => {
+  try {
+    const res = await axios.get('/auth/me')
+    await localToDbCart(res.data.id, cart)
+    const order = await axios.get(`/api/orders/user/${res.data.id}`)
+    dispatch(syncUser(res.data, order.data))
   } catch (err) {
     console.error(err)
   }
@@ -82,7 +95,7 @@ export const auth = (
   }
   order = await axios.get(`/api/orders/user/${res.data.id}`)
   try {
-    dispatch(getUser(res.data, order.data))
+    dispatch(syncUser(res.data, order.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
@@ -102,7 +115,7 @@ export const authLogin = (email, password, cart) => async dispatch => {
   }
   order = await axios.get(`/api/orders/user/${res.data.id}`)
   try {
-    dispatch(getUser(res.data, order.data))
+    dispatch(syncUser(res.data, order.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
