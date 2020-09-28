@@ -28,7 +28,6 @@ describe('Product Model', () => {
     expect(savedProduct.price).to.equal(8834)
     expect(savedProduct.notARealAttribute).to.equal(undefined)
   })
-  // Created testSpeck to validate that the name is not Null or empty
 
   it('name cannot be null', async () => {
     const blankProduct = Product.build()

@@ -84,7 +84,7 @@ export const updateProductInCart = (
     dispatch(updateProductInOrder(res.data))
   } else {
     let cart = JSON.parse(localStorage.getItem('cart'))
-    console.log('first', cart)
+
     count = Number(count)
 
     const productIndex = cart.products.findIndex(
