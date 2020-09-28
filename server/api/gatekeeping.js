@@ -1,12 +1,13 @@
 // middleware to make sure user isAdmin and a user
 const isAdminMiddleware = (req, res, next) => {
   const currentUser = req.user
-  // if user authentication in session check
+  // check if the is a current user in the session and check if that user is an admin
   if (currentUser && currentUser.isAdmin) {
     next()
   } else {
-    const err = new Error('not an admin')
-    err.status(401)
+    const err = new Error('This page can not be accessed by the current user')
+    // err.status(401)
+    res.send(err.message).status(401)
     next(err)
     res.redirect('/') // if not, rediect them to homepage
   }
