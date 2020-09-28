@@ -1,7 +1,7 @@
 // middleware to make sure user isAdmin and a user
 const isAdminMiddleware = (req, res, next) => {
   const currentUser = req.user
-  // check if the is a current user in the session and check if that user is an admin
+  // check if there is a current user in the session and check if that user is an admin
   if (currentUser && currentUser.isAdmin) {
     next()
   } else {
