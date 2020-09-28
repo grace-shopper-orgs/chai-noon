@@ -126,7 +126,8 @@ router.put('/:id', async (req, res, next) => {
     const productId = req.body.id
 
     // count === quantity of product to add to the order
-    let count = req.body.count
+
+    let count = req.body.count || 1
 
     const product = await Product.findByPk(productId)
 
