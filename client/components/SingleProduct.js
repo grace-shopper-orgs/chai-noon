@@ -5,6 +5,7 @@ import {ErrorPage} from './ErrorPage'
 import {Link} from 'react-router-dom'
 import {PurchaseForm} from './PurchaseForm'
 import {addToOrder} from '../store/activeOrder'
+import Footer from './footer'
 
 class SingleProduct extends React.Component {
   constructor() {
@@ -56,6 +57,7 @@ class SingleProduct extends React.Component {
             )}
           </div>
         )}
+        <Footer />
       </div>
     )
   }

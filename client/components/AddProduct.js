@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {createProduct} from '../store/products'
+import Footer from './footer'
 
 export class AddProduct extends Component {
   constructor() {
@@ -82,6 +83,7 @@ export class AddProduct extends Component {
             </div>
           </form>
         </main>
+        <Footer />
       </div>
     )
   }

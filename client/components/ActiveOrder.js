@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {fetchUserOrder, updateProductInCart} from '../store/activeOrder'
+import Footer from './footer'
 
 class ActiveOrder extends React.Component {
   constructor() {
@@ -31,36 +33,54 @@ class ActiveOrder extends React.Component {
     const totalPrice = order.totalPrice
     return (
       <div className="container">
-        {!products.length
-          ? 'No Products'
-          : products.map(product => {
-              return (
-                <div key={product.id}>
-                  <h3>{product.name}</h3>
-                  <p>Description: {product.description}</p>
-                  <p>Price: ${product.price / 100}</p>
-                  <div>
-                    <select
-                      onChange={e => this.handleChange(product, e)}
-                      defaultValue={product.OrderProducts.count}
-                    >
-                      <option value={1}>1</option>
-                      <option value={2}>2</option>
-                      <option value={3}>3</option>
-                      <option value={4}>4</option>
-                      <option value={5}>5</option>
-                      <option value={6}>6</option>
-                      <option value={7}>7</option>
-                      <option value={8}>8</option>
-                      <option value={9}>9</option>
-                      <option value={10}>10</option>
-                    </select>
+        <div className="product">
+          {products !== undefined && !products.length
+            ? 'No Products'
+            : products.map(product => {
+                return (
+                  <div key={product.id}>
+                    <img src={product.imageUrl} width="300" height="225" />
+                    <h4>
+                      <b>{product.name}</b>
+                    </h4>
+                    <h4>{product.description}</h4>
+                    <h4>Price: ${product.price / 100}</h4>
+                    <div>
+                      <select
+                        onChange={e => this.handleChange(product, e)}
+                        defaultValue={product.OrderProducts.count}
+                      >
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                        <option value={4}>4</option>
+                        <option value={5}>5</option>
+                        <option value={6}>6</option>
+                        <option value={7}>7</option>
+                        <option value={8}>8</option>
+                        <option value={9}>9</option>
+                        <option value={10}>10</option>
+                      </select>
+                    </div>
+                    <button type="button" className="bg-transparent">
+                      Delete
+                    </button>
                   </div>
-                  <button type="button">Delete Item</button>
-                </div>
-              )
-            })}
-        <p>TOTAL: ${totalPrice ? totalPrice / 100 : '0.00'}</p>
+                )
+              })}
+          <div className="total-container">
+            <h4>TOTAL: ${totalPrice ? totalPrice / 100 : '0.00'}</h4>
+          </div>
+          <hr />
+          {totalPrice ? (
+            <Link to="/checkout">
+              <button type="button" className="button-default">
+                Checkout
+              </button>
+            </Link>
+          ) : null}
+        </div>
+        <Footer />
       </div>
     )
   }

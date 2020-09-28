@@ -66,6 +66,7 @@ router.put('/user/:id/ordered', async (req, res, next) => {
     next(error)
   }
 })
+
 //using query parameters here when fetching from axios
 router.put('/update', async (req, res, next) => {
   try {
@@ -78,7 +79,7 @@ router.put('/update', async (req, res, next) => {
         orderId: order.id
       }
     })
-    let previousCount = association.count
+    const previousCount = association.count
     if (previousCount === count) {
       return res.json(association)
     }
@@ -131,15 +132,11 @@ router.put('/:id', async (req, res, next) => {
     await orderProduct.update({
       count: orderProduct.count + count
     })
-    await order
-      .update({
-        totalProducts: order.totalProducts + count,
-        totalPrice: order.totalPrice + product.price * count
-      })
-      .then(() => res.json(order))
-      .catch(err => {
-        throw err
-      })
+    await order.update({
+      totalProducts: order.totalProducts + count,
+      totalPrice: order.totalPrice + product.price * count
+    })
+    res.json(order)
   } catch (err) {
     next(err)
   }

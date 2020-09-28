@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {updateProduct} from '../store/singleProduct'
+import Footer from './footer'
 
 export class UpdateProduct extends Component {
   constructor() {
@@ -51,10 +52,10 @@ export class UpdateProduct extends Component {
               value={this.state.name}
               required
             />
-
             <button type="submit">UPDATE:</button>
           </form>
         </main>
+        <Footer />
       </div>
     )
   }
