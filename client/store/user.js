@@ -1,7 +1,7 @@
 import axios from 'axios'
 import history from '../history'
 import {GET_USER_ORDER} from './activeOrder'
-
+import {completeOrder} from './checkout'
 /**
  * ACTION TYPES
  */
@@ -76,7 +76,8 @@ export const auth = (
   password,
   firstName,
   lastName,
-  cart
+  cart,
+  checkout
 ) => async dispatch => {
   let res
   let order
@@ -96,6 +97,17 @@ export const auth = (
   order = await axios.get(`/api/orders/user/${res.data.id}`)
   try {
     dispatch(syncUser(res.data, order.data))
+    if (checkout) {
+      const {data: ordered} = await axios.put(
+        `/api/orders/user/${res.data.id}/ordered`
+      )
+      console.log(ordered)
+      await dispatch(completeOrder(ordered))
+      await dispatch({
+        type: GET_USER_ORDER,
+        order: {products: [], totalProducts: 0, totalPrice: 0}
+      })
+    }
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-import {fetchUserOrder, getUserOrder} from './activeOrder'
+import {getUserOrder} from './activeOrder'
 
 // action types
 export const MAKE_AN_ORDER = 'MAKE_AN_ORDER'
@@ -25,39 +25,6 @@ export const completePurchase = () => async dispatch => {
     history.push('/home')
   } catch (err) {
     console.error(err)
-  }
-}
-
-export const authAndOrder = (
-  email,
-  password,
-  firstName,
-  lastName,
-  cart
-) => async dispatch => {
-  let res
-  try {
-    res = await axios.post('/auth/signup', {
-      email,
-      password,
-      firstName,
-      lastName
-    })
-  } catch (authError) {
-    console.log(error)
-  }
-  if (cart) {
-    localToDbCart(res.data.id, cart)
-  }
-  const {data} = await axios.get(`/api/orders/user/${res.data.id}`)
-  dispatch(getUserOrder(data))
-  try {
-    history.push('/cart')
-    await dispatch(
-      getUserOrder({products: [], totalProducts: 0, totalPrice: 0})
-    )
-  } catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr)
   }
 }
 

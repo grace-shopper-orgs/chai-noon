@@ -4,6 +4,7 @@ import {fetchUserOrder} from '../store/activeOrder'
 import {completePurchase} from '../store/checkout'
 // import {auth} from '../store/user'
 import {authAndOrder} from '../store/checkout'
+import {auth} from '../store/user'
 import Footer from './footer'
 
 class CheckoutPage extends React.Component {
@@ -38,12 +39,15 @@ class CheckoutPage extends React.Component {
 
   handleSignUp(event) {
     event.preventDefault()
+    const cart = JSON.parse(localStorage.getItem('cart'))
     console.log('I made it to the submit')
     this.props.signUpAndCompleteOrder(
       this.state.email,
       this.state.password,
       this.state.firstName,
-      this.state.lastName
+      this.state.lastName,
+      cart,
+      true
     )
     alert('Thanks for your Purchase!!!')
   }
@@ -160,8 +164,15 @@ const mapDispatch = dispatch => {
     completePurchase: () => {
       dispatch(completePurchase())
     },
-    signUpAndCompleteOrder: (email, password, firstName, lastName) => {
-      dispatch(authAndOrder(email, password, firstName, lastName))
+    signUpAndCompleteOrder: (
+      email,
+      password,
+      firstName,
+      lastName,
+      cart,
+      checkout
+    ) => {
+      dispatch(auth(email, password, firstName, lastName, cart, checkout))
     }
   }
 }
