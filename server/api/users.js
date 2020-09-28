@@ -59,7 +59,7 @@ router.put('/order/checkout/:id', async (req, res, next) => {
 })
 
 // get a user's current active order
-router.get('/order/:id', async (req, res, next) => {
+router.get('/order/:id', isSelfOrAdmin, async (req, res, next) => {
   try {
     // find an order that is associated with the user and is the current order (not purchased)
     // eager load the order's products

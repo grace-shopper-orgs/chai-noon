@@ -7,7 +7,7 @@ const isAdminMiddleware = (req, res, next) => {
   if (currentUser && currentUser.isAdmin) {
     next()
   } else {
-    const err = new Error('This page can not be accessed by the current user')
+    const err = new Error('Sorry, you do not have access to this page')
     // err.status(401)
     res.send(err.message).status(401)
     next(err)
@@ -26,14 +26,16 @@ const isSelfOrAdmin = async (req, res, next) => {
     let order = await Order.findByPk(orderId)
     userId = order.userId
   } else {
-    userId = req.params.Id
+    userId = req.params.id
   }
-
+  console.log(req.user.id, 'ID')
   // if user is authenticated in session check
-  if (req.user && req.user.id === userId) {
+  if ((req.user && req.user.id == userId) || req.user.isAdmin) {
+    console.log('IN NEXT')
     next()
   } else {
-    const err = new Error('not a user')
+    const err = new Error('Sorry, you do not have access to this page')
+    res.send(err.message).status(401)
     next(err)
     res.redirect('/') // if not, rediect them to homepage
   }
@@ -43,5 +45,3 @@ module.exports = {
   isAdminMiddleware,
   isSelfOrAdmin
 }
-
-// TODO: revisit the error handling
