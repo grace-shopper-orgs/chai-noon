@@ -14,10 +14,12 @@ const isAdminMiddleware = (req, res, next) => {
 }
 
 // middleware to make sure a user, such as delete profile
-const isSelf = (req, res, next) => {
+const isSelfOrAdmin = (req, res, next) => {
+  console.log(req.route.path) // /user/:id
+  console.log(req.params.id)
   const userId = req.params.id
   // if user is authenticated in session check
-  if (userId === req.user.id) {
+  if (req) {
     next()
   } else {
     const err = new Error('not a user')
@@ -29,7 +31,7 @@ const isSelf = (req, res, next) => {
 
 module.exports = {
   isAdminMiddleware,
-  isSelf
+  isSelfOrAdmin
 }
 
 // TODO: revisit the error handling

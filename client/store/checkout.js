@@ -15,7 +15,7 @@ export const completePurchase = () => async dispatch => {
     // find auth user and then use userId to dispatch and confirm the order
     const {data: user} = await axios.get('/auth/me')
     const {data: ordered} = await axios.put(
-      `/api/orders/user/${user.id}/ordered`
+      `/api/users/order/checkout/${user.id}`
     )
 
     // now update it in our system as purchased: true. cart will them be empty

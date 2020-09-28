@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {Product, Order, OrderProducts, User} = require('../db/models')
-const {isAdminMiddleware} = require('./gatekeeping')
+const {isAdminMiddleware, isSelfOrAdmin} = require('./gatekeeping')
 
 // get ALL orders
 router.get('/', isAdminMiddleware, async (req, res, next) => {
@@ -13,13 +13,13 @@ router.get('/', isAdminMiddleware, async (req, res, next) => {
 })
 
 // get a user's current active order
-router.get('/user/:userId', async (req, res, next) => {
+router.get('/user/:id', isSelfOrAdmin, async (req, res, next) => {
   try {
     // find an order that is associated with the user and is the current order (not purchased)
     // eager load the order's products
     const order = await Order.findOne({
       where: {
-        userId: req.params.userId,
+        userId: req.params.id,
         purchased: false
       },
       include: {
@@ -86,6 +86,8 @@ router.put('/update', async (req, res, next) => {
       }
     })
 
+    const previousCount = association.count
+
     // if the new count is 0, delete the item from the order, or remove the assocation between product and order. else, update the product count in the association to reflect the new count
     if (count === 0) {
       await association.destroy()
@@ -96,7 +98,7 @@ router.put('/update', async (req, res, next) => {
     const orderModel = await Order.findByPk(order.id)
 
     // find the difference between the previous count and the new count
-    const previousCount = association.count
+
     const countDifference = count - previousCount
 
     // find the new total price of the order by multiplying the count difference by the product price, and adding that to the initial total price of the order

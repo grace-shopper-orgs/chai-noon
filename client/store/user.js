@@ -36,7 +36,7 @@ const syncUser = (user, order = nullOrder) => dispatch => {
 const localToDbCart = async (userId, cart) => {
   try {
     //get the existing user order
-    let currOrder = await axios.get(`/api/orders/user/${userId}`)
+    let currOrder = await axios.get(`/api/users/order/${userId}`)
     // checks whether passed-in cart has products
     if (cart) {
       for (let i = 0; i < cart.products.length; i++) {
@@ -82,7 +82,7 @@ export const syncCart = cart => async dispatch => {
     //processes the conversion helper function
     if (res.data) {
       await localToDbCart(res.data.id, cart)
-      const order = await axios.get(`/api/orders/user/${res.data.id}`)
+      const order = await axios.get(`/api/users/order/${res.data.id}`)
       dispatch(syncUser(res.data, order.data))
     } else return
     // gets the amended order after the update and sends it
@@ -117,7 +117,7 @@ export const auth = (
     await localToDbCart(res.data.id, cart)
   }
   //get most up to date order
-  order = await axios.get(`/api/orders/user/${res.data.id}`)
+  order = await axios.get(`/api/users/order/${res.data.id}`)
 
   try {
     // send the user and order data to redux store!
@@ -126,7 +126,7 @@ export const auth = (
     if (checkout) {
       //change the existing order to purchased
       const {data: ordered} = await axios.put(
-        `/api/orders/user/${res.data.id}/ordered`
+        `/api/users/order/checkout/${res.data.id}`
       )
 
       // submit the finalized order & empty the cart view.
@@ -160,7 +160,7 @@ export const authLogin = (email, password, cart) => async dispatch => {
     await localToDbCart(res.data.id, cart)
   }
   //get most up to date order
-  const order = await axios.get(`/api/orders/user/${res.data.id}`)
+  const order = await axios.get(`/api/users/order/${res.data.id}`)
   try {
     //send user & order data to store && redirect to homepage
     dispatch(syncUser(res.data, order.data))
