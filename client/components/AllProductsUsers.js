@@ -4,6 +4,7 @@ import {fetchProducts} from '../store/products'
 import {Link} from 'react-router-dom'
 import Footer from './Footer'
 import Pagination from './Pagination'
+import {addToOrder} from '../store'
 
 export class AllProductsUsers extends React.Component {
   state = {
@@ -57,12 +58,21 @@ export class AllProductsUsers extends React.Component {
                             width="400"
                             height="280"
                           />
+                          <h2>
+                            <b>{product.name}</b>
+                          </h2>
                         </Link>
-                        <h2>
-                          <b>{product.name}</b>
-                        </h2>
                         <h4>{product.description}</h4>
                         <h4>Price: ${product.price / 100}</h4>
+                        <div className="product-button">
+                          <button
+                            type="button"
+                            onClick={() => this.props.addToCart(product, 1)}
+                            className="button-default"
+                          >
+                            Add to Cart
+                          </button>
+                        </div>
                       </article>
                     </div>
                   )
@@ -85,6 +95,9 @@ const mapDispatch = dispatch => {
   return {
     getProducts: () => {
       dispatch(fetchProducts())
+    },
+    addToCart: product => {
+      dispatch(addToOrder(product, 1))
     }
   }
 }
