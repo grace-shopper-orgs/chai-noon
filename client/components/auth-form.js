@@ -2,8 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth, authLogin} from '../store'
-
-import Footer from './footer'
+import Footer from './Footer'
 
 /**
  *

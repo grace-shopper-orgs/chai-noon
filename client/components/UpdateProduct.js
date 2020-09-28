@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {updateProduct} from '../store/singleProduct'
-import Footer from './footer'
+import Footer from './Footer'
 
 export class UpdateProduct extends Component {
   constructor() {

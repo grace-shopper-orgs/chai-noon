@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../store/users'
-import Footer from './footer'
+import Footer from './Footer'
 
 export class AllUsers extends React.Component {
   componentDidMount() {

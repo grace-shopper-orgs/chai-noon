@@ -469,3 +469,37 @@ a.page-link:hover {
 .colr-md {
   padding-top: 25px;
 }
+
+/* --------confirmation page-------- */
+
+svg {
+  width: 100px;
+  display: block;
+  margin: 30px auto 0;
+  padding-bottom: 25px;
+}
+
+.back-link {
+  color: var(--primaryColor);
+  font-size: 0.8em;
+  margin: 10em;
+}
+
+.back-link:hover {
+  color: var(--mainBlack);
+}
+
+.path-circle {
+  fill: none;
+  stroke: #73af55;
+  stroke-width: 6;
+  stroke-miterlimit: 10;
+}
+
+.path-check {
+  fill: none;
+  stroke: #73af55;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+}
