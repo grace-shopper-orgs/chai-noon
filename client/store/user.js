@@ -38,7 +38,7 @@ const localToDbCart = async (userId, cart) => {
     //get the existing user order
     let currOrder = await axios.get(`/api/orders/user/${userId}`)
     // checks whether passed-in cart has products
-    if (cart.products !== []) {
+    if (cart) {
       for (let i = 0; i < cart.products.length; i++) {
         const each = cart.products[i]
 
@@ -80,11 +80,12 @@ export const syncCart = cart => async dispatch => {
     const res = await axios.get('/auth/me')
 
     //processes the conversion helper function
-    await localToDbCart(res.data.id, cart)
-
+    if (res.data) {
+      await localToDbCart(res.data.id, cart)
+      const order = await axios.get(`/api/orders/user/${res.data.id}`)
+      dispatch(syncUser(res.data, order.data))
+    } else return
     // gets the amended order after the update and sends it
-    const order = await axios.get(`/api/orders/user/${res.data.id}`)
-    dispatch(syncUser(res.data, order.data))
   } catch (err) {
     console.error(err)
   }
