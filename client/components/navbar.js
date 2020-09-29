@@ -20,6 +20,20 @@ class Navbar extends React.Component {
       this.props.syncCart(cart)
       this.setState({checked: true})
     }
+    document.addEventListener('click', this.handleDocumentClick)
+  }
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleDocumentClick)
+  }
+  handleDocumentClick = event => {
+    // return element object or null
+    const isClosest = event.target.closest(`[class=hamburger-react]`)
+
+    if (this.state.menu && !isClosest) {
+      this.setState({menu: false})
+    } else if (isClosest) {
+      this.setState({menu: !this.state.menu})
+    }
   }
   render() {
     const {user} = this.props
@@ -29,23 +43,12 @@ class Navbar extends React.Component {
         <nav className="navbar">
           <div className="navbar-center">
             <div className="nav-left">
-              <Hamburger
-                onToggle={toggled => {
-                  if (toggled) {
-                    this.setState({menu: true})
-                  } else {
-                    this.setState({menu: false})
-                  }
-                }}
-                size={20}
-              />
+              <Hamburger size={20} id="menu" toggled={this.state.menu} />
               <Link to="/" className="link">
                 <h5>
                   {' '}
                   <div className="main-text">
-                    <h4>
-                      <b>CHAI NOON</b>
-                    </h4>
+                    <h4>CHAI NOON</h4>
                   </div>
                 </h5>
               </Link>

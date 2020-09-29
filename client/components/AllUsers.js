@@ -33,7 +33,7 @@ export class AllUsers extends React.Component {
             ? 'No Users'
             : users.map(user => {
                 return (
-                  <div key={user.id}>
+                  <div className="user" key={user.id}>
                     <p>User ID: {user.id}</p>
                     <p>Email: {user.email}</p>
                   </div>

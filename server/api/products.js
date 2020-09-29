@@ -14,15 +14,13 @@ router.get('/', async (req, res, next) => {
 
 //route search by ID
 router.get('/:id', async (req, res, next) => {
+  let product
   try {
-    const product = await Product.findByPk(req.params.id)
-    if (!product) {
-      return res.sendStatus(404)
-    }
-    res.json(product)
+    product = await Product.findByPk(req.params.id)
   } catch (err) {
     next(err)
   }
+  res.json(product)
 })
 
 //route to add a new product

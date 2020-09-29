@@ -34,7 +34,6 @@ body {
 
 .navbar {
   position: fixed;
-  top: 10;
   height: 100px;
   width: 100%;
   display: flex;
@@ -52,7 +51,7 @@ body {
 .nav-left {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: stretch;
+  justify-content: space-around;
   align-items: center;
 }
 .nav-icon {
@@ -77,7 +76,7 @@ body {
 }
 .cart-btn {
   position: relative;
-  top: 10px;
+  top: 15px;
   cursor: pointer;
 }
 
@@ -177,11 +176,10 @@ ul {
 }
 
 /* //--------All product page Layout------// */
-
 .products {
-  padding: 4rem 6rem;
+  width: 100%;
+  padding: 1em;
 }
-
 .product-section {
   justify-content: space-around;
   display: flex;
@@ -197,20 +195,20 @@ ul {
   text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
 }
-
+.section-title {
+  width: 100%;
+}
 .products-center {
   display: inline-block;
-  max-width: 1170px;
-  justify-content: space-around;
-  flex-flow: row wrap;
   width: 400px;
   align-content: center;
 }
 
-/* .product {
-  align-items: center;
-  justify-content: center;
-} */
+.product img {
+  width: 100%;
+  max-width: 400px;
+  height: 280px;
+}
 
 .product-container {
   width: 400px;
@@ -276,11 +274,6 @@ h5 {
   padding-bottom: 2rem;
 }
 
-.user-inline {
-  margin: 2rem 0rem 0rem 4rem;
-  color: black;
-}
-
 /* //-----------cards on welcome page----------// */
 .card-wrap {
   padding: 0rem 10px;
@@ -307,15 +300,6 @@ h5 {
   font-size: 1.2rem;
   margin-top: 2.2rem;
   text-transform: capitalize;
-  letter-spacing: var(--mainSpacing);
-}
-
-.product h4 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 0.3rem;
-  font-size: 0.8rem;
   letter-spacing: var(--mainSpacing);
 }
 
@@ -353,15 +337,29 @@ a.page-link:hover {
   box-shadow: var(--mainGrey) !important;
   border-color: transparent !important;
 }
-
+/* --------------- user -------------*/
+.user {
+  border-width: 0 0 1px 0;
+  border-color: var(--mainGrey);
+  border-style: solid;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 0.1rem;
+}
+/* //-----nav logo/text alignment-----// */
+.main-text {
+  width: max-content;
+}
+.main-text h4 {
+  font-weight: bold;
+}
 /*------------- media queries --------*/
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 480px) {
   .navbox {
     padding-bottom: 80px;
   }
   .navbar {
     position: fixed;
-    top: 10;
     height: 80px;
     width: 100%;
     display: block;
@@ -418,13 +416,39 @@ a.page-link:hover {
     float: left;
     z-index: 1;
   }
-  /* //-----nav logo/text alignment-----// */
-  .main-text {
-    width: max-content;
-  }
   /* //-----------cards on welcome page----------// */
   .card-wrap {
     padding: 0rem 10rem;
+  }
+  /*//-------product --------//*/
+  .products {
+    padding: 4rem 6rem;
+  }
+  .product img {
+    width: 400px;
+    height: 280px;
+  }
+  .products-center {
+    display: inline-block;
+    width: 400px;
+    align-content: center;
+  }
+  .product h4 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    letter-spacing: var(--mainSpacing);
+  }
+  /* --------user-------*/
+  .user-inline {
+    color: black;
+    display: block;
+  }
+  .user {
+    margin: 0 auto;
+    width: 400px;
   }
 }
 @media only screen and (min-width: 1500px) {

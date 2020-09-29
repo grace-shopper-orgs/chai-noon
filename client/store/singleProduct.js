@@ -7,7 +7,7 @@ export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 
 // ACTION CREATORS
 
-const getProduct = product => {
+const getProduct = (product = {}) => {
   return {
     type: GET_PRODUCT,
     product
@@ -27,7 +27,8 @@ export const fetchProduct = productId => {
   return async dispatch => {
     try {
       const res = await axios.get(`/api/products/${productId}`)
-      dispatch(getProduct(res.data))
+      if (res.data) dispatch(getProduct(res.data))
+      else dispatch(getProduct({name: null}))
     } catch (err) {
       console.log(err)
     }
