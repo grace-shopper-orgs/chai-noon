@@ -12,7 +12,7 @@ router.get('/', isAdminMiddleware, async (req, res, next) => {
   }
 })
 
-// NEED IS USER MW - order id
+
 // get order by order id
 router.get('/:id', isSelfOrAdmin, async (req, res, next) => {
   try {
