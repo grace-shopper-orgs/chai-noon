@@ -14,7 +14,7 @@ router.get('/', isAdminMiddleware, async (req, res, next) => {
 
 // NEED IS USER MW - order id
 // get order by order id
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', isSelfOrAdmin, async (req, res, next) => {
   try {
     // eager load the order's products
     let order = await Order.findByPk(req.params.id, {include: Product})
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res, next) => {
 })
 
 // update the count of a product in the order to a new count specified by user
-router.put('/update', async (req, res, next) => {
+router.put('/update', isSelfOrAdmin, async (req, res, next) => {
   try {
     let {product, order, count} = req.body
     count = Number(count)
@@ -74,7 +74,7 @@ router.put('/update', async (req, res, next) => {
 })
 
 // add a product to an order
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', isSelfOrAdmin, async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.id)
     const productId = req.body.id

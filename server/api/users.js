@@ -30,7 +30,7 @@ router.get('/:id', isAdminMiddleware, async (req, res, next) => {
   }
 })
 
-router.put('/order/checkout/:id', async (req, res, next) => {
+router.put('/order/checkout/:id', isSelfOrAdmin, async (req, res, next) => {
   try {
     // find current order
     const order = await Order.findOne({

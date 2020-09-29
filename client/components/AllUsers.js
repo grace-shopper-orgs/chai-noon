@@ -9,7 +9,16 @@ export class AllUsers extends React.Component {
   }
 
   render() {
+    console.log(this.props.user)
+    if (!this.props.user.isAdmin)
+      return (
+        <div className="section-title">
+          Sorry, you do not have access to this page
+        </div>
+      )
+
     const {users} = this.props
+
     return (
       <div>
         <div className="section-title">
@@ -39,7 +48,8 @@ export class AllUsers extends React.Component {
 
 const mapState = state => {
   return {
-    users: state.users
+    users: state.users,
+    user: state.user
   }
 }
 
