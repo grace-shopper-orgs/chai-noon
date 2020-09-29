@@ -52,11 +52,7 @@ export class AllProductsUsers extends React.Component {
                     <div className="products-center" key={product.id}>
                       <article className="product">
                         <Link to={`/products/${product.id}`} className="link">
-                          <img
-                            src={product.imageUrl}
-                            width="400"
-                            height="280"
-                          />
+                          <img src={product.imageUrl} />
                         </Link>
                         <h2>
                           <b>{product.name}</b>

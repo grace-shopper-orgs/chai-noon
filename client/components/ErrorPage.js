@@ -4,10 +4,10 @@ import Footer from './Footer'
 
 export const ErrorPage = props => {
   return (
-    <div>
+    <div className="container">
       {props.error.status === 500 ? (
         <div>
-          <div className="error-`status">500 - Server Error</div>
+          <div className="error-status">500 - Server Error</div>
           <div>
             <div className="error-description">
               We're sorry for the inconvenience! We'll get to work on this issue

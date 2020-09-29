@@ -10,10 +10,23 @@ import Footer from './Footer'
 class SingleProduct extends React.Component {
   constructor() {
     super()
+    this.state = {
+      loading: true
+    }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentDidMount() {
     this.props.getProduct(this.props.match.params.id)
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.product !== nextProps.product) {
+      this.setState({loading: false})
+      return true
+    }
+    if (this.state.loading !== nextState.loading) {
+      return true
+    }
+    return false
   }
   async handleSubmit(event, product) {
     event.preventDefault()
@@ -21,34 +34,42 @@ class SingleProduct extends React.Component {
     await this.props.addToOrder(product, count)
   }
   render() {
-    const {name, description, price, imageUrl, id} = this.props.product
-    const {isAdmin} = this.props.user
-    return (
-      <div>
-        {!isAdmin ? (
-          <div className="container">
-            <div className="product">
-              <div className="display-row">
-                <div className="single-img">
-                  <img src={imageUrl} width="450" height="345" />
-                </div>
-                <div className="colr-md">
-                  <div>
-                    <h2>{name}</h2>
-                    <h2>${price / 100}</h2>
-                    <h4>{description}</h4>
-                    <PurchaseForm
-                      product={this.props.product}
-                      onSubmit={this.handleSubmit}
-                    />
+    if (this.state.loading) {
+      return <div className="container">🍵 Brewing.... 🍵</div>
+    } else if (!this.props.product.name) {
+      return (
+        <div>
+          <ErrorPage error={{status: 404, message: 'Not Found'}} />
+        </div>
+      )
+    } else {
+      const {name, description, price, imageUrl, id} = this.props.product
+      const {isAdmin} = this.props.user
+      return (
+        <div>
+          {!isAdmin ? (
+            <div className="container">
+              <div className="product">
+                <div className="display-row">
+                  <div className="single-img">
+                    <img src={imageUrl} width="450" height="345" />
+                  </div>
+                  <div className="colr-md">
+                    <div>
+                      <h2>{name}</h2>
+                      <h2>${price / 100}</h2>
+                      <h4>{description}</h4>
+                      <PurchaseForm
+                        product={this.props.product}
+                        onSubmit={this.handleSubmit}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <div>
-            {this.props.product.name ? (
+          ) : (
+            <div>
               <div className="container">
                 <div className="product">
                   <div className="display-row">
@@ -61,7 +82,7 @@ class SingleProduct extends React.Component {
                         <h2>${price / 100}</h2>
                         <h4>{description}</h4>
                         <Link to={`/products/${id}/update`} className="link">
-                          <button className="button-default">
+                          <button type="button" className="button-default">
                             UPDATE PRODUCT
                           </button>
                         </Link>
@@ -74,14 +95,12 @@ class SingleProduct extends React.Component {
                   </div>
                 </div>
               </div>
-            ) : (
-              <ErrorPage error={{status: 404, message: 'Not Found'}} />
-            )}
-          </div>
-        )}
-        <Footer />
-      </div>
-    )
+            </div>
+          )}
+          <Footer />
+        </div>
+      )
+    }
   }
 }
 
