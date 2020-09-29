@@ -48,7 +48,7 @@ class Navbar extends React.Component {
               </div>
               <div className="main-text">
                 <Link to="/" className="link">
-                  <h4>CHAI NOON</h4>
+                  <img id="logo" src="/chai-noon-logo.png" alt="chai-noon" />
                 </Link>
               </div>
             </div>
