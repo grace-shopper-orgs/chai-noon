@@ -2,7 +2,7 @@ const productsJson = [
   {
     name: 'English Breakfast Tea',
     description:
-      'Robust with flavor, our traditional blend of organic loose leaf black tea is perfect for starting the day. This Sri Lanka black tea brews smooth and malty, with a clean finish. ',
+      "Robust with flavor, our traditional blend of organic loose leaf black tea is perfect for starting the day. This Sri Lanka black tea brews smooth and malty, with a clean finish. English Breakfast is one of our ultimate teas. It wakes and revives the nation and goes beautifully with your favourite morning treat. This blend isn't just perfect for starting your day; it is also great to get you through your busy schedule every day. It's bright, full bodied and full of flavour. The English Breakfast Blend has a mix of Assam, Ceylon and Kenyan tea to give a perfectly balanced blend. Our Master Blenders search the globe for the best blends and make sure that each batch of English Breakfast is examined, tried and tasted. The weather and growing conditions change all the time but our incredible master blenders ensure that each and every morning your favourite cup tastes just as delicious as you'd expect it. ",
     price: 1199,
     imageUrl: 'https://www.organicfacts.net/wp-content/uploads/blacktea.jpg',
     numOfItems: 10
@@ -28,7 +28,7 @@ const productsJson = [
   {
     name: 'Greenfield',
     description:
-      'Robust with flavor, our traditional blend of organic loose leaf green tea is perfect for starting the day. This Sri Lanka black tea brews smooth and malty, with a clean finish.',
+      'Excellent herbal tea in pyramid teabags in foil sachets. Unique black , green, white and red teas from the best estates in Cylon, India, Kenya, China, original blends of teas with Berries, fruit, flower petals and fragrant herbs as well as herbal infusions. Robust with flavor, our traditional blend of organic loose leaf green tea is perfect for starting the day. This Sri Lanka black tea brews smooth and malty, with a clean finish. A robust organic black tea blend. Notes of sweet apple paired with the roundness of organic black tea, this full-flavored blend is a perfect morning cup of tea',
     price: 1599,
     imageUrl:
       'https://mk0nationaltodayijln.kinstacdn.com/wp-content/uploads/2019/02/national-hot-tea-month-640x514.jpg',
