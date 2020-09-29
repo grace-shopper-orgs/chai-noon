@@ -23,7 +23,7 @@ export default function ThankYouPage() {
           Your confirmation is sent to your email along with a special offer :)
         </h5>
         <div>
-          <Link to="/home" className="back-link">
+          <Link to="/" className="highlighted-link">
             <p>Go back to homepage</p>
           </Link>
         </div>
