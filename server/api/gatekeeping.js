@@ -1,35 +1,41 @@
-// middleware to make sure user isAdmin and a user
+const {Order} = require('../db/models')
+
+// middleware to check if user is an admin
 const isAdminMiddleware = (req, res, next) => {
   const currentUser = req.user
   // check if there is a current user in the session and check if that user is an admin
   if (currentUser && currentUser.isAdmin) {
     next()
   } else {
-    const err = new Error('This page can not be accessed by the current user')
-    // err.status(401)
-    res.send(err.message).status(401)
-    next(err)
-    res.redirect('/') // if not, rediect them to homepage
+    const err = new Error('You do not have access to this page')
+    res.status(401).send(err.message)
   }
 }
 
-// middleware to make sure a user, such as delete profile
-const isSelf = (req, res, next) => {
-  const userId = req.params.id
-  // if user is authenticated in session check
-  if (userId === req.user.id) {
+// middleware to check if the current user is acutally the current user, or an admin
+const isSelfOrAdmin = async (req, res, next) => {
+  let userId
+
+  // if we are in the /orders routes, we will have access to the order id in either req.params or req.body. we can then obtain necessary user id from that order
+  if (req.baseUrl.includes('orders')) {
+    let orderId = req.params.id || req.body.order.id
+    let order = await Order.findByPk(orderId)
+    userId = order.userId
+  } else {
+    // if we are in the /users routes, we will know the user id directly from req.params
+    userId = Number(req.params.id)
+  }
+
+  // check if there is a current user in the session and check if that user is either the correct user or an admin
+  if ((req.user && req.user.id === userId) || req.user.isAdmin) {
     next()
   } else {
-    const err = new Error('not a user')
-    err.status(401)
-    next(err)
-    res.redirect('/') // if not, rediect them to homepage
+    const err = new Error('You do not have access to this page')
+    res.status(401).send(err.message)
   }
 }
 
 module.exports = {
   isAdminMiddleware,
-  isSelf
+  isSelfOrAdmin
 }
-
-// TODO: revisit the error handling

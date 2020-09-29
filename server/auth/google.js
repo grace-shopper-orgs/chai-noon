@@ -40,6 +40,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
           where: {googleId},
           defaults: {email, imgUrl, firstName, lastName, fullName}
         })
+
         // find or create new order when a user signs up
         const [order] = await Order.findOrCreate({
           where: {

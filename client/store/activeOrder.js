@@ -25,7 +25,7 @@ export const fetchUserOrder = () => {
 
     // check whether a user is signed in or not
     if (user.id) {
-      const orderRes = await axios.get(`/api/orders/user/${user.id}`)
+      const orderRes = await axios.get(`/api/users/order/${user.id}`)
       order = orderRes.data
     } else {
       //pulls locally stored cart data if not logged in
@@ -52,13 +52,13 @@ export const addToOrder = (product, count) => async dispatch => {
     product.count = count
 
     //fetch the open order
-    let orderRes = await axios.get(`/api/orders/user/${user.id}`)
+    let orderRes = await axios.get(`/api/users/order/${user.id}`)
 
     //add the product to the open order
     await axios.put(`/api/orders/${orderRes.data.id}`, product)
 
     //fetch the adjusted order and sends that data
-    orderRes = await axios.get(`/api/orders/user/${user.id}`)
+    orderRes = await axios.get(`/api/users/order/${user.id}`)
     dispatch(addToCart(orderRes.data))
   } else {
     //if a user is a guest/not logged in, get their cart from local storage
@@ -115,7 +115,6 @@ export const updateProductInCart = (
   } else {
     //if user is a guest- pull cart information from localStorage
     let cart = JSON.parse(localStorage.getItem('cart'))
-
 
     //cast count as a number
     count = Number(count)
