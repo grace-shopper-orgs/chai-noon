@@ -9,31 +9,35 @@ export const ErrorPage = props => {
         <div>
           <div className="error-status">500 - Server Error</div>
           <div>
-            <div className="error-description">
-              We're sorry for the inconvenience! We'll get to work on this issue
-              right away.
+            <div className="section-title">
+              <h2>
+                We're sorry for the inconvenience! We'll get to work on this
+                issue right away.
+              </h2>
             </div>
-            `
-            <div className="link-button">
-              <Link to="/">Home</Link>
-            </div>
-            <div className="link-button">
-              <Link to="/products">Return to All Products</Link>
-            </div>
+            <Link to="/">
+              <p>Home</p>
+            </Link>{' '}
+            checkout
+            <Link to="/products">
+              <p>Return to All Products</p>
+            </Link>
           </div>
         </div>
       ) : (
         <div>
-          <div className="error-description">
-            The product you're looking for is not available. Sorry for the
-            inconvenience!
+          <div className="section-title">
+            <h2>
+              The product you're looking for is not available. Sorry for the
+              inconvenience!
+            </h2>
           </div>
-          <div className="link-button">
-            <Link to="/">Home</Link>
-          </div>
-          <div className="link-button">
-            <Link to="/products">Return to All Products</Link>
-          </div>
+          <Link to="/" className="back-link">
+            <p>Home</p>
+          </Link>
+          <Link to="/products" className="back-link">
+            <p>Return to All Products</p>
+          </Link>
         </div>
       )}
       <Footer />
