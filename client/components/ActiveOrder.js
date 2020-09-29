@@ -46,9 +46,9 @@ class ActiveOrder extends React.Component {
                 return (
                   <div key={product.id}>
                     <img src={product.imageUrl} width="300" height="225" />
-                    <h4>
+                    <h2>
                       <b>{product.name}</b>
-                    </h4>
+                    </h2>
                     <h4>{product.description}</h4>
                     <h4>Price: ${product.price / 100}</h4>
                     <div>

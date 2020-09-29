@@ -15,11 +15,11 @@ export const ErrorPage = props => {
                 issue right away.
               </h2>
             </div>
-            <Link to="/">
+            <Link to="/" className="highlighted-link">
               <p>Home</p>
             </Link>{' '}
             checkout
-            <Link to="/products">
+            <Link to="/products" className="highlighted-link">
               <p>Return to All Products</p>
             </Link>
           </div>
@@ -32,10 +32,10 @@ export const ErrorPage = props => {
               inconvenience!
             </h2>
           </div>
-          <Link to="/" className="back-link">
+          <Link to="/" className="highlighted-link">
             <p>Home</p>
           </Link>
-          <Link to="/products" className="back-link">
+          <Link to="/products" className="highlighted-link">
             <p>Return to All Products</p>
           </Link>
         </div>
