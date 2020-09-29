@@ -2,6 +2,7 @@ import axios from 'axios'
 import history from '../history'
 import {GET_USER_ORDER} from './activeOrder'
 import {completeOrder} from './checkout'
+
 /**
  * ACTION TYPES
  */

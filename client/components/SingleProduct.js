@@ -63,6 +63,9 @@ class SingleProduct extends React.Component {
                         product={this.props.product}
                         onSubmit={this.handleSubmit}
                       />
+                      <Link to="/products" className="highlighted-link">
+                        <p>Back to Products</p>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -90,6 +93,9 @@ class SingleProduct extends React.Component {
                           product={this.props.product}
                           onSubmit={this.handleSubmit}
                         />
+                        <Link to="/products" className="highlighted-link">
+                          <p>Back to Products</p>
+                        </Link>
                       </div>
                     </div>
                   </div>
