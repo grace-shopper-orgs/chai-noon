@@ -261,11 +261,6 @@ h5 {
   /* background-color: var(--primaryColor); */
   color: var(--mainBlack);
 }
-.delete:active::after {
-  transition: none;
-  background-color: var(--primaryColor);
-  color: var(--mainBlack);
-}
 .big-delete:active::after {
   background-color: var(--primaryColor);
   text-transform: uppercase;

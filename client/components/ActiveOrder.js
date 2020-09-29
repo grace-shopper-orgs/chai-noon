@@ -71,7 +71,7 @@ class ActiveOrder extends React.Component {
                       <button
                         onClick={e => this.handleDelete(product, e)}
                         type="button"
-                        className="button-delete delete"
+                        className="button-delete no-text"
                       >
                         x
                       </button>
