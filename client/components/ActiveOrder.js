@@ -39,13 +39,13 @@ class ActiveOrder extends React.Component {
         <div className="section-title">
           <h2>Cart</h2>
         </div>
-        <div className="product">
+        <div className="cart">
           {products !== undefined && !products.length
             ? 'No Products'
             : products.map(product => {
                 return (
                   <div key={product.id}>
-                    <img src={product.imageUrl} width="300" height="225" />
+                    <img className="cart-img" src={product.imageUrl} />
                     <h2>
                       <b>{product.name}</b>
                     </h2>

@@ -36,8 +36,8 @@ export default function WelcomePage() {
       <div className="container-feature">
         <h4>Featured Products</h4>
         <div className="card-wrap">
-          <div className="row row-cols-1 row-cols-md-3">
-            <div className="col mb-4">
+          <div className="card-box">
+            <div>
               <div className="card">
                 <img
                   src="https://cdn.pixabay.com/photo/2018/01/03/06/08/tee-3057645_960_720.jpg"
@@ -57,8 +57,8 @@ export default function WelcomePage() {
                 </div>
               </div>
             </div>
-            <div className="col mb-4">
-              <div className="card h-100">
+            <div>
+              <div className="card">
                 <img
                   src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/weight-loss-tea-1572293635.jpg?crop=0.716xw:1.00xh;0.111xw,0&resize=640:*"
                   className="card-img-top"
@@ -80,8 +80,8 @@ export default function WelcomePage() {
                 </div>
               </div>
             </div>
-            <div className="col mb-4">
-              <div className="card h-100">
+            <div>
+              <div className="card">
                 <img
                   src="https://static.toiimg.com/photo/67394858.cms"
                   className="card-img-top"
