@@ -4,12 +4,18 @@ import {fetchProducts, removeProduct} from '../store/products'
 import {Link} from 'react-router-dom'
 import Footer from './Footer'
 import Pagination from './Pagination'
+import {addToOrder} from '../store'
 
 export class AllProductsAdmin extends React.Component {
-  state = {
-    currentProducts: [],
-    currentPage: null,
-    totalPages: null
+  constructor(props) {
+    super(props)
+    this.state = {
+      currentProducts: [],
+      currentPage: null,
+      totalPages: null
+    }
+    // this.deleteTea = this.deleteTea.bind(this)
+    this.onPageChanged = this.onPageChanged.bind(this)
   }
 
   componentDidMount() {
@@ -24,11 +30,22 @@ export class AllProductsAdmin extends React.Component {
     this.setState({currentPage, currentProducts, totalPages})
   }
 
+  deleteTea(id) {
+    const filtered = this.state.currentProducts.filter(tea => tea.id != id)
+    console.log('filtered', filtered)
+    this.setState({
+      currentProducts: filtered
+    })
+    console.log('this..state', this.state.currentProducts)
+  }
+
   render() {
     const {products} = this.props
 
     const {currentProducts} = this.state
     const totalProducts = products.length
+
+    products.sort((a, b) => a.id - b.id)
 
     if (totalProducts === 0) return null
     return (
@@ -70,12 +87,20 @@ export class AllProductsAdmin extends React.Component {
                           <h4>{product.description}</h4>
                           <h4>Price: ${product.price / 100}</h4>
                           <h4>In Stock: {product.numOfItems}</h4>
-                          <div className="delete-button">
+                          <div className="product-button">
                             <button
                               type="button"
-                              onClick={() =>
+                              onClick={() => this.props.addToCart(product)}
+                              className="button-default"
+                            >
+                              Add to Cart
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                this.deleteTea(product.id)
                                 this.props.deleteProduct(product.id)
-                              }
+                              }}
                               className="button-default"
                             >
                               Delete
@@ -108,6 +133,9 @@ const mapDispatch = dispatch => {
     },
     deleteProduct: id => {
       dispatch(removeProduct(id))
+    },
+    addToCart: product => {
+      dispatch(addToOrder(product))
     }
   }
 }

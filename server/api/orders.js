@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {Product, Order, OrderProducts, User} = require('../db/models')
-const {isAdminMiddleware} = require('./gatekeeping')
+const {isAdminMiddleware, isSelfOrAdmin} = require('./gatekeeping')
 
 // get ALL orders
 router.get('/', isAdminMiddleware, async (req, res, next) => {
@@ -12,28 +12,9 @@ router.get('/', isAdminMiddleware, async (req, res, next) => {
   }
 })
 
-// get a user's current active order
-router.get('/user/:userId', async (req, res, next) => {
-  try {
-    // find an order that is associated with the user and is the current order (not purchased)
-    // eager load the order's products
-    const order = await Order.findOne({
-      where: {
-        userId: req.params.userId,
-        purchased: false
-      },
-      include: {
-        model: Product
-      }
-    })
-    res.json(order)
-  } catch (err) {
-    next(err)
-  }
-})
 
 // get order by order id
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', isSelfOrAdmin, async (req, res, next) => {
   try {
     // eager load the order's products
     let order = await Order.findByPk(req.params.id, {include: Product})
@@ -43,37 +24,8 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-// mark user's current order as purchased upon checkout
-router.put('/user/:id/ordered', async (req, res, next) => {
-  try {
-    // find current order
-    const order = await Order.findOne({
-      where: {
-        userId: req.params.id,
-        purchased: false
-      }
-    })
-
-    // update order to purchased
-    await order.update({purchased: true})
-
-    // create new empty order and assign it to the user
-    const newOrder = await Order.create()
-    let user = await User.findOne({
-      where: {
-        id: req.params.id
-      }
-    })
-    await user.addOrder(newOrder)
-
-    res.json(order)
-  } catch (error) {
-    next(error)
-  }
-})
-
 // update the count of a product in the order to a new count specified by user
-router.put('/update', async (req, res, next) => {
+router.put('/update', isSelfOrAdmin, async (req, res, next) => {
   try {
     let {product, order, count} = req.body
     count = Number(count)
@@ -86,6 +38,8 @@ router.put('/update', async (req, res, next) => {
       }
     })
 
+    const previousCount = association.count
+
     // if the new count is 0, delete the item from the order, or remove the assocation between product and order. else, update the product count in the association to reflect the new count
     if (count === 0) {
       await association.destroy()
@@ -96,7 +50,7 @@ router.put('/update', async (req, res, next) => {
     const orderModel = await Order.findByPk(order.id)
 
     // find the difference between the previous count and the new count
-    const previousCount = association.count
+
     const countDifference = count - previousCount
 
     // find the new total price of the order by multiplying the count difference by the product price, and adding that to the initial total price of the order
@@ -120,7 +74,7 @@ router.put('/update', async (req, res, next) => {
 })
 
 // add a product to an order
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', isSelfOrAdmin, async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.id)
     const productId = req.body.id

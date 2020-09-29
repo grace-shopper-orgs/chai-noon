@@ -112,6 +112,7 @@ class Pagination extends Component {
             if (page === LEFT_PAGE)
               return (
                 <li key={index} className="page-item">
+                  {console.log('index', index)}
                   <a
                     className="page-link"
                     href="#"
