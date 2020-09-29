@@ -67,7 +67,7 @@ export class AllProductsUsers extends React.Component {
                           <button
                             type="button"
                             onClick={() => this.props.addToCart(product, 1)}
-                            className="button-default"
+                            className="button-default submit"
                           >
                             Add to Cart
                           </button>
