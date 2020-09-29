@@ -29,26 +29,28 @@ body {
 }
 
 .navbox {
-  padding-bottom: 100px;
+  padding-bottom: 90px;
+  width: 100vw;
 }
 
 .navbar {
+  width: 100vw;
   position: fixed;
-  height: 100px;
-  width: 100%;
+  height: 90px;
   display: flex;
   flex-flow: column nowrap;
   background: rgb(231, 226, 221);
   z-index: 1;
 }
 .navbar-center {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 .nav-left {
+  position: relative;
+  top: 10px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
@@ -57,18 +59,9 @@ body {
 .nav-icon {
   font-size: 1.7rem;
 }
-.nav-row {
-  position: relative;
-  top: -30px;
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: space-evenly;
-}
+
 .nav-right {
   position: relative;
-  top: -25px;
   width: relative;
   display: flex;
   flex-flow: column nowrap;
@@ -76,10 +69,14 @@ body {
 }
 .cart-btn {
   position: relative;
-  top: 15px;
+  top: 0px;
   cursor: pointer;
 }
-
+.cart-img {
+  width: 100%;
+  max-width: 300px;
+  height: 225px;
+}
 .cart-items {
   text-align: center;
   position: relative;
@@ -95,7 +92,7 @@ body {
   width: 100%;
   position: fixed;
   left: 0px;
-  top: 100px;
+  top: 90px;
   padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
@@ -229,14 +226,16 @@ ul {
 }
 
 .product h4,
-h5 {
+h5,
+.cart h4 {
   margin-top: 0.3rem;
   font-size: 0.8rem;
   letter-spacing: var(--mainSpacing);
   text-align: center;
 }
 
-.product h2 {
+.product h2,
+.cart h2 {
   margin-top: 0.3rem;
   font-size: 1rem;
   letter-spacing: var(--mainSpacing);
@@ -317,15 +316,19 @@ h5 {
   position: relative;
   bottom: 0;
 }
+.cart {
+  width: 100%;
+}
 
 /* //------------footer---------------// */
 
 .footer {
   position: fixed;
+
   left: 0;
   padding: 0.5rem 0rem 0rem 0rem;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   background-color: var(--primaryColor);
   color: white;
   text-align: center;
@@ -367,14 +370,14 @@ a.page-link {
   text-align: center;
   box-shadow: none;
   border-color: var(--primaryColor);
-  /* color: saturate(darken(#ced4da, 30%), 10%); */
   font-weight: 500;
   color: #222;
   font-size: 0.8rem;
 }
 a.page-link:focus {
+  z-index: 0 !important;
   box-shadow: none !important;
-  border-color: transparent !important;
+  border-color: var(--primaryColor) !important;
 }
 a.page-link:hover {
   background-color: transparent !important;
@@ -383,6 +386,7 @@ a.page-link:hover {
   box-shadow: none;
 }
 .pagination > .active > a {
+  z-index: 0 !important;
   background-color: var(--primaryColor) !important;
   border-color: var(--primaryColor) !important;
   box-shadow: var(--mainGrey) !important;
@@ -399,23 +403,59 @@ a.page-link:hover {
 /* //-----nav logo/text alignment-----// */
 .main-text {
   width: max-content;
-}
-.main-text h4 {
   font-weight: bold;
+  padding-top: 8px;
 }
-/*------------- media queries --------*/
-@media only screen and (min-width: 480px) {
+
+@media only screen and (min-width: 350px) {
   .navbox {
-    padding-bottom: 80px;
+    padding-bottom: 70px;
+  }
+  .cart-btn {
+    position: relative;
+    top: 20px;
+    cursor: pointer;
   }
   .navbar {
     position: fixed;
-    height: 80px;
+    height: 70px;
     width: 100%;
-    display: block;
+    display: flex;
+    flex-flow: column nowrap;
     background: rgb(231, 226, 221);
     z-index: 1;
   }
+  .navbar-center {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2em;
+  }
+  .nav-left {
+    position: relative;
+    top: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .menuLinks {
+    width: 100%;
+    position: fixed;
+    left: 0px;
+    top: 70px;
+    padding: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(231, 226, 221, 0.623);
+    text-align: center;
+    z-index: 2;
+  }
+}
+/*------------- media queries --------*/
+@media only screen and (min-width: 480px) {
   .navbar-center {
     width: 100%;
     margin: 0 auto;
@@ -425,30 +465,10 @@ a.page-link:hover {
     justify-content: space-between;
     padding: 0 3.5rem;
   }
-  .nav-right {
-    position: relative;
-    top: -5px;
-    width: relative;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-  }
   .nav-icon {
     font-size: 1.7rem;
   }
-  .nav-row {
-    display: flex;
-    position: relative;
-    top: 0px;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  .cart-btn {
-    position: relative;
-    top: 15px;
-    cursor: pointer;
-  }
+
   .hamburger-react {
     position: relative;
     bottom: 2px;
@@ -460,7 +480,7 @@ a.page-link:hover {
     height: 100vh;
     position: fixed;
     left: 0px;
-    top: 80px;
+    top: 70px;
 
     background-color: rgba(231, 226, 221, 0.75);
     float: left;
@@ -471,6 +491,7 @@ a.page-link:hover {
   .card-wrap {
     padding: 3rem 5rem 0rem;
     justify-content: center;
+    display: flex;
   }
 
   .container-feature {
@@ -483,7 +504,7 @@ a.page-link:hover {
     background-color: rgba(231, 226, 221, 0.473);
   }
   .card-img-top {
-    min-width: calc(10vw - 100px);
+    width: 400px;
     height: 365px;
     object-fit: cover;
     align-items: center;
@@ -492,6 +513,9 @@ a.page-link:hover {
   .card {
     display: block;
     justify-content: center;
+    margin: 10px;
+    height: 800px;
+    width: 480px;
   }
   .card-text {
     width: 100%;
@@ -515,13 +539,18 @@ a.page-link:hover {
     width: 400px;
     align-content: center;
   }
-  .product h4 {
+  .product h4,
+  .cart h4 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 0.3rem;
     font-size: 0.8rem;
     letter-spacing: var(--mainSpacing);
+  }
+  .cart {
+    width: 400px;
+    margin: 0 auto;
   }
   /* --------user-------*/
   .user-inline {
@@ -538,10 +567,6 @@ a.page-link:hover {
     flex-flow: row wrap;
     justify-content: center;
   }
-  .card {
-    width: 480px;
-    margin: 10px;
-  }
 }
 @media only screen and (min-width: 1500px) {
   .navbar-center {
@@ -556,7 +581,7 @@ a.page-link:hover {
     height: 100vh;
     position: fixed;
     left: 0px;
-    top: 80px;
+    top: 70px;
     background-color: rgba(231, 226, 221, 0.75);
     float: left;
     z-index: 1;

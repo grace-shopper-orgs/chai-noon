@@ -43,15 +43,14 @@ class Navbar extends React.Component {
         <nav className="navbar">
           <div className="navbar-center">
             <div className="nav-left">
-              <Hamburger size={20} id="menu" toggled={this.state.menu} />
-              <Link to="/" className="link">
-                <h5>
-                  {' '}
-                  <div className="main-text">
-                    <h4>CHAI NOON</h4>
-                  </div>
-                </h5>
-              </Link>
+              <div>
+                <Hamburger size={20} id="menu" toggled={this.state.menu} />
+              </div>
+              <div className="main-text">
+                <Link to="/" className="link">
+                  <h4>CHAI NOON</h4>
+                </Link>
+              </div>
             </div>
             <div className="nav-right">
               <Link to="/cart" className="link">
