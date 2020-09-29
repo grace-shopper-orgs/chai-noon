@@ -52,7 +52,7 @@ export default function WelcomePage() {
                     and slightly sweet botanicals. Restoring balance in the
                     digestive system with each and every sip.
                   </p>
-                  <Link to="/products/73" className="highlighted-link">
+                  <Link to="/products/74" className="highlighted-link">
                     <p>View Product</p>
                   </Link>
                 </div>

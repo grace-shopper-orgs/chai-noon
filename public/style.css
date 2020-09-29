@@ -67,6 +67,9 @@ body {
   flex-flow: column nowrap;
   align-items: center;
 }
+#logo {
+  margin: 0 !important;
+}
 .cart-btn {
   position: relative;
   top: 0px;
@@ -89,7 +92,7 @@ body {
   padding: 0 5px;
 }
 .menuLinks {
-  width: 100%;
+  width: 100vw;
   position: fixed;
   left: 0px;
   top: 90px;
@@ -208,7 +211,7 @@ ul {
 }
 
 .product img {
-  width: 100%;
+  width: 100vw;
   max-width: 400px;
   height: 280px;
 }
@@ -402,9 +405,10 @@ a.page-link:hover {
 }
 /* //-----nav logo/text alignment-----// */
 .main-text {
+  margin: 0 10px;
+  position: relative;
   width: max-content;
   font-weight: bold;
-  padding-top: 8px;
 }
 
 @media only screen and (min-width: 350px) {
@@ -419,14 +423,14 @@ a.page-link:hover {
   .navbar {
     position: fixed;
     height: 70px;
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-flow: column nowrap;
     background: rgb(231, 226, 221);
     z-index: 1;
   }
   .navbar-center {
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -442,7 +446,7 @@ a.page-link:hover {
     align-items: center;
   }
   .menuLinks {
-    width: 100%;
+    width: 100vw;
     position: fixed;
     left: 0px;
     top: 70px;
@@ -457,7 +461,7 @@ a.page-link:hover {
 /*------------- media queries --------*/
 @media only screen and (min-width: 480px) {
   .navbar-center {
-    width: 100%;
+    width: 100vw;
     margin: 0 auto;
     display: flex;
     flex-flow: row nowrap;
