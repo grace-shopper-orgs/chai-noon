@@ -357,7 +357,15 @@ h5 {
   margin-top: 5rem;
 }
 /* //-----------------pagination-----------------// */
-
+.pagination-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.pagination {
+  display: flex;
+  flex-flow: row wrap;
+}
 a.page-link {
   padding: 0.5rem 0.8rem;
   min-width: 0.8rem;
@@ -365,22 +373,25 @@ a.page-link {
   text-align: center;
   box-shadow: none;
   border-color: var(--primaryColor);
-  color: saturate(darken(#ced4da, 30%), 10%);
+  /* color: saturate(darken(#ced4da, 30%), 10%); */
   font-weight: 500;
   color: #222;
   font-size: 0.8rem;
 }
-
-a.page-link:hover {
-  background: transparent;
-  color: var(--primaryColor);
+a.page-link:focus {
+  box-shadow: none !important;
+  border-color: transparent !important;
 }
-
-.pagination > li.active > a {
+a.page-link:hover {
+  background-color: transparent !important;
+  border-color: var(--primaryColor) !important;
+  color: #222;
+  box-shadow: none;
+}
+.pagination > .active > a {
   background-color: var(--primaryColor) !important;
   border-color: var(--primaryColor) !important;
   box-shadow: var(--mainGrey) !important;
-  border-color: transparent !important;
 }
 /* --------------- user -------------*/
 .user {
