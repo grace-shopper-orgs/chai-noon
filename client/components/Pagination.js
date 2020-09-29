@@ -38,8 +38,8 @@ class Pagination extends Component {
     const totalBlocks = totalNumbers + 2
 
     if (totalPages > totalBlocks) {
-      const startPage = Math.max(2, currentPage - pageNeighbours)
-      const endPage = Math.min(totalPages - 1, currentPage + pageNeighbours)
+      const startPage = Math.max(1, currentPage - pageNeighbours)
+      const endPage = Math.min(totalPages, currentPage + pageNeighbours)
       let pages = range(startPage, endPage)
 
       const hasLeftSpill = startPage > 2
@@ -63,7 +63,7 @@ class Pagination extends Component {
           break
         }
       }
-      return [1, ...pages, totalPages]
+      return ['<<', ...pages, '>>']
     }
     return range(1, totalPages)
   }
@@ -86,6 +86,8 @@ class Pagination extends Component {
 
   handleClick = page => evt => {
     evt.preventDefault()
+    if (page === '<<') page = 1
+    if (page === '>>') page = this.totalPages
     this.gotoPage(page)
   }
 
@@ -106,52 +108,56 @@ class Pagination extends Component {
     const pages = this.fetchPageNumbers()
 
     return (
-      <div>
-        <ul className="pagination">
-          {pages.map((page, index) => {
-            if (page === LEFT_PAGE)
+      <div className="pagination-div">
+        <div>
+          <ul className="pagination">
+            {pages.map((page, index) => {
+              if (page === LEFT_PAGE)
+                return (
+                  <li key={index} className="page-item">
+                    {console.log('index', index)}
+                    <a
+                      className="page-link"
+                      href="#"
+                      aria-disabled="true"
+                      onClick={this.handleMoveLeft}
+                    >
+                      Prev{' '}
+                    </a>
+                  </li>
+                )
+              if (page === RIGHT_PAGE)
+                return (
+                  <li key={index} className="page-item">
+                    <a
+                      className="page-link"
+                      href="#"
+                      aria-disabled="true"
+                      onClick={this.handleMoveRight}
+                    >
+                      Next
+                    </a>
+                  </li>
+                )
               return (
-                <li key={index} className="page-item">
-                  {console.log('index', index)}
-                  <a
-                    className="page-link"
-                    href="#"
-                    aria-disabled="true"
-                    onClick={this.handleMoveLeft}
-                  >
-                    Previous{' '}
-                  </a>
-                </li>
-              )
-            if (page === RIGHT_PAGE)
-              return (
-                <li key={index} className="page-item">
-                  <a
-                    className="page-link"
-                    href="#"
-                    aria-disabled="true"
-                    onClick={this.handleMoveRight}
-                  >
-                    Next
-                  </a>
-                </li>
-              )
-            return (
-              <li
-                key={index}
-                className={`page-item${currentPage === page ? ' active' : ''}`}
-              >
-                <a
-                  className="page-link"
-                  href="#"
-                  onClick={this.handleClick(page)}
+                <li
+                  key={index}
+                  className={`page-item${
+                    currentPage === page ? ' active' : ''
+                  }`}
                 >
-                  {page}
-                </a>
-              </li>
-            )
-          })}
-        </ul>
+                  <a
+                    className="page-link"
+                    href="#"
+                    onClick={this.handleClick(page)}
+                  >
+                    {page}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </div>
     )
   }

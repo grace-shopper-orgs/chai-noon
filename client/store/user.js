@@ -69,7 +69,8 @@ export const me = () => async dispatch => {
   try {
     //get the current user and dispatch either that information or a defaultUser
     const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data || defaultUser))
+    if (res.data) dispatch(getUser(res.data))
+    else dispatch(getUser({name: null}))
   } catch (err) {
     console.error(err)
   }

@@ -80,7 +80,7 @@ class CheckoutPage extends React.Component {
             <div className="section-title">
               <h2>Confirm Order Details and Checkout</h2>
               <button
-                className="button-default"
+                className="button-default no-text"
                 type="submit"
                 onClick={this.handleSubmit}
               >
@@ -133,7 +133,9 @@ class CheckoutPage extends React.Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <button className="button-default">Create an Account</button>
+                <button className="button-default no-text">
+                  Create an Account
+                </button>
               </form>
             </div>
           )}

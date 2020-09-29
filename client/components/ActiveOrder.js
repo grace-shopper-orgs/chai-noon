@@ -71,7 +71,7 @@ class ActiveOrder extends React.Component {
                       <button
                         onClick={e => this.handleDelete(product, e)}
                         type="button"
-                        className="button-delete"
+                        className="button-delete no-text"
                       >
                         x
                       </button>
@@ -85,7 +85,7 @@ class ActiveOrder extends React.Component {
           <hr />
           {totalPrice ? (
             <Link to="/checkout">
-              <button type="button" className="button-default">
+              <button type="button" className="button-default no-text">
                 Checkout
               </button>
             </Link>

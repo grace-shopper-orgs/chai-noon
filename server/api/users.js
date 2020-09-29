@@ -17,17 +17,18 @@ router.get('/', isAdminMiddleware, async (req, res, next) => {
 })
 
 router.get('/:id', isAdminMiddleware, async (req, res, next) => {
+  let user
   try {
-    const user = await User.findOne({
+    user = await User.findOne({
       where: {
         id: req.params.id
       },
       attributes: ['id', 'email', 'firstName', 'lastName']
     })
-    res.json(user)
   } catch (err) {
     next(err)
   }
+  res.json(user)
 })
 
 router.put('/order/checkout/:id', isSelfOrAdmin, async (req, res, next) => {

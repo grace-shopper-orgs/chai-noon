@@ -53,21 +53,21 @@ export class AllProductsUsers extends React.Component {
                     <div className="products-center" key={product.id}>
                       <article className="product">
                         <Link to={`/products/${product.id}`} className="link">
-
                           <img src={product.imageUrl} />
 
-                       
                           <h2>
                             <b>{product.name}</b>
                           </h2>
                         </Link>
-                        <h4>{product.description}</h4>
+                        <div className="desc">
+                          <h4>{product.description}</h4>
+                        </div>
                         <h4>Price: ${product.price / 100}</h4>
                         <div className="product-button">
                           <button
                             type="button"
                             onClick={() => this.props.addToCart(product, 1)}
-                            className="button-default"
+                            className="button-default submit"
                           >
                             Add to Cart
                           </button>

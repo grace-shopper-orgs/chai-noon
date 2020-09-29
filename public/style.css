@@ -157,7 +157,10 @@ ul {
   font-size: 2.4rem;
   text-transform: uppercase;
   letter-spacing: var(--mainSpacing);
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
+}
+.banner-text {
+  margin-bottom: 1rem;
 }
 .banner-btn {
   padding: 0.5rem 2rem;
@@ -202,6 +205,7 @@ ul {
   display: inline-block;
   width: 400px;
   align-content: center;
+  height: 550px;
 }
 
 .product img {
@@ -209,12 +213,10 @@ ul {
   max-width: 400px;
   height: 280px;
 }
-
-.product-container {
-  width: 400px;
-  align-items: center;
+.desc {
+  height: 85px;
+  overflow: scroll;
 }
-
 .single-img {
   margin-bottom: 1.8rem;
 }
@@ -242,7 +244,36 @@ h5 {
   color: black;
   align-items: center;
 }
-
+.submit:active,
+.big-delete:active {
+  transition: none;
+  background-color: var(--primaryColor);
+  color: var(--primaryColor);
+}
+.submit:active::after {
+  background-color: var(--primaryColor);
+  text-transform: uppercase;
+  letter-spacing: var(--mainSpacing);
+  font-size: 0.7rem;
+  position: absolute;
+  top: 0.5rem;
+  left: 33%;
+  content: 'Added';
+  /* background-color: var(--primaryColor); */
+  color: var(--mainBlack);
+}
+.big-delete:active::after {
+  background-color: var(--primaryColor);
+  text-transform: uppercase;
+  letter-spacing: var(--mainSpacing);
+  font-size: 0.7rem;
+  position: absolute;
+  top: 0.5rem;
+  left: 25%;
+  content: 'Deleted';
+  /* background-color: var(--primaryColor); */
+  color: var(--mainBlack);
+}
 .button-default {
   padding: 0.5rem 2rem;
   text-transform: uppercase;
@@ -255,7 +286,11 @@ h5 {
   cursor: pointer;
   position: relative;
 }
-
+.no-text:active {
+  background-color: var(--primaryColor);
+  color: var(--mainBlack);
+  transition: none;
+}
 .button-alignment {
   margin: 0 0.1em;
 }
@@ -272,7 +307,8 @@ h5 {
   justify-content: center;
   text-align: center;
   padding-top: 1rem;
-  padding-bottom: 2rem;
+  position: relative;
+  bottom: 0;
 }
 
 /* //------------footer---------------// */
@@ -308,7 +344,15 @@ h5 {
   margin-top: 5rem;
 }
 /* //-----------------pagination-----------------// */
-
+.pagination-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.pagination {
+  display: flex;
+  flex-flow: row wrap;
+}
 a.page-link {
   padding: 0.5rem 0.8rem;
   min-width: 0.8rem;
@@ -316,22 +360,25 @@ a.page-link {
   text-align: center;
   box-shadow: none;
   border-color: var(--primaryColor);
-  color: saturate(darken(#ced4da, 30%), 10%);
+  /* color: saturate(darken(#ced4da, 30%), 10%); */
   font-weight: 500;
   color: #222;
   font-size: 0.8rem;
 }
-
-a.page-link:hover {
-  background: transparent;
-  color: var(--primaryColor);
+a.page-link:focus {
+  box-shadow: none !important;
+  border-color: transparent !important;
 }
-
-.pagination > li.active > a {
+a.page-link:hover {
+  background-color: transparent !important;
+  border-color: var(--primaryColor) !important;
+  color: #222;
+  box-shadow: none;
+}
+.pagination > .active > a {
   background-color: var(--primaryColor) !important;
   border-color: var(--primaryColor) !important;
   box-shadow: var(--mainGrey) !important;
-  border-color: transparent !important;
 }
 /* --------------- user -------------*/
 .user {
@@ -412,6 +459,7 @@ a.page-link:hover {
     float: left;
     z-index: 1;
   }
+  
   /* //-----------cards on welcome page----------// */
   .card-wrap {
     padding: 3rem 5rem 0rem;
@@ -476,6 +524,16 @@ a.page-link:hover {
   .user {
     margin: 0 auto;
     width: 400px;
+  }
+  /*---------welcome---------*/
+  .card-box {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+  .card {
+    width: 480px;
+    margin: 10px;
   }
 }
 @media only screen and (min-width: 1500px) {

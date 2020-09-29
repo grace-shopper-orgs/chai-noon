@@ -90,6 +90,9 @@ class Navbar extends React.Component {
             ) : (
               <div className="menuLinks">
                 {/* The navbar will show these links before you log in */}
+                <Link to="/home" className="link">
+                  Home
+                </Link>
                 <Link to="/login" className="link">
                   Login
                 </Link>

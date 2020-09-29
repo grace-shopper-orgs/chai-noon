@@ -26,7 +26,13 @@ router.get('/:id', async (req, res, next) => {
 //route to add a new product
 router.post('/', isAdminMiddleware, async (req, res, next) => {
   try {
-    const product = await Product.create(req.body)
+    const reqChanges = {
+      name: req.body.name,
+      price: Math.round(req.body.price * 100),
+      description: req.body.description,
+      numOfItems: req.body.numOfItems
+    }
+    const product = await Product.create(reqChanges)
     res.json(product)
   } catch (err) {
     next(err)

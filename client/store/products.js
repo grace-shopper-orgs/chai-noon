@@ -66,10 +66,10 @@ export default function productsReducer(state = products, action) {
     case SET_PRODUCTS:
       return [...action.products]
     case ADD_PRODUCT:
-      return [...products, action.product]
+      return [...state, action.product]
     case DELETE_PRODUCT:
       const filteredProducts = state.filter(product => product.id !== action.id)
-      return [...filteredProducts]
+      return filteredProducts
     default:
       return state
   }

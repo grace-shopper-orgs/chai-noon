@@ -54,7 +54,7 @@ export class UpdateProduct extends Component {
               value={this.state.name}
               required
             />
-            <button type="submit" className="button-default">
+            <button type="submit" className="button-default no-text">
               UPDATE:
             </button>
           </form>
