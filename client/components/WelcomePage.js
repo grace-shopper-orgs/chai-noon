@@ -7,7 +7,6 @@ export default function WelcomePage() {
     <div>
       <header className="hero">
         <div className="banner">
-          <h1 className="banner-title">Chai Noon</h1>
           <h4 className="banner-text">Be your best at work or rest</h4>
           <Link to="/products">
             <button type="button" className="banner-btn">
@@ -17,12 +16,14 @@ export default function WelcomePage() {
         </div>
       </header>
       <div className="container">
-        <h4>About Us</h4>
+        <div className="section-title">
+          <h4>About Us</h4>
+        </div>
         <br />
-        <p>
-          We believe that the key to reaching your full potential lies in
-          feeling your best.
-        </p>
+        <h5 className="about-text">
+          "We believe that the key to reaching your full potential lies in
+          feeling your best."
+        </h5>
         <p>
           At Chai Noon, we accomplish that by providing high-quality teas that
           deliver on taste, and provide an immersive experience. Whether you

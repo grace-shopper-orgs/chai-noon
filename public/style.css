@@ -149,7 +149,7 @@ ul {
   text-align: center;
   background: rgba(255, 255, 255, 0.8);
   display: inline-block;
-  padding: 2rem 6rem;
+  padding: 3rem 7rem;
   margin-bottom: 2rem;
 }
 
@@ -160,7 +160,9 @@ ul {
   margin-bottom: 1.5rem;
 }
 .banner-text {
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
+  margin-top: 2rem;
+  font-size: 1.4rem;
 }
 .banner-btn {
   padding: 0.5rem 2rem;
@@ -219,6 +221,11 @@ ul {
 }
 .single-img {
   margin-bottom: 1.8rem;
+}
+.about-text {
+  font-style: italic;
+  margin-bottom: 1rem;
+  font-size: 1rem;
 }
 
 .product h4,
@@ -459,7 +466,7 @@ a.page-link:hover {
     float: left;
     z-index: 1;
   }
-  
+
   /* //-----------cards on welcome page----------// */
   .card-wrap {
     padding: 3rem 5rem 0rem;

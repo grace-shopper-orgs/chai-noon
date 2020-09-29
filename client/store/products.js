@@ -42,6 +42,7 @@ export const createProduct = product => async dispatch => {
   try {
     const {data} = await axios.post('/api/products', product)
     dispatch(addProduct(data))
+    dispatch(fetchProducts())
   } catch (err) {
     console.log(err)
   }
