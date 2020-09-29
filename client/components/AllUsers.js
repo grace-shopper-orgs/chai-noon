@@ -12,8 +12,8 @@ export class AllUsers extends React.Component {
       loading: true
     }
   }
-  componentDidMount() {
-    this.props.getUsers()
+  async componentDidMount() {
+    await this.props.getUsers()
     this.props.getMe()
   }
   shouldComponentUpdate(nextProps, nextState) {
