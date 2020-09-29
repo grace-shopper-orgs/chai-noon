@@ -51,6 +51,7 @@ export const removeProduct = id => async dispatch => {
   try {
     await axios.delete(`api/products/${id}`)
     dispatch(deleteProduct(id))
+    dispatch(fetchProducts())
   } catch (err) {
     console.log(err)
   }
