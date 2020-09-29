@@ -84,7 +84,10 @@ export class AllProductsAdmin extends React.Component {
                               <b>{product.name}</b>
                             </h2>
                           </Link>
-                          <h4>{product.description}</h4>
+                          <div className="desc">
+                            <h4>{product.description}</h4>
+                          </div>
+
                           <h4>Price: ${product.price / 100}</h4>
                           <h4>In Stock: {product.numOfItems}</h4>
                           <div className="product-button">

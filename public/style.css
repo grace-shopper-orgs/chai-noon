@@ -205,6 +205,7 @@ ul {
   display: inline-block;
   width: 400px;
   align-content: center;
+  height: 550px;
 }
 
 .product img {
@@ -212,12 +213,10 @@ ul {
   max-width: 400px;
   height: 280px;
 }
-
-.product-container {
-  width: 400px;
-  align-items: center;
+.desc {
+  height: 85px;
+  overflow: scroll;
 }
-
 .single-img {
   margin-bottom: 1.8rem;
 }
@@ -312,7 +311,8 @@ h5 {
   justify-content: center;
   text-align: center;
   padding-top: 1rem;
-  padding-bottom: 2rem;
+  position: relative;
+  bottom: 0;
 }
 
 /* //-----------cards on welcome page----------// */
