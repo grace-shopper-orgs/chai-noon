@@ -47,6 +47,7 @@ export class AddProduct extends Component {
               name="name"
               type="text"
               value={this.state.name}
+              placeholder="Product Name"
               required
             />
 
@@ -54,6 +55,7 @@ export class AddProduct extends Component {
             <input
               onChange={this.handleChange}
               name="description"
+              placeholder="Product Description"
               type="text"
               value={this.state.description}
               required
@@ -64,6 +66,9 @@ export class AddProduct extends Component {
               onChange={this.handleChange}
               name="price"
               type="number"
+              placeholder="$0.00"
+              min={0}
+              step={0.01}
               value={this.state.price}
               required
             />
@@ -73,12 +78,13 @@ export class AddProduct extends Component {
               onChange={this.handleChange}
               name="numOfItems"
               type="number"
+              placeholder="Quantity in Stock"
               value={this.state.numOfItems}
               required
             />
             <div className="container">
-              <button type="submit" className="button-default">
-                Submit:
+              <button type="submit" className="button-default submit">
+                Submit
               </button>
             </div>
           </form>

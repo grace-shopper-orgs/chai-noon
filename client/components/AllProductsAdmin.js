@@ -31,7 +31,7 @@ export class AllProductsAdmin extends React.Component {
   }
 
   deleteTea(id) {
-    const filtered = this.state.currentProducts.filter(tea => tea.id != id)
+    const filtered = this.state.currentProducts.filter(tea => tea.id !== id)
     console.log('filtered', filtered)
     this.setState({
       currentProducts: filtered
@@ -57,7 +57,7 @@ export class AllProductsAdmin extends React.Component {
             </div>
             <div className="button-alignment">
               <Link to="/products/add">
-                <button type="button" className="button-default">
+                <button type="button" className="button-default no-text">
                   Add Product
                 </button>
               </Link>
@@ -91,7 +91,7 @@ export class AllProductsAdmin extends React.Component {
                             <button
                               type="button"
                               onClick={() => this.props.addToCart(product)}
-                              className="button-default"
+                              className="button-default submit"
                             >
                               Add to Cart
                             </button>
@@ -101,7 +101,7 @@ export class AllProductsAdmin extends React.Component {
                                 this.deleteTea(product.id)
                                 this.props.deleteProduct(product.id)
                               }}
-                              className="button-default"
+                              className="button-default big-delete"
                             >
                               Delete
                             </button>

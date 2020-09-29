@@ -82,7 +82,10 @@ class SingleProduct extends React.Component {
                         <h2>${price / 100}</h2>
                         <h4>{description}</h4>
                         <Link to={`/products/${id}/update`} className="link">
-                          <button type="button" className="button-default">
+                          <button
+                            type="button"
+                            className="button-default no-text"
+                          >
                             UPDATE PRODUCT
                           </button>
                         </Link>

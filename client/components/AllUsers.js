@@ -38,7 +38,7 @@ export class AllUsers extends React.Component {
     else if (!this.props.user.isAdmin)
       return (
         <div className="section-title">
-          Sorry, you do not have access to this page
+          <h2>Sorry, you do not have access to this page</h2>
         </div>
       )
     else {
@@ -54,16 +54,20 @@ export class AllUsers extends React.Component {
             <br />
           </div>
           <div className="user-inline">
-            {!users.length
-              ? 'No Users'
-              : users.map(user => {
-                  return (
-                    <div className="user" key={user.id}>
-                      <p>User ID: {user.id}</p>
-                      <p>Email: {user.email}</p>
-                    </div>
-                  )
-                })}
+            {!users.length ? (
+              <div className="section-title">
+                <h2>No Users</h2>
+              </div>
+            ) : (
+              users.map(user => {
+                return (
+                  <div className="user" key={user.id}>
+                    <p>User ID: {user.id}</p>
+                    <p>Email: {user.email}</p>
+                  </div>
+                )
+              })
+            )}
           </div>
           <Footer />
         </div>
