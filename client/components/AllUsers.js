@@ -9,7 +9,7 @@ export class AllUsers extends React.Component {
   }
 
   render() {
-    console.log(this.props.user)
+   
     if (!this.props.user.isAdmin)
       return (
         <div className="section-title">
