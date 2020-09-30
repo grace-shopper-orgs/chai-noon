@@ -461,7 +461,8 @@ const productsJson = [
     description:
       'Organic green tea infused with tropical flavors of pineapple, mango, and papaya offering a sweet and refreshing cup of tea. This pineapple green tea is filled with bright and fruity notes in each cup.',
     price: 11599,
-    imageUrl: 'https://static.toiimg.com/photo/67394858.cms',
+    imageUrl:
+      'https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2018/06/01/Pictures/_c1c7c70a-657d-11e8-b4a9-2154dcd09999.jpg',
     numOfItems: 10
   },
   {
