@@ -277,36 +277,7 @@ h5,
   color: black;
   align-items: center;
 }
-.submit:active,
-.big-delete:active {
-  transition: none;
-  background-color: var(--primaryColor);
-  color: var(--primaryColor);
-}
-.submit:active::after {
-  background-color: var(--primaryColor);
-  text-transform: uppercase;
-  letter-spacing: var(--mainSpacing);
-  font-size: 0.7rem;
-  position: absolute;
-  top: 0.5rem;
-  left: 33%;
-  content: 'Added';
-  /* background-color: var(--primaryColor); */
-  color: var(--mainBlack);
-}
-.big-delete:active::after {
-  background-color: var(--primaryColor);
-  text-transform: uppercase;
-  letter-spacing: var(--mainSpacing);
-  font-size: 0.7rem;
-  position: absolute;
-  top: 0.5rem;
-  left: 25%;
-  content: 'Deleted';
-  /* background-color: var(--primaryColor); */
-  color: var(--mainBlack);
-}
+
 .button-default {
   padding: 0.5rem 2rem;
   text-transform: uppercase;
@@ -322,7 +293,10 @@ h5,
 .no-text:active {
   background-color: var(--primaryColor);
   color: var(--mainBlack);
-  transition: none;
+  border: none;
+}
+.no-text:focus {
+  outline: none;
 }
 .button-alignment {
   margin: 0 0.1em;

@@ -83,7 +83,7 @@ export class AddProduct extends Component {
               required
             />
             <div className="container">
-              <button type="submit" className="button-default submit">
+              <button type="submit" className="button-default no-text">
                 Submit
               </button>
             </div>
