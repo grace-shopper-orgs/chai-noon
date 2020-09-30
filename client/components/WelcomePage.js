@@ -83,13 +83,11 @@ export default function WelcomePage() {
             </div>
             <div>
               <div className="card">
-                <div className="card-img">
-                  <img
-                    src="https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2018/06/01/Pictures/_c1c7c70a-657d-11e8-b4a9-2154dcd09999.jpg"
-                    className="card-img-top"
-                    alt=""
-                  />
-                </div>
+                <img
+                  src="https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2018/06/01/Pictures/_c1c7c70a-657d-11e8-b4a9-2154dcd09999.jpg"
+                  className="card-img-top"
+                  alt=""
+                />
                 <div className="card-body">
                   <h5 className="card-title">Blue Ocean</h5>
                   <p className="card-text">
