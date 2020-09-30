@@ -111,6 +111,18 @@ body {
   justify-content: center;
   overflow: hidden;
 }
+.card-wrap {
+  padding: 2.5rem 0rem 0rem;
+  justify-content: center;
+  display: flex;
+}
+.container-feature {
+  padding: 3rem 0;
+  text-align: center;
+  color: black;
+  justify-content: center;
+  background-color: rgba(231, 226, 221, 0.473);
+}
 a {
   text-decoration: none;
 }
@@ -509,7 +521,6 @@ a.page-link:hover {
     justify-content: center;
     display: flex;
   }
-
   .container-feature {
     padding: 5rem 3rem;
     /* padding-top: 5rem;
