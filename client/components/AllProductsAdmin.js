@@ -92,7 +92,7 @@ export class AllProductsAdmin extends React.Component {
                             <button
                               type="button"
                               onClick={() => this.props.addToCart(product)}
-                              className="button-default submit"
+                              className="button-default no-text"
                             >
                               Add to Cart
                             </button>
@@ -102,7 +102,7 @@ export class AllProductsAdmin extends React.Component {
                                 this.deleteTea(product.id)
                                 this.props.deleteProduct(product.id)
                               }}
-                              className="button-default big-delete"
+                              className="button-default no-text"
                             >
                               Delete
                             </button>

@@ -47,7 +47,7 @@ const AuthForm = props => {
           <input name="password" type="password" />
         </div>
         <div>
-          <button className="button-default" type="submit">
+          <button className="button-default no-text" type="submit">
             {displayName}
           </button>
         </div>

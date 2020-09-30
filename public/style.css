@@ -104,6 +104,25 @@ body {
   text-align: center;
   z-index: 2;
 }
+.card-img-top {
+  height: 365px;
+  object-fit: cover;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.card-wrap {
+  padding: 2.5rem 0rem 0rem;
+  justify-content: center;
+  display: flex;
+}
+.container-feature {
+  padding: 3rem 0;
+  text-align: center;
+  color: black;
+  justify-content: center;
+  background-color: rgba(231, 226, 221, 0.473);
+}
 a {
   text-decoration: none;
 }
@@ -180,6 +199,11 @@ ul {
   background: transparent;
   color: var(--primaryColor);
 }
+.highlighted-link {
+  color: var(--primaryColor);
+  font-size: 0.9em;
+  text-align: center;
+}
 
 /* //--------All product page Layout------// */
 .products {
@@ -212,8 +236,7 @@ ul {
 }
 
 .product img {
-  width: 100vw;
-  max-width: 400px;
+  width: 100%;
   height: 280px;
 }
 .desc {
@@ -254,36 +277,7 @@ h5,
   color: black;
   align-items: center;
 }
-.submit:active,
-.big-delete:active {
-  transition: none;
-  background-color: var(--primaryColor);
-  color: var(--primaryColor);
-}
-.submit:active::after {
-  background-color: var(--primaryColor);
-  text-transform: uppercase;
-  letter-spacing: var(--mainSpacing);
-  font-size: 0.7rem;
-  position: absolute;
-  top: 0.5rem;
-  left: 33%;
-  content: 'Added';
-  /* background-color: var(--primaryColor); */
-  color: var(--mainBlack);
-}
-.big-delete:active::after {
-  background-color: var(--primaryColor);
-  text-transform: uppercase;
-  letter-spacing: var(--mainSpacing);
-  font-size: 0.7rem;
-  position: absolute;
-  top: 0.5rem;
-  left: 25%;
-  content: 'Deleted';
-  /* background-color: var(--primaryColor); */
-  color: var(--mainBlack);
-}
+
 .button-default {
   padding: 0.5rem 2rem;
   text-transform: uppercase;
@@ -299,7 +293,10 @@ h5,
 .no-text:active {
   background-color: var(--primaryColor);
   color: var(--mainBlack);
-  transition: none;
+  border: none;
+}
+.no-text:focus {
+  outline: none;
 }
 .button-alignment {
   margin: 0 0.1em;
@@ -498,7 +495,6 @@ a.page-link:hover {
     justify-content: center;
     display: flex;
   }
-
   .container-feature {
     padding: 5rem 3rem;
     /* padding-top: 5rem;
@@ -508,12 +504,11 @@ a.page-link:hover {
     justify-content: center;
     background-color: rgba(231, 226, 221, 0.473);
   }
-  .card-img-top {
+
+  .card-img {
     width: 400px;
     height: 365px;
-    object-fit: cover;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
   }
   .card {
     display: block;

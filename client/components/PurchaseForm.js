@@ -22,7 +22,7 @@ export const PurchaseForm = props => {
             />
           </div>
           <div>
-            <button className="button-default submit" type="submit">
+            <button className="button-default no-text" type="submit">
               Add to Cart
             </button>
           </div>
