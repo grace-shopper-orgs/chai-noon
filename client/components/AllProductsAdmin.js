@@ -32,11 +32,9 @@ export class AllProductsAdmin extends React.Component {
 
   deleteTea(id) {
     const filtered = this.state.currentProducts.filter(tea => tea.id !== id)
-    console.log('filtered', filtered)
     this.setState({
       currentProducts: filtered
     })
-    console.log('this..state', this.state.currentProducts)
   }
 
   render() {

@@ -38,7 +38,6 @@ export class UpdateProduct extends Component {
   }
 
   render() {
-    console.log(this.state.id)
     return (
       <div className="container">
         <main>

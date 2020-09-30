@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {fetchProducts} from './products'
 
 // ACTION TYPES
 
@@ -40,6 +41,7 @@ export const updateProduct = (id, updatedProductInfo) => async dispatch => {
     const response = await axios.put(`/api/products/${id}`, updatedProductInfo)
     const data = response.data
     dispatch(changeProduct(data))
+    dispatch(fetchProducts())
   } catch (err) {
     console.log(err)
   }
@@ -52,7 +54,7 @@ export default function singleProductReducer(state = {}, action) {
     case GET_PRODUCT:
       return action.product
     case UPDATE_PRODUCT:
-      return {...action.product}
+      return action.product
     default:
       return state
   }
