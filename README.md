@@ -4,12 +4,20 @@
 
 Chai Noon is a mock e-commerce site designed to sell high quality tea. Users can browse teas, add teas to their cart, update their cart, and navigate to a checkout page. The cart persists in the database for authenticated users and in the browser's local storage for guest users. If a guest adds items to their cart and then signs in to an account with an existing cart, the carts are merged. Administrators can add, update, or delete teas from the database. 
 
+![screenshot](https://github.com/grace-shopper-orgs/chai-noon/blob/master/Screen%20Shot%202020-11-21%20at%205.37.59%20PM.png)
+
 
 ## Tech Stack
 
 Frontend: React, Redux
+
 Backend: Node.js, Express, Postgres, Sequelize, Passport.js
+
 Testing: Mocha, Chai
+
+## Authors
+
+Valerie Ingmann, Leslie Meng, Aminat Puebla, Ellen Kwan
 
 ## Setup
 
