@@ -43,18 +43,18 @@ describe.only('User routes', () => {
   describe('GET /api/users/:id', () => {
     const codysEmail = 'cody@puppybook.com'
 
-    beforeEach(() => {
-      User.create({
+    beforeEach(async () => {
+      await User.create({
         email: codysEmail,
         firstName: 'Cody',
         lastName: 'Dog'
       })
-      User.create({
+      await User.create({
         email: 'test@testing.com',
         firstName: 'Robin',
         lastName: 'Default'
       })
-      User.create({
+      await User.create({
         email: 'Admin@email.com',
         password: '9999',
         isAdmin: true,
