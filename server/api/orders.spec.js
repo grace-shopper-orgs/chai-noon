@@ -5,7 +5,7 @@ const User = require('../db/models/user')
 const app = require('../index')
 const Order = db.model('order')
 
-describe.only('Order routes', () => {
+describe('Order routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
